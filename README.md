@@ -20,7 +20,9 @@
 
 ## 🚀 快速開始 (手機端 3 分鐘上手) - ✨ V2 全新升級！
 
-> **🔥 V2 重大更新**：徹底解決了手機端「手動建立檔案與複製貼上代碼」的痛苦！現在 AI 會生成一個單一的 `install.js` 腳本，一鍵為您建立整個專案！
+> **🔥 V2 重大更新**：
+> 1. **單一腳本安裝**：徹底解決了手機端「手動建立檔案與複製貼上代碼」的痛苦！現在 AI 會生成一個單一的 `install.js` 腳本，一鍵為您建立整個專案！
+> 2. **動態技術棧**：不再強制綁定 Next.js 或 Prisma！您可以選擇 Supabase、純 HTML、Vue 等任何您偏好的技術組合。
 
 ### 步驟 1：Fork 本倉庫
 點擊右上角的 **Fork** 按鈕，將此框架複製到您的 GitHub 帳號下。
@@ -29,8 +31,9 @@
 在您 Fork 的倉庫頁面，點擊綠色的 `<> Code` 按鈕，選擇 `Codespaces`，然後點擊 `Create codespace on main`。
 *(這將為您準備好一個包含所有依賴的雲端開發環境)*
 
-### 步驟 3：指揮 AI
-打開 [Claude.ai](https://claude.ai)，複製 `prompts/ultimate_one_prompt_v2.md` 中的「終極一鍵指令 V2」，並在最後加上您的想法。
+### 步驟 3：指揮 AI (互動式技術棧)
+打開 [Claude.ai](https://claude.ai) 或 Cursor Web，複製 `prompts/interactive_tech_stack_prompt.md` 中的指令，並在最後加上您的想法。
+AI 會向您提問，讓您選擇偏好的技術棧（例如：Supabase vs PostgreSQL，Next.js vs 純 HTML）。
 
 ### 步驟 4：一鍵安裝魔法 (V2 新功能)
 AI 會輸出一個包含所有代碼的 `install.js` 腳本。您只需在 Codespaces 終端機執行：

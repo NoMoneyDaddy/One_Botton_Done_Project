@@ -13,7 +13,7 @@
 - 📱 **純手機端支援**：完全不需要電腦或本地終端機，所有操作皆在瀏覽器內完成。
 - 🤖 **Claude Web 完美相容**：專為 Claude.ai 網頁版設計的互動式指令。
 - 🔄 **Loop Engineering**：AI 自動完成「寫代碼 → 測試 → 修正 → 部署」的完美閉環。
-- ⚡ **Zeabur 一鍵部署**：利用 GitHub App 自動觸發部署，零配置上線。
+- ⚡ **Zeabur 一站式整合**：前端、後端、數據庫、消息隊列全部在一個平台，自動偵測技術棧，零配置上線。
 - 🛠️ **內建 AI 指令碼**：提供 `grep`, `write`, `validate` 等 API，讓 AI 具備強大的環境操作能力。
 
 ---
@@ -73,6 +73,7 @@ node install.js # 一鍵自動建立所有幾十個檔案！
 - [📊 完整端到端使用流程模擬](docs/detailed_conversation_simulation.md) (🎬 看看真實體驗)
 - [🛠️ 技術棧對比與選擇指南](docs/tech_stack_guide.md) (✨ 新增)
 - [🚀 Zeabur 與 GitHub 自動部署工作流詳解](docs/zeabur_github_workflow.md) (✨ 新增)
+- [🌟 Zeabur 一站式整合服務完全指南](docs/zeabur_all_in_one_integration.md) (💎 新增 - 核心優勢)
 - [🚨 深度檢視與 V2 改進報告](docs/simulation_report.md) (🔥 最新)
 - [🔄 閉環修復機制：GitHub Actions](docs/github_actions_loop.md) (🔥 最新)
 - [🎬 完整對話式模擬（包含用戶操作）](docs/detailed_conversation_simulation.md) (✨ 新增)

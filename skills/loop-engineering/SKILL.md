@@ -116,13 +116,27 @@ When generating code for deployment on Zeabur, follow these framework-specific r
 
 ---
 
-## Quality Standards
+## Quality Standards & Design Intelligence
 
-When generating code inside `install.js`, ensure:
-- **Commercial Grade UI**: shadcn/ui + Tailwind CSS, responsive design.
-- **Robustness**: Proper error handling, loading states, Toast notifications.
-- **Security**: Input validation, no hardcoded secrets, environment variables for all sensitive data.
-- **Best Practices**: Follow official framework conventions (e.g., Next.js App Router).
+When generating code inside `install.js`, elevate the output from "functional" to "professional and distinctive" by applying these principles:
+
+### 1. Code Simplification & Elegance
+- **Preserve Functionality**: Never change what the code does, only how it does it.
+- **Clarity over Brevity**: Avoid nested ternary operators; prefer switch statements or if/else chains. Explicit code is better than overly compact "clever" code.
+- **Modern Standards**: Use ES modules, prefer `function` keyword over arrow functions for top-level declarations, and use explicit return types.
+
+### 2. Frontend Design & Aesthetics
+- **Avoid AI Defaults**: Do not default to the generic "AI look" (e.g., warm cream background with terracotta accent, or near-black with acid-green). Ground the design in the subject's specific world and materials.
+- **Typography as Personality**: Pair display and body faces deliberately. Set a clear type scale with intentional weights and spacing.
+- **Intentional Structure**: Use structural devices (numbering, dividers) only when they encode true information, not just for decoration.
+- **Restraint**: Spend your boldness in one place (a signature element). Keep everything else quiet and disciplined.
+- **Copywriting**: Write from the user's side. Use active voice ("Save changes" not "Submit"). Treat empty states as invitations to act, and errors as clear directions to fix.
+
+### 3. UI/UX Pro Max Guidelines
+- **Accessibility (CRITICAL)**: Ensure 4.5:1 contrast, visible focus rings, `aria-labels` for icon-only buttons, and full keyboard navigation.
+- **Touch & Interaction**: Minimum 44x44px touch targets, 8px spacing, and clear loading/error feedback. Do not rely on hover alone.
+- **Performance**: Reserve space for images/fonts to prevent Cumulative Layout Shift (CLS).
+- **Responsive Layout**: Mobile-first design, 16px minimum body text on mobile (prevents iOS zoom), and no horizontal scrolling.
 
 ## Resources
 

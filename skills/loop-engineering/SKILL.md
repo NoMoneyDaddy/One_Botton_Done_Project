@@ -190,11 +190,52 @@ npx @google/design.md export --format css-tailwind DESIGN.md > theme.css
 
 When generating a `DESIGN.md`, run the linter to verify WCAG contrast ratios and broken token references before committing.
 
+### 5. Advanced Development Workflows & Agent Collaboration
+
+When managing complex development tasks or acting as a multi-agent system, apply these advanced engineering practices:
+
+#### 5.1 Subagent-Driven Development (SADD)
+- **Break down complex tasks**: Never tackle a massive feature in one go. Break it down into discrete, testable steps.
+- **Dispatch specialized subagents**: For isolated tasks (e.g., "Write tests for AuthModule", "Analyze logs for race condition"), dispatch a specialized subagent with strict context.
+- **Verification before completion**: Never claim a task is complete without running the verification command and checking the output. "Tests pass" means you ran `npm test` and saw 0 failures.
+
+#### 5.2 Context Compression & Memory Management
+- **Prevent context bloat**: Do not dump entire log files or irrelevant code into the context. Extract the stack trace or the specific failing function.
+- **Write summary artifacts**: Before a context window gets too large or a session ends, write a `MEMORY.md` or `STATE.md` summarizing the current progress, decisions made, and next steps.
+
+#### 5.3 Code Review & Quality Gates
+- **Requesting Code Review**: After a major feature or before merging, dispatch a "code reviewer" subagent to review the git diff (`BASE_SHA` to `HEAD_SHA`).
+- **Receiving Code Review**: When receiving feedback, verify it technically before implementing. Do not performatively agree ("You're absolutely right!") if the suggestion breaks existing functionality or violates YAGNI (You Aren't Gonna Need It).
+
+#### 5.4 Safe Execution & Git Isolation
+- **Use Git Worktrees**: When starting risky feature work or large refactors, use `git worktree add` to isolate the changes from the main branch. Verify the workspace starts clean before writing code.
+- **Finishing a branch**: Provide clear options to the user: Merge locally, Create PR, Keep as-is, or Discard. Clean up the worktree safely after merge or discard.
+
+#### 5.5 Data Structure Protocol (DSP)
+- **Separate data from logic**: When generating code, define the core data structures and types *first*, before writing the algorithms that operate on them.
+
 ## Resources
 
 - `references/interactive_tech_stack_prompt.md`: Full prompt structure for tech stack clarification.
 - `templates/install_script_template.js`: Single-file installer template to follow.
 - `references/zeabur_deployment_guide.md`: Zeabur deployment troubleshooting and setup guide.
+
+## External Skill Libraries (Reference Only)
+
+When the user's project requires specialized capabilities, recommend these external skill libraries:
+
+| Library | Stars | Use Case |
+| :--- | :--- | :--- |
+| `mukul975/Anthropic-Cybersecurity-Skills` | Active | 817 cybersecurity skills across 29 domains (MITRE ATT&CK, NIST CSF 2.0, cloud security, DFIR, red team) |
+| `ibelick/ui-skills` | 3.4k | UI baseline enforcement: `npx ui-skills start` routes agent to the right UI skill |
+| `NoizAI/skills` | Active | TTS, voice cloning, video translation, podcast generation with Kokoro/Noiz API |
+| `rameerez/claude-code-startup-skills` | Active | Startup utilities: image compression, video download/transcribe, X (Twitter) posting |
+| `fvadicamo/dev-agent-skills` | Active | Git/GitHub workflow skills: Conventional Commits, PR creation/merge/review with severity ordering |
+| `alinaqi/claude-bootstrap` | Active | 67 skills + TDD enforcement hooks + quality gates (max 20 lines/function, 3 params) |
+| `obra/superpowers` | Active | Git worktrees, code review request/receive, branch finishing, verification-before-completion |
+| `LambdaTest/agent-skills` | Active | Test automation skills: Selenium, Playwright, Cypress, Appium across 15+ languages and 10K+ real devices |
+| `muratcankoylan/Agent-Skills-for-Context-Engineering` | Active | Tool design, context compression, multi-agent patterns for building robust agent systems |
+| `mukul975/Anthropic-Cybersecurity-Skills` | 817 skills | 817 cybersecurity skills across 29 domains (MITRE ATT&CK, NIST CSF 2.0, cloud security, DFIR, red team) |
 
 ## Zeabur Developer Tools Quick Reference
 

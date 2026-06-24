@@ -304,7 +304,25 @@ Key principles:
 - **One question per message** — never overwhelm with multiple questions at once.
 - **Decompose large projects** — if a request spans multiple independent subsystems, flag it and decompose first.
 
-#### 5.7 Semantic Duplicate Detection
+#### 5.9 Core Principles from Antigravity Bundles
+
+When using the Loop Engineering framework, apply these principles from the `antigravity-awesome-skills` bundles:
+
+**Essentials Bundle (Planning & Debugging):**
+- **Kaizen (Continuous Improvement)**: Design systems to prevent errors at compile/design time rather than runtime. Build only what is currently needed (YAGNI).
+- **Systematic Debugging**: NEVER attempt a fix before finding the root cause. Symptom fixes are failures. If you attempt 3+ fixes without success, stop and question the architecture.
+
+**Web Wizard Bundle (Frontend & React):**
+- **Frontend Design**: Every output must have a clear aesthetic direction. Avoid generic fonts, colors, and layouts. Every design detail must serve the aesthetic thesis—no random decoration.
+- **React Patterns**: Components must have a single responsibility. Data flows down (props), events flow up. Prefer composition over inheritance. Hooks must be called at the top level.
+- **Next.js Best Practices**: Default to Server Components for data fetching, layouts, and static content. Only use Client Components when interactivity is strictly required.
+
+**Full-Stack Developer Bundle (Backend & APIs):**
+- **Layered Architecture**: Strict boundaries: Routes → Controllers → Services → Repositories → Database. No layer skipping.
+- **Input Validation**: ALL external inputs MUST be strictly validated using Zod. Missing validation is a bug.
+- **Error Handling**: All controllers must inherit a BaseController to standardize responses. No silent failures or plain `console.log` for errors in production.
+
+#### 5.10 Semantic Duplicate Detection
 
 For codebases that have grown organically (especially AI-generated code), periodically scan for **semantic duplicates** — functions with the same intent but different implementations. Use a two-phase approach:
 1. Classical function extraction to identify candidates.

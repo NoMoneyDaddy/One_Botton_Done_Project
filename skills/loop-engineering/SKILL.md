@@ -101,6 +101,51 @@ When generating code inside `install.js`, ensure:
 - `templates/install_script_template.js`: Single-file installer template to follow.
 - `references/zeabur_deployment_guide.md`: Zeabur deployment troubleshooting and setup guide.
 
+## Zeabur Developer Tools Quick Reference
+
+### CLI（終端部署，適合 CI/CD）
+
+```bash
+# 登入
+npx zeabur@latest auth login
+# Token 登入（CI/CD 環境）
+npx zeabur@latest auth login --token <your-token>
+
+# 在專案目錄中部署（自動偵測框架）
+npx zeabur@latest deploy
+
+# 查看日誌
+npx zeabur@latest deployment log -t=runtime
+npx zeabur@latest deployment log -t=build
+
+# 重啟服務
+npx zeabur@latest service restart
+
+# Non-Interactive 模式（腳本中使用）
+npx zeabur@latest context set project --name <project-name>
+npx zeabur@latest context set service --name <service-name>
+```
+
+### GraphQL API
+
+```bash
+# 端點：https://api.zeabur.com/graphql
+# 認證：Bearer Token（在 Dashboard > 設定 > API 金鑰 產生）
+curl -X POST https://api.zeabur.com/graphql \
+  -H "Authorization: Bearer YOUR_API_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"query":"query { me { username } }"}'
+```
+
+線上測試工具：[Apollo Explorer](https://studio.apollographql.com/public/zeabur/variant/main/explorer)
+
+### WebSocket 即時訂閱（串流日誌）
+
+- 全球端點：`wss://api.zeabur.com/graphql`
+- 協議：[graphql-ws](https://github.com/enisdenjo/graphql-ws)
+
+---
+
 ## Zeabur AI Integration Quick Reference
 
 **Option 1 — MCP Server** (Claude Desktop / Cursor / Manus AI):

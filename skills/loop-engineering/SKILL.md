@@ -203,6 +203,25 @@ When managing complex development tasks or acting as a multi-agent system, apply
 - **Prevent context bloat**: Do not dump entire log files or irrelevant code into the context. Extract the stack trace or the specific failing function.
 - **Write summary artifacts**: Before a context window gets too large or a session ends, write a `MEMORY.md` or `STATE.md` summarizing the current progress, decisions made, and next steps.
 
+**Persistent Hierarchical Memory System** (for long-running projects):
+
+Maintain a structured memory at `~/.claude/memory/` with these files:
+
+```
+~/.claude/memory/
+├── core.md          # Key summaries + pointers (always loaded at session start)
+├── me.md            # User preferences & context (always loaded)
+├── topics/
+│   └── <topic>.md   # Detailed entries by topic (debugging, patterns, tools)
+└── projects/
+    └── <project>.md # Project-specific knowledge
+```
+
+- **Session start**: Spawn a background agent to load `me.md`, `core.md`, and the current project file.
+- **Save silently** when: user says "remember...", you solve a non-trivial problem, discover a user preference, or a pattern emerges.
+- **Recall** when: starting unfamiliar work, stuck on a problem, or user asks "do you remember...".
+- **Format**: Each memory entry = one `## Short title [YYYY-MM-DD]` block with 1-3 sentences. No dumping grounds.
+
 #### 5.3 Code Review & Quality Gates
 - **Requesting Code Review**: After a major feature or before merging, dispatch a "code reviewer" subagent to review the git diff (`BASE_SHA` to `HEAD_SHA`).
 - **Receiving Code Review**: When receiving feedback, verify it technically before implementing. Do not performatively agree ("You're absolutely right!") if the suggestion breaks existing functionality or violates YAGNI (You Aren't Gonna Need It).

@@ -47,6 +47,7 @@ node install.js # 一鍵自動建立所有幾十個檔案！
 
 ## 📚 詳細教學文檔
 
+- [💰 單一付費訂閱指南 (一份錢搞定一切)](docs/single_subscription_guide.md) (💎 必讀)
 - [🛠️ 技術棧對比與選擇指南](docs/tech_stack_guide.md) (✨ 新增)
 - [🚀 Zeabur 與 GitHub 自動部署工作流詳解](docs/zeabur_github_workflow.md) (✨ 新增)
 - [🚨 深度檢視與 V2 改進報告](docs/simulation_report.md) (🔥 最新)

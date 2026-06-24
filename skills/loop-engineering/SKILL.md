@@ -87,6 +87,35 @@ Deliver the code and `.env.local` template only. Do not provide deployment instr
 
 Reference `references/zeabur_deployment_guide.md` for any troubleshooting.
 
+## Framework-Specific Deployment Notes
+
+When generating code for deployment on Zeabur, follow these framework-specific requirements:
+
+### Next.js
+- Push to GitHub → Zeabur auto-detects and deploys. No extra config needed.
+- Zeabur auto-detects Next.js and runs `next build` + `next start`.
+
+### NestJS
+- Must listen on `process.env.PORT || 3000`.
+- Must install `@nestjs/config` and call `ConfigModule.forRoot()` in `app.module.ts`.
+
+### Flask / Django (Python)
+- Must include `requirements.txt` (run `pip freeze > requirements.txt`).
+- Must listen on `os.getenv("PORT", 5000)` with `host='0.0.0.0'`.
+- Django: set `ALLOWED_HOSTS = ['*']` in `settings.py`.
+- Zeabur uses **Gunicorn** as the WSGI production server automatically.
+
+### Go
+- Must have `main.go` in root (or under `cmd/` directory).
+- Must listen on `os.Getenv("PORT")` — Zeabur auto-injects this.
+- Optional `zbpack.json` for custom build entry: `{"go": {"entry": "cmd/server/main.go"}}`.
+
+### Universal Rule
+- **Always listen on `process.env.PORT` (or `$PORT`)** — Zeabur injects this automatically. Never hardcode a port.
+- **Never commit `.env.local`** — set secrets in Zeabur's Environment Variables panel.
+
+---
+
 ## Quality Standards
 
 When generating code inside `install.js`, ensure:

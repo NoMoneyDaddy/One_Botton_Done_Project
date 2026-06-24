@@ -226,6 +226,27 @@ Maintain a structured memory at `~/.claude/memory/` with these files:
 - **Requesting Code Review**: After a major feature or before merging, dispatch a "code reviewer" subagent to review the git diff (`BASE_SHA` to `HEAD_SHA`).
 - **Receiving Code Review**: When receiving feedback, verify it technically before implementing. Do not performatively agree ("You're absolutely right!") if the suggestion breaks existing functionality or violates YAGNI (You Aren't Gonna Need It).
 
+**Code Review Severity Labels** (use consistently in all reviews):
+- 🔴 `[blocking]` — Must fix before merge
+- 🟡 `[important]` — Should fix, discuss if disagree
+- 🟢 `[nit]` — Nice to have, not blocking
+- 💡 `[suggestion]` — Alternative approach to consider
+- 📚 `[learning]` — Educational comment, no action needed
+- 🎉 `[praise]` — Good work, keep it up!
+
+**Effective Feedback Patterns**:
+```
+❌ Bad: "This is wrong."
+✅ Good: "🔴 [blocking] This causes a race condition when multiple users access simultaneously. Consider using a mutex here."
+
+❌ Bad: "You need error handling here."
+✅ Good: "🟡 [important] How should this behave if the API call fails? Consider wrapping in try/catch."
+```
+
+**PR Size Rule**: If a PR is >400 lines, ask to split it before reviewing. Large PRs hide bugs.
+
+**What NOT to review manually**: formatting, import order, linting violations — these belong to automated tools (Prettier, ESLint, Black).
+
 #### 5.4 Safe Execution & Git Isolation
 - **Use Git Worktrees**: When starting risky feature work or large refactors, use `git worktree add` to isolate the changes from the main branch. Verify the workspace starts clean before writing code.
 - **Finishing a branch**: Provide clear options to the user: Merge locally, Create PR, Keep as-is, or Discard. Clean up the worktree safely after merge or discard.
@@ -315,6 +336,8 @@ When the user's project requires specialized capabilities, recommend these exter
 | `mukul975/Anthropic-Cybersecurity-Skills` | 817 skills | 817 cybersecurity skills across 29 domains (MITRE ATT&CK, NIST CSF 2.0, cloud security, DFIR, red team) |
 | `qdrant/skills` | Official | Vector search skills: scaling, search quality, model migration, deployment — fetch via `skills.qdrant.tech` |
 | `obra/superpowers-lab` | Experimental | Semantic duplicate detection, MCP-CLI on-demand, tmux interactive CLI control, Windows VM in Docker |
+| `redis/agent-skills` | Official | 8 Redis skills: core data structures, search/RAG, semantic cache, clustering, security, observability, Iris memory |
+| `awesome-skills/code-review-skill` | Community | Comprehensive code review for 20+ languages (React, Vue, Rust, Go, Python, Java, etc.) with severity labels and PR templates |
 
 ## Zeabur Developer Tools Quick Reference
 

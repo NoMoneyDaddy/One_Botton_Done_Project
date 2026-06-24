@@ -214,6 +214,64 @@ When managing complex development tasks or acting as a multi-agent system, apply
 #### 5.5 Data Structure Protocol (DSP)
 - **Separate data from logic**: When generating code, define the core data structures and types *first*, before writing the algorithms that operate on them.
 
+#### 5.6 Implementation Planning (writing-plans)
+
+After brainstorming and design approval, write a structured implementation plan **before touching code**:
+
+- **File structure first**: Map out which files will be created/modified and their responsibilities before defining tasks.
+- **Bite-sized tasks**: Each task = one TDD cycle (write failing test → run to confirm fail → implement → run to confirm pass → commit). Each step is 2-5 minutes.
+- **No placeholders**: Every step must contain actual code, exact file paths, and exact commands with expected output. Never write "TBD", "handle edge cases", or "similar to Task N".
+- **Save to**: `docs/specs/YYYY-MM-DD-<feature>.md`
+- **Plan header must include**: Goal, Architecture, Tech Stack, Global Constraints.
+- **After writing**: Self-review for spec coverage, placeholder scan, and type consistency.
+- **Execution choice**: Offer user two options — Subagent-Driven (recommended, one fresh subagent per task) or Inline Execution (batch with checkpoints).
+
+#### 5.7 Parallel Agent Dispatch (dispatching-parallel-agents)
+
+When facing 2+ **independent** problems (different test files, different subsystems, different bugs), dispatch parallel agents instead of working sequentially:
+
+- **Identify independent domains**: Group failures by what's broken. Each domain must be fixable without context from others.
+- **Craft focused prompts**: Each agent gets: specific scope, clear goal, constraints ("Do NOT change other files"), and expected output format.
+- **Dispatch in one response**: Multiple subagent calls in the same response = parallel execution.
+- **After agents return**: Review summaries, check for conflicts, run full test suite, integrate.
+
+```
+# Example: 6 failures across 3 files → 3 parallel agents
+Agent 1 → Fix auth.test.ts (timing issues)
+Agent 2 → Fix batch.test.ts (event structure bug)
+Agent 3 → Fix race-conditions.test.ts (async wait missing)
+# All three run concurrently → 3x speedup
+```
+
+**Do NOT use** when failures are related, need full system context, or agents would edit the same files.
+
+#### 5.8 Brainstorming Before Building (HARD GATE)
+
+> **HARD GATE**: Do NOT write any code, scaffold any project, or take any implementation action until you have presented a design and the user has approved it.
+
+For any new feature or project, follow this sequence:
+
+1. **Explore context first** — check existing files, docs, recent commits before asking questions.
+2. **Ask clarifying questions one at a time** — prefer multiple-choice. Focus on: purpose, constraints, success criteria.
+3. **Propose 2-3 approaches** with trade-offs and your recommendation.
+4. **Present design sections** — get user approval after each section (architecture, components, data flow, error handling).
+5. **Write design doc** — save to `docs/specs/YYYY-MM-DD-<topic>-design.md` and commit.
+6. **Self-review the spec** — scan for TBDs, contradictions, ambiguity, scope issues. Fix inline.
+7. **User reviews spec** — wait for approval before proceeding to implementation.
+
+Key principles:
+- **YAGNI ruthlessly** — remove unnecessary features from all designs.
+- **One question per message** — never overwhelm with multiple questions at once.
+- **Decompose large projects** — if a request spans multiple independent subsystems, flag it and decompose first.
+
+#### 5.7 Semantic Duplicate Detection
+
+For codebases that have grown organically (especially AI-generated code), periodically scan for **semantic duplicates** — functions with the same intent but different implementations. Use a two-phase approach:
+1. Classical function extraction to identify candidates.
+2. LLM-powered intent clustering to find semantic duplicates across different implementations.
+
+This is especially important before major refactoring or when onboarding new contributors.
+
 ## Resources
 
 - `references/interactive_tech_stack_prompt.md`: Full prompt structure for tech stack clarification.
@@ -236,6 +294,8 @@ When the user's project requires specialized capabilities, recommend these exter
 | `LambdaTest/agent-skills` | Active | Test automation skills: Selenium, Playwright, Cypress, Appium across 15+ languages and 10K+ real devices |
 | `muratcankoylan/Agent-Skills-for-Context-Engineering` | Active | Tool design, context compression, multi-agent patterns for building robust agent systems |
 | `mukul975/Anthropic-Cybersecurity-Skills` | 817 skills | 817 cybersecurity skills across 29 domains (MITRE ATT&CK, NIST CSF 2.0, cloud security, DFIR, red team) |
+| `qdrant/skills` | Official | Vector search skills: scaling, search quality, model migration, deployment — fetch via `skills.qdrant.tech` |
+| `obra/superpowers-lab` | Experimental | Semantic duplicate detection, MCP-CLI on-demand, tmux interactive CLI control, Windows VM in Docker |
 
 ## Zeabur Developer Tools Quick Reference
 

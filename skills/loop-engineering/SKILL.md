@@ -32,12 +32,19 @@ After generating the script, provide the user with exact, copy-pasteable instruc
 3. Setting up required environment variables (e.g., Supabase API keys).
 4. Testing locally.
 
-### 4. Guide the Deployment (Zeabur + GitHub)
+### 4. Guide the Deployment (Zeabur MCP + GitHub)
 
-Explain the automated deployment workflow:
+Explain the automated deployment workflow. **Crucially, check if the user is using an MCP-enabled environment (like Claude Desktop, Cursor, or Manus AI with Zeabur MCP enabled).**
+
+**If MCP is available:**
 1. Guide the user to commit and push their code to GitHub.
-2. Instruct them to link their GitHub repository to Zeabur for automatic, zero-config deployment.
-3. Reference `references/zeabur_deployment_guide.md` for specific deployment details if the user encounters issues.
+2. Inform the user that you can deploy it for them directly using the Zeabur MCP server.
+3. Once the code is pushed, use the Zeabur MCP tool to create a project, link the repository, set environment variables, and deploy.
+
+**If MCP is NOT available (e.g., Mobile Web):**
+1. Guide the user to commit and push their code to GitHub.
+2. Instruct them to link their GitHub repository to Zeabur via the web dashboard for automatic, zero-config deployment.
+3. Reference `references/zeabur_deployment_guide.md` for specific deployment details.
 
 ## Quality Standards
 
@@ -51,3 +58,4 @@ When generating the code within the `install.js` script, ensure:
 - `references/interactive_tech_stack_prompt.md`: The exact prompt structure to use for clarifying the tech stack.
 - `templates/install_script_template.js`: The structure of the single-file installer you must generate.
 - `references/zeabur_deployment_guide.md`: Troubleshooting and setup guide for Zeabur deployment.
+- `../../docs/zeabur_mcp_guide.md`: Comprehensive guide on setting up and using the Zeabur MCP server for direct AI deployments.

@@ -1,0 +1,39 @@
+# 環境變數
+.env
+.env.local
+.env.*.local
+
+# 依賴
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# 構建輸出
+.next/
+out/
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# 日誌
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 測試覆蓋率
+coverage/
+.nyc_output/
+
+# 臨時檔案
+tmp/
+temp/
+*.tmp

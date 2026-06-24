@@ -138,6 +138,58 @@ When generating code inside `install.js`, elevate the output from "functional" t
 - **Performance**: Reserve space for images/fonts to prevent Cumulative Layout Shift (CLS).
 - **Responsive Layout**: Mobile-first design, 16px minimum body text on mobile (prevents iOS zoom), and no horizontal scrolling.
 
+### 4. DESIGN.md — Persistent Design System for AI Agents
+
+For projects that need a consistent visual identity across sessions, generate a `DESIGN.md` file in the project root. This is a Google-standard format that gives AI agents a persistent, structured understanding of the design system.
+
+**Format**: YAML front matter (machine-readable tokens) + Markdown prose (design rationale).
+
+```yaml
+---
+name: MyApp
+colors:
+  primary: "#1A1C1E"
+  secondary: "#6C7278"
+  accent: "#B8422E"
+  neutral: "#F7F5F2"
+typography:
+  h1:
+    fontFamily: Inter
+    fontSize: 3rem
+    fontWeight: 700
+  body-md:
+    fontFamily: Inter
+    fontSize: 1rem
+rounded:
+  sm: 4px
+  md: 8px
+  lg: 16px
+spacing:
+  sm: 8px
+  md: 16px
+  lg: 32px
+components:
+  button-primary:
+    backgroundColor: "{colors.accent}"
+    textColor: "#ffffff"
+    rounded: "{rounded.sm}"
+---
+
+## Overview
+[One paragraph describing the visual identity and design philosophy.]
+
+## Colors
+[Explain each color's role and emotional intent.]
+```
+
+**CLI tools** (validate, diff, export to Tailwind/DTCG):
+```bash
+npx @google/design.md lint DESIGN.md
+npx @google/design.md export --format css-tailwind DESIGN.md > theme.css
+```
+
+When generating a `DESIGN.md`, run the linter to verify WCAG contrast ratios and broken token references before committing.
+
 ## Resources
 
 - `references/interactive_tech_stack_prompt.md`: Full prompt structure for tech stack clarification.

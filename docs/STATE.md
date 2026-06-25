@@ -14,6 +14,7 @@
 - `config/script_capabilities.json` 與 `docs/script_fallback_matrix.md` 已定義腳本降級規則
 - `scripts/inspect_agent_capabilities.js` 已可列出腳本能力與 fallback
 - `scripts/validate_repo_integrity.js` 已作為 repo 結構、mirror、JSON、文件連結品質閘門
+- `scripts/evaluate_session_loop.js` 已補上，會判斷 `.loop/*` 是否真的達到 continue / promote / ship-ready gate
 - `tool-discovery-and-installation` 已補上，用於缺工具、缺 skill、缺 MCP、缺搜尋能力、缺瀏覽器驗證能力時的安全安裝與引導流程
 - `docs/marketplace_open_source_readiness.md` 已補上，用於開源與 skill/plugin marketplace 前的缺口檢查
 - `SECURITY.md`、`CONTRIBUTING.md`、`docs/release_version_policy.md` 已補上
@@ -21,6 +22,7 @@
 - `docs/engineering_phase_loop.md` 已補上
 - `docs/capability_audit_and_install_loop.md` 已補上
 - `docs/loop_circuit_breaker.md` 已補上
+- `docs/loop_evaluation_gate.md` 已補上
 - `docs/skill_crystallization_loop.md` 已補上
 - `docs/agent_manifest_spec.md` 已補上
 - `config/agent_manifest.json` 已補上，作為 machine-readable manifest 草案
@@ -36,3 +38,5 @@
 - 更多平台仍需真機或真 sandbox 實測
 - 文件漂移已有自動 gate，但仍需隨平台實測持續更新
 - 真實 marketplace client / CLI 的 end-to-end 安裝實測仍未補齊
+- 自治學習 ledger 尚未 machine-readable
+- policy matrix / approval matrix 尚未 machine-readable

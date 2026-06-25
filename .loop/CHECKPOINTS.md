@@ -9,6 +9,11 @@
 ## Entries
 
 - 2026-06-25
+  - 做了什麼：新增 `scripts/evaluate_session_loop.js` 與 `docs/loop_evaluation_gate.md`，補齊自治治理的 machine-readable gate。
+  - 怎麼驗證：`node scripts/evaluate_session_loop.js .`、`node scripts/validate_repo_integrity.js`、`node scripts/inspect_agent_capabilities.js`、`git diff --check`。
+  - 下一輪做什麼：補 machine-readable learning ledger 或 approval / policy matrix。
+
+- 2026-06-25
   - 做了什麼：補齊跨平台 `/GOAL` loop、腳本能力宣告、fallback 文件、入口文件同步。
   - 怎麼驗證：`node --check`、`node scripts/inspect_agent_capabilities.js`、bootstrap smoke test、`git diff --check`。
   - 下一輪做什麼：整理 repo 自身架構文件與治理文件，清理文件漂移。

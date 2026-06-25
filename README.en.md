@@ -18,6 +18,7 @@ Its job is to give multiple AI tools the same source of truth, the same project 
 - `scripts/scaffold_project.js` for official framework scaffolding plus governance overlay
 - `scripts/init_session_loop.js` for initializing portable session loop state
 - `scripts/inspect_agent_capabilities.js` for checking repo skills, global skills, MCP config, and local tools
+- `scripts/evaluate_session_loop.js` for deciding whether `.loop/*` is only present or actually promotion / ship ready
 - `scripts/validate_repo_integrity.js` for checking entry files, skill mirrors, JSON config, script declarations, and local Markdown links
 - `scripts/auto_skill_setup.js` for skill/tool recommendations
 - `tool-discovery-and-installation` plus `scripts/setup_sandbox_tools.sh` for safe tool discovery and opt-in installation
@@ -56,6 +57,7 @@ If a platform cannot run a script, the workflow should fall back to `docs/script
 
 ```bash
 node scripts/inspect_agent_capabilities.js
+node scripts/evaluate_session_loop.js .
 node scripts/validate_repo_integrity.js
 ```
 
@@ -116,6 +118,7 @@ node scripts/generate_project_configs.js --profile nextjs-app-router --name your
 - `docs/comparable_project_analysis.md`
 - `docs/loop_maturity_model.md`
 - `docs/engineering_phase_loop.md`
+- `docs/loop_evaluation_gate.md`
 - `docs/capability_audit_and_install_loop.md`
 - `docs/loop_circuit_breaker.md`
 - `docs/skill_crystallization_loop.md`

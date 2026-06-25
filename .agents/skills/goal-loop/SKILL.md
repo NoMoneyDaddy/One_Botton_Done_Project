@@ -53,6 +53,17 @@ node scripts/init_session_loop.js . --goal "<objective>"
    - `.loop/CHECKPOINTS.md`
    - `.loop/EVIDENCE.md`
    - 必要時 `docs/STATE.md`、`docs/TASKS.md`、`README.md`
+6. 跑：
+
+```bash
+node scripts/evaluate_session_loop.js .
+```
+
+若要把它當 gate：
+
+```bash
+node scripts/evaluate_session_loop.js . --fail-on-hold
+```
 
 ## 狀態規則
 
@@ -72,6 +83,7 @@ node scripts/init_session_loop.js . --goal "<objective>"
 - `docs/loop_maturity_model.md`
 - `docs/engineering_phase_loop.md`
 - `docs/loop_circuit_breaker.md`
+- `docs/loop_evaluation_gate.md`
 
 ## 何時用
 

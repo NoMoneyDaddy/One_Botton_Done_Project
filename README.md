@@ -26,6 +26,7 @@
 - 新專案初始化：`scripts/init_project_workspace.js`
 - 官方骨架建立：`scripts/scaffold_project.js`
 - 能力盤點：`scripts/inspect_agent_capabilities.js`
+- session loop 評估 gate：`scripts/evaluate_session_loop.js`
 - repo integrity gate：`scripts/validate_repo_integrity.js`
 - skill 推薦 / 外部 skill 導引：`scripts/auto_skill_setup.js`
 - 工具發現與安全安裝引導：`tool-discovery-and-installation` + `scripts/setup_sandbox_tools.sh`
@@ -77,6 +78,7 @@ docs/script_fallback_matrix.md
 
 ```bash
 node scripts/inspect_agent_capabilities.js
+node scripts/evaluate_session_loop.js .
 ```
 
 4. 若是新專案，初始化：
@@ -156,6 +158,7 @@ node scripts/generate_project_configs.js --profile nextjs-app-router --name your
 - `docs/comparable_project_analysis.md`
 - `docs/loop_maturity_model.md`
 - `docs/engineering_phase_loop.md`
+- `docs/loop_evaluation_gate.md`
 - `docs/capability_audit_and_install_loop.md`
 - `docs/loop_circuit_breaker.md`
 - `docs/skill_crystallization_loop.md`

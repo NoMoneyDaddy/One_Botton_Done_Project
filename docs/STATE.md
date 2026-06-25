@@ -48,4 +48,4 @@
 - 真實 marketplace client / CLI 的 end-to-end 安裝實測仍未補齊
 - 更多 learning ledger 自動回寫規則尚未補上
 - 更多 examples / tests 仍未補齊
-- `Capacitor`、`Flutter`、`Electron`、`SwiftUI`、`Android Kotlin` 仍屬 `plan-only`，尚未補 config generation / smoke / runbook
+- `Flutter`、`SwiftUI`、`Android Kotlin` 仍屬 `plan-only`，尚未補 config generation / smoke / runbook

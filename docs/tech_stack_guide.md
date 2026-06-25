@@ -13,10 +13,10 @@
 | `vite-react` | SPA / dashboard / 前端站 | `create-vite` | 有 |
 | `node-express-api` | API service | `npm init -y` | 有 |
 | `react-native-expo` | 跨平台 mobile app | `create-expo-app` | 有 |
-| `capacitor-mobile-app` | Web Native mobile app | `@capacitor/create-app` | 規劃中 / plan-only |
+| `capacitor-mobile-app` | Web Native mobile app | `@capacitor/create-app` | 有 |
 | `flutter-app` | Flutter mobile app | `flutter create` | 規劃中 / plan-only |
 | `tauri-desktop` | 輕量 desktop app | `create-tauri-app` | 有 |
-| `electron-desktop` | Electron desktop app | 官方 quick start | 規劃中 / plan-only |
+| `electron-desktop` | Electron desktop app | 官方 first app tutorial | 有 |
 | `ios-swiftui` | iOS native | Xcode new project | 規劃中 / plan-only |
 | `android-kotlin` | Android native | Android Studio new project | 規劃中 / plan-only |
 
@@ -55,7 +55,7 @@
 | **Next.js Route Handlers** | 無需獨立後端、全端同構、部署簡單 | 不適合長時間運行的任務、架構耦合度高 | 中小型 SaaS、CRUD 應用、快速原型 |
 | **Node.js (Express/NestJS)** | 生態系龐大、適合微服務、效能穩定 | 需獨立部署、配置較繁瑣 | 大型複雜應用、高併發系統、需要獨立 API 服務 |
 | **Python (FastAPI/Django)** | 適合 AI/數據處理、開發效率高 | 目前本 repo 尚未提供對應 profile | 需手動擴充時可評估 |
-| **Capacitor** | 用 Web 技術包成 iOS / Android app，與前端 stack 很順 | 目前是 `plan-only` profile | 已有 Web app 想快速上 mobile 時適合 |
+| **Capacitor** | 用 Web 技術包成 iOS / Android app，與前端 stack 很順 | 已可走 repo scaffold / config overlay | 已有 Web app 想快速上 mobile 時適合 |
 
 **AI 推薦策略**：若要直接利用本 repo 目前自動化能力，優先考慮 `Next.js`、`Vite React`、`Node + Express API`。若有複雜 AI / 數據需求，`FastAPI` 仍可作為候選，但目前要手動擴充 profile。
 
@@ -84,10 +84,10 @@
 | 路線 | 優點 | 目前 repo 狀態 |
 | :--- | :--- | :--- |
 | **React Native + Expo** | iOS / Android / web 共用 JS/TS codebase，官方 scaffold 清楚 | `full` |
-| **Capacitor** | Web app 轉 iOS / Android 成本低，可保留現有前端 stack | `plan-only` |
+| **Capacitor** | Web app 轉 iOS / Android 成本低，可保留現有前端 stack | `full` |
 | **Flutter** | 多平台一致性強，UI toolkit 完整 | `plan-only` |
 | **Tauri** | desktop 體積小、速度快，還能延伸到 mobile | `full` |
-| **Electron** | 生態成熟、桌面整合多 | `plan-only` |
+| **Electron** | 生態成熟、桌面整合多 | `full` |
 | **SwiftUI / Android Kotlin** | 原生能力最完整 | `plan-only` |
 
 ---

@@ -41,7 +41,7 @@ Its job is to give multiple AI tools the same source of truth, the same project 
 - `scripts/run_repo_tests.js` for minimal repository tests
 - `text-to-lottie` as the optional motion / Lottie skill lane
 - `recurring-monitoring` as the recurring PR/deploy/watch supervision lane
-- Expo and Tauri profiles are runnable now; other mobile / desktop profiles remain plan-only
+- Expo, Capacitor, Tauri, and Electron profiles are runnable now; other mobile / desktop profiles remain plan-only
 - 21 localized workflow skills plus extra local skills such as `goal-loop`, `project-config-generation`, `interview-me`, `observability-and-instrumentation`, and `biome-quality-automation`
 
 ## Supported AI surfaces

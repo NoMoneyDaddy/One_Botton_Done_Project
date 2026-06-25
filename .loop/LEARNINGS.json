@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "updated_at": "2026-06-25T15:10:00Z",
+  "rollup": {
+    "retained_patterns": [
+      "先用 machine-readable policy 定義自治邊界",
+      "每輪修改都要有 evidence 與 checkpoint"
+    ],
+    "discarded_patterns": [
+      "只在文件口頭宣告學習，沒有結構化 ledger"
+    ],
+    "next_experiments": [
+      "把更多 PR / review feedback 回寫成 keep-or-discard 條目"
+    ]
+  },
+  "entries": [
+    {
+      "id": "2026-06-25-policy-matrix",
+      "date": "2026-06-25",
+      "context": "吸收 loops / hermes-agent / OpenHarness / autoagent 的治理與自治實踐",
+      "change": "新增 execution policy matrix，明確定義 allow / verifier / human-gate / deny",
+      "hypothesis": "先把 approval / execution 邊界 machine-readable，能降低 unattended loop 漂移風險",
+      "result": "保留",
+      "decision": "keep",
+      "evidence_refs": [
+        "docs/agent_execution_policy_matrix.md",
+        "config/execution_policy_matrix.json",
+        "docs/comparable_project_analysis.md"
+      ],
+      "next_action": "把 learning / retrospective 也變成 machine-readable，接回 .loop gate"
+    }
+  ]
+}

@@ -21,8 +21,8 @@
       "fallback_mode": "manual-loop-evaluation",
       "fallback_steps": [
         "讀 docs/session_loop_contract.md 與 docs/loop_evaluation_gate.md",
-        "人工檢查 .loop/* 六個核心檔案是否存在且不是 placeholder",
-        "人工檢查 STATE.json 欄位、evidence、checkpoint、policy 是否齊全",
+        "人工檢查 .loop/* 七個核心檔案是否存在且不是 placeholder",
+        "人工檢查 STATE.json、LEARNINGS.json、evidence、checkpoint、policy 是否齊全",
         "把判斷結果寫入 .loop/CHECKPOINTS.md 或 docs/STATE.md"
       ]
     },
@@ -51,7 +51,8 @@
         "手動建立 .loop/STATE.json",
         "手動建立 .loop/CHECKPOINTS.md",
         "手動建立 .loop/EVIDENCE.md",
-        "手動建立 .loop/POLICY.md"
+        "手動建立 .loop/POLICY.md",
+        "手動建立 .loop/LEARNINGS.json"
       ]
     },
     {

@@ -30,6 +30,7 @@
 - repo integrity gate：`scripts/validate_repo_integrity.js`
 - skill 推薦 / 外部 skill 導引：`scripts/auto_skill_setup.js`
 - machine-readable policy / approval matrix：`config/execution_policy_matrix.json`
+- machine-readable learning ledger：`.loop/LEARNINGS.json`
 - 工具發現與安全安裝引導：`tool-discovery-and-installation` + `scripts/setup_sandbox_tools.sh`
 - 外部安裝來源審查：`docs/external_install_provenance_checklist.md`
 - loop maturity 分級：`docs/loop_maturity_model.md`
@@ -161,6 +162,7 @@ node scripts/generate_project_configs.js --profile nextjs-app-router --name your
 - `docs/engineering_phase_loop.md`
 - `docs/loop_evaluation_gate.md`
 - `docs/agent_execution_policy_matrix.md`
+- `docs/learning_ledger_loop.md`
 - `docs/capability_audit_and_install_loop.md`
 - `docs/loop_circuit_breaker.md`
 - `docs/skill_crystallization_loop.md`
@@ -175,6 +177,7 @@ node scripts/generate_project_configs.js --profile nextjs-app-router --name your
 - `docs/third_party_skills.md`
 - `docs/tech_stack_guide.md`
 - `config/agent_manifest.json`
+- `.loop/LEARNINGS.json`
 - `scripts/fresh_clone_smoke_test.js`
 - `scripts/marketplace_install_smoke_test.js`
 

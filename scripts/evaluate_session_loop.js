@@ -9,7 +9,8 @@ const REQUIRED_FILES = [
   '.loop/STATE.json',
   '.loop/CHECKPOINTS.md',
   '.loop/EVIDENCE.md',
-  '.loop/POLICY.md'
+  '.loop/POLICY.md',
+  '.loop/LEARNINGS.json'
 ];
 
 const ENUMS = {
@@ -92,6 +93,61 @@ function addCheck(checks, name, pass, detail) {
   checks.push({ name, pass, detail });
 }
 
+function evaluateLearnings(learningsRaw, checks) {
+  let learnings = null;
+  try {
+    learnings = JSON.parse(learningsRaw);
+  } catch (error) {
+    addCheck(checks, 'learnings-json', false, `LEARNINGS.json 無法解析 | ${error.message}`);
+    return { learnings: null, learningsOk: false, learningEntries: 0 };
+  }
+
+  const requiredTopLevelKeys = ['schema_version', 'updated_at', 'rollup', 'entries'];
+  const missingTopLevelKeys = requiredTopLevelKeys.filter((key) => !(key in learnings));
+  addCheck(
+    checks,
+    'learnings-required-keys',
+    missingTopLevelKeys.length === 0,
+    missingTopLevelKeys.length === 0 ? 'required keys ok' : `缺欄位: ${missingTopLevelKeys.join(', ')}`
+  );
+
+  const rollup = learnings.rollup || {};
+  const rollupOk =
+    Array.isArray(rollup.retained_patterns) &&
+    Array.isArray(rollup.discarded_patterns) &&
+    Array.isArray(rollup.next_experiments);
+  addCheck(checks, 'learnings-rollup', rollupOk, rollupOk ? 'rollup ok' : 'rollup 需包含三個 array');
+
+  const entries = Array.isArray(learnings.entries) ? learnings.entries : [];
+  const validDecisions = new Set(['keep', 'discard', 'retry', 'investigate']);
+  const validEntries = entries.filter((entry) => {
+    const requiredEntryKeys = ['id', 'date', 'context', 'change', 'hypothesis', 'result', 'decision', 'evidence_refs', 'next_action'];
+    const hasKeys = requiredEntryKeys.every((key) => typeof entry[key] !== 'undefined');
+    const evidenceOk = Array.isArray(entry.evidence_refs) && entry.evidence_refs.length > 0;
+    const decisionOk = typeof entry.decision === 'string' && validDecisions.has(entry.decision);
+    const textFieldsOk = ['id', 'date', 'context', 'change', 'hypothesis', 'result', 'next_action'].every(
+      (key) => typeof entry[key] === 'string' && entry[key].trim().length > 0
+    );
+    return hasKeys && evidenceOk && decisionOk && textFieldsOk;
+  });
+  const entriesOk = entries.length > 0 && validEntries.length === entries.length;
+  addCheck(
+    checks,
+    'learning-entries',
+    entriesOk,
+    entriesOk ? `learning entries=${entries.length}` : 'LEARNINGS.json 需至少一筆完整 entry'
+  );
+
+  const updatedAtOk = isIsoDate(learnings.updated_at);
+  addCheck(checks, 'learning-updated-at', updatedAtOk, updatedAtOk ? 'updated_at ok' : 'updated_at 需為 ISO 時間');
+
+  return {
+    learnings,
+    learningsOk: missingTopLevelKeys.length === 0 && rollupOk && entriesOk && updatedAtOk,
+    learningEntries: entries.length
+  };
+}
+
 function evaluateState(stateRaw, checks) {
   let state = null;
   try {
@@ -165,6 +221,7 @@ function evaluateLoop(targetRoot) {
   const checkpoints = readUtf8(path.join(targetRoot, '.loop/CHECKPOINTS.md'));
   const evidence = readUtf8(path.join(targetRoot, '.loop/EVIDENCE.md'));
   const policy = readUtf8(path.join(targetRoot, '.loop/POLICY.md'));
+  const learningsRaw = readUtf8(path.join(targetRoot, '.loop/LEARNINGS.json'));
 
   const goalOk = hasMeaningfulSection(goal, 'Objective') && hasMeaningfulSection(goal, 'Done Definition') && hasMeaningfulSection(goal, 'Constraints');
   addCheck(checks, 'goal-quality', goalOk, goalOk ? 'goal sections have meaningful content' : 'GOAL.md 仍有 placeholder / 空白段落');
@@ -184,6 +241,8 @@ function evaluateLoop(targetRoot) {
   const evidenceEntries = countEntryLines(evidence);
   addCheck(checks, 'evidence', evidenceEntries > 0, evidenceEntries > 0 ? `evidence entries=${evidenceEntries}` : 'EVIDENCE.md 沒有有效 entries');
 
+  const { learningsOk, learningEntries } = evaluateLearnings(learningsRaw, checks);
+
   const { state, stateSchemaOk, breakerOpen } = evaluateState(stateRaw, checks);
   const verificationFresh = Boolean(state && state.last_verified_at);
   addCheck(checks, 'last-verified', verificationFresh, verificationFresh ? `last_verified_at=${state.last_verified_at}` : 'STATE.json 尚未記錄 last_verified_at');
@@ -194,6 +253,7 @@ function evaluateLoop(targetRoot) {
     policyOk &&
     checkpointEntries > 0 &&
     evidenceEntries > 0 &&
+    learningsOk &&
     stateSchemaOk &&
     verificationFresh &&
     !breakerOpen;
@@ -232,6 +292,7 @@ function evaluateLoop(targetRoot) {
       missingFiles,
       evidenceEntries,
       checkpointEntries,
+      learningEntries,
       state: state || null
     }
   };

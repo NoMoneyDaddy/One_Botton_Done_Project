@@ -46,10 +46,12 @@
     ".loop/STATE.json",
     ".loop/CHECKPOINTS.md",
     ".loop/EVIDENCE.md",
+    ".loop/LEARNINGS.json",
     "docs/STATE.md",
     "docs/ADRS.md"
   ],
   "policy_matrix": "config/execution_policy_matrix.json",
+  "learning_ledger": ".loop/LEARNINGS.json",
   "secret_handling": "environment-variables-only",
   "kill_switch_conditions": [
     "same_error_3x",

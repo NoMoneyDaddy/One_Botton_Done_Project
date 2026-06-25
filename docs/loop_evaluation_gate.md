@@ -28,9 +28,10 @@ node scripts/evaluate_session_loop.js . --fail-on-hold
 4. `POLICY.md` 是否真的有 default / auto-continue / stop conditions
 5. `CHECKPOINTS.md` 是否有實際 entries
 6. `EVIDENCE.md` 是否有實際證據
-7. `STATE.json` 是否符合 session loop contract
-8. `last_verified_at` 是否存在
-9. circuit breaker 是否已打開
+7. `LEARNINGS.json` 是否有完整 keep / discard / retry ledger
+8. `STATE.json` 是否符合 session loop contract
+9. `last_verified_at` 是否存在
+10. circuit breaker 是否已打開
 
 ## gate 結果
 
@@ -47,6 +48,7 @@ node scripts/evaluate_session_loop.js . --fail-on-hold
 
 - `GOAL.md`、`PLAN.md`、`POLICY.md` 不是 placeholder
 - `CHECKPOINTS.md`、`EVIDENCE.md` 有真實 entries
+- `LEARNINGS.json` 至少有一筆完整 machine-readable entry
 - `STATE.json` 欄位完整、enum 合法、時間欄位合法
 - `last_verified_at` 已填
 - `retry_count < 3`
@@ -77,6 +79,10 @@ node scripts/evaluate_session_loop.js . --fail-on-hold
 
 代表只完成 bootstrap，還沒形成真 loop。
 
+### 4. 有 checkpoint / evidence，但沒有 learning ledger
+
+代表有流水帳，沒有把 keep / discard 結論留下來。
+
 ## 建議接法
 
 ### 新專案 / 新 workspace
@@ -105,3 +111,4 @@ node scripts/evaluate_session_loop.js . --fail-on-hold
 - `docs/engineering_phase_loop.md`
 - `docs/loop_circuit_breaker.md`
 - `docs/project_lifecycle_automation.md`
+- `docs/learning_ledger_loop.md`

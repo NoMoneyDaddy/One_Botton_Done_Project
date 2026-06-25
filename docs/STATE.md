@@ -24,6 +24,7 @@
 - `docs/loop_circuit_breaker.md` 已補上
 - `docs/loop_evaluation_gate.md` 已補上
 - `docs/agent_execution_policy_matrix.md` 與 `config/execution_policy_matrix.json` 已補上，作為 machine-readable approval / execution policy
+- `docs/learning_ledger_loop.md` 與 `.loop/LEARNINGS.json` 已補上，作為 machine-readable learning ledger
 - `docs/skill_crystallization_loop.md` 已補上
 - `docs/agent_manifest_spec.md` 已補上
 - `config/agent_manifest.json` 已補上，作為 machine-readable manifest 草案
@@ -39,5 +40,4 @@
 - 更多平台仍需真機或真 sandbox 實測
 - 文件漂移已有自動 gate，但仍需隨平台實測持續更新
 - 真實 marketplace client / CLI 的 end-to-end 安裝實測仍未補齊
-- 自治學習 ledger 尚未 machine-readable
-- machine-readable learning ledger 尚未補上
+- 更多 learning ledger 自動回寫規則尚未補上

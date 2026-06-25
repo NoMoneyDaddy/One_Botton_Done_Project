@@ -92,8 +92,8 @@
 | `microsoft/agent-governance-toolkit` | policy enforcement、zero-trust、sandbox | 後續安全章節可補 agent execution policy matrix |
 | `dresnite/loops` | budget / task guardrails | `config/execution_policy_matrix.json` 後續可再補 budget policy |
 | `HKUDS/OpenHarness` | permission modes、path / command rules、hooks | 補 machine-readable approval / execution policy |
-| `NousResearch/hermes-agent` | built-in learning loop、memory、skills self-improvement | 後續補 machine-readable learning ledger |
-| `kevinrgu/autoagent` | benchmark / score 驅動 meta-agent 優化 harness | 後續補 learning ledger + score-based keep/discard |
+| `NousResearch/hermes-agent` | built-in learning loop、memory、skills self-improvement | 已落成 `.loop/LEARNINGS.json`，後續再補自動摘要 |
+| `kevinrgu/autoagent` | benchmark / score 驅動 meta-agent 優化 harness | 已先補 learning ledger，後續再補 score-based keep/discard |
 | `deusyu/harness-engineering` | repo-as-record、entropy management | 文件與治理層持續維持 repo-first |
 
 ## Adoption Map
@@ -115,7 +115,7 @@
 - long-lived daemon orchestration
 - plugin opacity / adapter contracts
 - self-evolving skill scoring
-- learning ledger / score-based improvement loop
+- learning ledger / score-based improvement loop（learning ledger 已完成，score aggregation 待補）
 - task / run registry
 - design-to-code as optional skill lane
 - reviewer-enforced convergence

@@ -8,9 +8,9 @@
   "status": "active",
   "phase": "Ship",
   "current_state": "ship-prep",
-  "current_task": "自治評估 gate 已補上；等待下一輪自治學習 / approval matrix 補強",
+  "current_task": "machine-readable learning ledger 已補上；等待 PR review 與下一輪 score aggregation 補強",
   "retry_count": 0,
   "blocked_reason": null,
-  "last_verified_at": "2026-06-25T14:13:00Z",
-  "updated_at": "2026-06-25T14:13:00Z"
+  "last_verified_at": "2026-06-25T15:15:00Z",
+  "updated_at": "2026-06-25T15:15:00Z"
 }

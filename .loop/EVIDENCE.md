@@ -12,6 +12,11 @@
 
 - 2026-06-25
   - `node scripts/evaluate_session_loop.js .`
+  - `node scripts/validate_repo_integrity.js`
+  - `git diff --check`
+
+- 2026-06-25
+  - `node scripts/evaluate_session_loop.js .`
   - `node scripts/evaluate_session_loop.js . --json`
   - `node scripts/validate_repo_integrity.js`
   - `node scripts/inspect_agent_capabilities.js`

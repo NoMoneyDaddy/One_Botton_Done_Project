@@ -25,9 +25,11 @@
 - `docs/loop_evaluation_gate.md` 已補上
 - `docs/agent_execution_policy_matrix.md` 與 `config/execution_policy_matrix.json` 已補上，作為 machine-readable approval / execution policy
 - `docs/learning_ledger_loop.md` 與 `.loop/LEARNINGS.json` 已補上，作為 machine-readable learning ledger
+- `config/repo_surface_manifest.json` 已補上，作為 bootstrap / integrity 共用的單一 surface 清單來源
 - `docs/skill_crystallization_loop.md` 已補上
 - `docs/agent_manifest_spec.md` 已補上
 - `config/agent_manifest.json` 已補上，作為 machine-readable manifest 草案
+- `.github/CODEOWNERS`、`CHANGELOG.md`、`examples/minimal-workspace/README.md` 已補上，補齊治理與最小 runnable surface
 - `docs/external_install_provenance_checklist.md` 已補上，作為外部安裝審查基線
 - `docs/reference_repos_by_domain.md` 已補上
 - `docs/large_project_dimensions_and_roles.md` 已補上
@@ -41,3 +43,4 @@
 - 文件漂移已有自動 gate，但仍需隨平台實測持續更新
 - 真實 marketplace client / CLI 的 end-to-end 安裝實測仍未補齊
 - 更多 learning ledger 自動回寫規則尚未補上
+- 更多 examples / tests 仍未補齊

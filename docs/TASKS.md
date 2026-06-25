@@ -18,7 +18,9 @@
 | T12 | x | 補自治評估 gate 與 loop promotion 入口 | `scripts/evaluate_session_loop.js`、`docs/loop_evaluation_gate.md` |
 | T13 | x | 補 machine-readable policy / approval matrix | `config/execution_policy_matrix.json`、`docs/agent_execution_policy_matrix.md` |
 | T14 | x | 補 machine-readable learning ledger / retrospective loop | `.loop/LEARNINGS.json`、`docs/learning_ledger_loop.md` |
-| T15 | ~ | 持續移除過時文件敘述與擴充平台實測 | 後續維護項 |
+| T15 | x | 抽 repo surface manifest，整併 bootstrap / integrity 清單 | `config/repo_surface_manifest.json` |
+| T16 | x | 補 CODEOWNERS、CHANGELOG、minimal example | `.github/CODEOWNERS`、`CHANGELOG.md`、`examples/minimal-workspace/README.md` |
+| T17 | ~ | 持續移除過時文件敘述與擴充平台實測 | 後續維護項 |
 
 ## Backlog
 
@@ -26,3 +28,4 @@
 - 補更多平台實測證據，而不只相容性推論
 - 補真實 marketplace client / CLI end-to-end 安裝實測
 - 補 learning ledger 自動摘要 / score aggregation
+- 補更多 runnable examples / tests

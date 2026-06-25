@@ -8,9 +8,9 @@
   "status": "active",
   "phase": "Ship",
   "current_state": "ship-prep",
-  "current_task": "machine-readable learning ledger 已補上；等待 PR review 與下一輪 score aggregation 補強",
+  "current_task": "surface manifest / governance surface 已補上；下一輪補 examples / tests 或 learning ledger 自動回寫",
   "retry_count": 0,
   "blocked_reason": null,
-  "last_verified_at": "2026-06-25T15:15:00Z",
-  "updated_at": "2026-06-25T15:15:00Z"
+  "last_verified_at": "2026-06-25T15:30:00Z",
+  "updated_at": "2026-06-25T15:30:00Z"
 }

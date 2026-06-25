@@ -31,6 +31,7 @@
 - skill 推薦 / 外部 skill 導引：`scripts/auto_skill_setup.js`
 - machine-readable policy / approval matrix：`config/execution_policy_matrix.json`
 - machine-readable learning ledger：`.loop/LEARNINGS.json`
+- machine-readable repo surface manifest：`config/repo_surface_manifest.json`
 - 工具發現與安全安裝引導：`tool-discovery-and-installation` + `scripts/setup_sandbox_tools.sh`
 - 外部安裝來源審查：`docs/external_install_provenance_checklist.md`
 - loop maturity 分級：`docs/loop_maturity_model.md`
@@ -138,6 +139,7 @@ node scripts/generate_project_configs.js --profile nextjs-app-router --name your
 - `AGENTS.md`
 - `CLAUDE.md`
 - `GEMINI.md`
+- `CHANGELOG.md`
 - `SECURITY.md`
 - `CONTRIBUTING.md`
 - `docs/interactive_project_flow.md`
@@ -177,9 +179,11 @@ node scripts/generate_project_configs.js --profile nextjs-app-router --name your
 - `docs/third_party_skills.md`
 - `docs/tech_stack_guide.md`
 - `config/agent_manifest.json`
+- `config/repo_surface_manifest.json`
 - `.loop/LEARNINGS.json`
 - `scripts/fresh_clone_smoke_test.js`
 - `scripts/marketplace_install_smoke_test.js`
+- `examples/minimal-workspace/README.md`
 
 ## 專案結構 / Structure
 

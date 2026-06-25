@@ -9,6 +9,11 @@
 ## Entries
 
 - 2026-06-25
+  - 做了什麼：新增 `config/repo_surface_manifest.json`，讓 `bootstrap` 與 `integrity` 共用同一份 surface 清單；補 `.github/CODEOWNERS`、`CHANGELOG.md`、`examples/minimal-workspace/README.md`。
+  - 怎麼驗證：`node scripts/validate_repo_integrity.js`、`node scripts/evaluate_session_loop.js .`、`git diff --check`。
+  - 下一輪做什麼：補 examples / tests，或把 learning ledger 接 review feedback 自動回寫。
+
+- 2026-06-25
   - 做了什麼：新增 `.loop/LEARNINGS.json`、`config/learning_ledger_schema.json`、`docs/learning_ledger_loop.md`，並把 learning ledger 接回 `init_session_loop`、`evaluate_session_loop`、bootstrap、integrity gate。
   - 怎麼驗證：`node scripts/evaluate_session_loop.js .`、`node scripts/validate_repo_integrity.js`、`git diff --check`。
   - 下一輪做什麼：補 learning ledger 的 score aggregation / auto-summary，或接 PR review feedback 自動回寫。

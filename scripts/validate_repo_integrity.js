@@ -6,62 +6,20 @@ const path = require('path');
 const repoRoot = path.resolve(__dirname, '..');
 const failures = [];
 
-const requiredFiles = [
-  'AGENTS.md',
-  'CLAUDE.md',
-  'GEMINI.md',
-  'README.md',
-  'README.en.md',
-  '.cursorrules',
-  '.cursor/rules/00-project.mdc',
-  '.github/copilot-instructions.md',
-  '.github/workflows/ci.yml',
-  '.gemini/commands/goal.toml',
-  'docs/session_loop_contract.md',
-  'docs/loop_evaluation_gate.md',
-  'docs/agent_execution_policy_matrix.md',
-  'docs/learning_ledger_loop.md',
-  '.loop/GOAL.md',
-  '.loop/PLAN.md',
-  '.loop/STATE.json',
-  '.loop/CHECKPOINTS.md',
-  '.loop/EVIDENCE.md',
-  '.loop/POLICY.md',
-  '.loop/LEARNINGS.json',
-  'docs/SPEC.md',
-  'docs/TASKS.md',
-  'docs/STATE.md',
-  'docs/DEBUG_NOTES.md',
-  'docs/ADRS.md',
-  'docs/architecture.md',
-  'docs/script_fallback_matrix.md',
-  'docs/loop_maturity_model.md',
-  'docs/engineering_phase_loop.md',
-  'docs/capability_audit_and_install_loop.md',
-  'docs/loop_circuit_breaker.md',
-  'docs/skill_crystallization_loop.md',
-  'docs/agent_manifest_spec.md',
-  'docs/external_install_provenance_checklist.md',
-  'docs/reference_repos_by_domain.md',
-  'docs/large_project_dimensions_and_roles.md',
-  'config/env_templates.json',
-  'config/agent_manifest.json',
-  'config/execution_policy_matrix.json',
-  'config/learning_ledger_schema.json',
-  'config/project_config_profiles.json',
-  'config/script_capabilities.json',
-  'config/skill_profiles.json',
-  'config/tooling_profiles.json'
-];
-
-const requiredDirs = [
-  '.agents/skills',
-  '.claude/skills',
-  'skills',
-  'docs',
-  'scripts',
-  'config'
-];
+function readSurfaceManifest() {
+  const manifestPath = path.join(repoRoot, 'config', 'repo_surface_manifest.json');
+  try {
+    const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+    if (!Array.isArray(manifest.integrity_required_files) || !Array.isArray(manifest.integrity_required_dirs)) {
+      failures.push('invalid surface manifest: integrity arrays missing');
+      return { integrity_required_files: [], integrity_required_dirs: [] };
+    }
+    return manifest;
+  } catch (error) {
+    failures.push(`invalid surface manifest: ${error.message}`);
+    return { integrity_required_files: [], integrity_required_dirs: [] };
+  }
+}
 
 function toRepoPath(filePath) {
   return path.relative(repoRoot, filePath).split(path.sep).join('/');
@@ -127,6 +85,10 @@ function diffArrays(source, target) {
 }
 
 function validateRequiredSurface() {
+  const surfaceManifest = readSurfaceManifest();
+  const requiredFiles = surfaceManifest.integrity_required_files;
+  const requiredDirs = surfaceManifest.integrity_required_dirs;
+
   for (const relativePath of requiredFiles) assertExists(relativePath);
 
   for (const relativePath of requiredDirs) {

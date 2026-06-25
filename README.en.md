@@ -23,6 +23,7 @@ Its job is to give multiple AI tools the same source of truth, the same project 
 - `scripts/auto_skill_setup.js` for skill/tool recommendations
 - `config/execution_policy_matrix.json` for machine-readable approval and execution policy
 - `.loop/LEARNINGS.json` for the machine-readable learning ledger
+- `config/repo_surface_manifest.json` for the machine-readable repo surface source of truth
 - `tool-discovery-and-installation` plus `scripts/setup_sandbox_tools.sh` for safe tool discovery and opt-in installation
 - `docs/loop_maturity_model.md` for autonomy rollout
 - `docs/engineering_phase_loop.md` for phase-based delivery
@@ -137,9 +138,11 @@ node scripts/generate_project_configs.js --profile nextjs-app-router --name your
 - `docs/third_party_skills.md`
 - `docs/tech_stack_guide.md`
 - `config/agent_manifest.json`
+- `config/repo_surface_manifest.json`
 - `.loop/LEARNINGS.json`
 - `scripts/fresh_clone_smoke_test.js`
 - `scripts/marketplace_install_smoke_test.js`
+- `examples/minimal-workspace/README.md`
 
 ## Principles
 

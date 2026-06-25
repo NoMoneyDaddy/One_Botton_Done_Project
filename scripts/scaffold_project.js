@@ -220,9 +220,14 @@ function buildScaffoldCommand(profileKey, projectName, targetRoot, options) {
   }
 
   if (profileKey === 'react-native-expo') {
+    const template = options.language === 'typescript' ? 'blank-typescript' : 'blank';
+    const args = ['create-expo-app@latest', projectName, '--yes', '--template', template, '--no-agents-md'];
+    if (options.skipInstall) {
+      args.push('--no-install');
+    }
     return {
       command: 'npx',
-      args: ['create-expo-app@latest', projectName]
+      args
     };
   }
 
@@ -241,9 +246,10 @@ function buildScaffoldCommand(profileKey, projectName, targetRoot, options) {
   }
 
   if (profileKey === 'tauri-desktop') {
+    const template = options.language === 'typescript' ? 'vanilla-ts' : 'vanilla';
     return {
       command: 'npm',
-      args: ['create', 'tauri-app@latest', projectName]
+      args: ['create', 'tauri-app@latest', projectName, '--', '--manager', options.packageManager, '--template', template, '--yes']
     };
   }
 

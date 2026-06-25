@@ -8,9 +8,9 @@
   "status": "active",
   "phase": "Ship",
   "current_state": "ship-prep",
-  "current_task": "recurring-monitoring、task bundle、official docs source map、mobile/desktop plan-only profiles、env/config loop 已補上；準備驗證與推送 PR",
+  "current_task": "Expo / Tauri 已升成 runnable scaffold，並完成實際 scaffold smoke；準備提交新 PR",
   "retry_count": 0,
   "blocked_reason": null,
-  "last_verified_at": "2026-06-25T16:30:00Z",
-  "updated_at": "2026-06-25T16:30:00Z"
+  "last_verified_at": "2026-06-25T16:40:00Z",
+  "updated_at": "2026-06-25T16:40:00Z"
 }

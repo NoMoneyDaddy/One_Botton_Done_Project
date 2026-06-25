@@ -39,10 +39,10 @@ node scripts/generate_project_configs.js --profile nextjs-app-router --name my-a
 | `nextjs-app-router` | 全端 Web / SaaS / 內容網站 | `package.json`、TS 時 `tsconfig.json` + `next.config.ts`，JS 時 `next.config.js`、`postcss.config.mjs`、`.env.example`、`biome.json` |
 | `vite-react` | SPA / dashboard / 前端站 | `package.json`、TS 時 `tsconfig.json` + `vite.config.ts`，JS 時 `vite.config.js`、`.env.example`、`biome.json` |
 | `node-express-api` | API / webhook / backend service | `package.json`、TS 時 `tsconfig.json`、`.env.example`、`biome.json` |
-| `react-native-expo` | mobile app | 目前整理官方 scaffold 路徑，尚未補 config generation |
+| `react-native-expo` | mobile app | 補 `.env.example`、`.gitignore`、`docs/STACK_SETUP.md`，並可 merge quality / Supabase baseline |
 | `capacitor-mobile-app` | web native mobile | 目前整理官方 scaffold 路徑，尚未補 config generation |
 | `flutter-app` | Flutter | 目前整理官方 scaffold 路徑，尚未補 config generation |
-| `tauri-desktop` | desktop app | 目前整理官方 scaffold 路徑，尚未補 config generation |
+| `tauri-desktop` | desktop app | 補 `.env.example`、`.gitignore`、`docs/STACK_SETUP.md`，並可 merge quality / Supabase baseline |
 | `electron-desktop` | desktop app | 目前整理官方 quick start 路徑，尚未補 config generation |
 
 ## 選項

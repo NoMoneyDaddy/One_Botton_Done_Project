@@ -36,6 +36,7 @@ const requiredFiles = [
   'docs/loop_circuit_breaker.md',
   'docs/skill_crystallization_loop.md',
   'docs/agent_manifest_spec.md',
+  'docs/external_install_provenance_checklist.md',
   'docs/reference_repos_by_domain.md',
   'docs/large_project_dimensions_and_roles.md',
   'config/env_templates.json',

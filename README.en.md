@@ -27,8 +27,10 @@ Its job is to give multiple AI tools the same source of truth, the same project 
 - `docs/loop_circuit_breaker.md` for stagnation handling
 - `docs/skill_crystallization_loop.md` for turning repeated workflows into skills
 - `docs/agent_manifest_spec.md` for machine-readable agent boundaries
+- `docs/external_install_provenance_checklist.md` for external install review
 - `scripts/generate_project_configs.js` for stack-aware config generation
 - `config/script_capabilities.json` plus `docs/script_fallback_matrix.md` for script portability and fallback routing
+- `scripts/marketplace_install_smoke_test.js` for local marketplace install path verification
 - 21 localized workflow skills plus extra local skills such as `goal-loop`, `project-config-generation`, `interview-me`, `observability-and-instrumentation`, and `biome-quality-automation`
 
 ## Supported AI surfaces
@@ -117,6 +119,7 @@ node scripts/generate_project_configs.js --profile nextjs-app-router --name your
 - `docs/loop_circuit_breaker.md`
 - `docs/skill_crystallization_loop.md`
 - `docs/agent_manifest_spec.md`
+- `docs/external_install_provenance_checklist.md`
 - `docs/reference_repos_by_domain.md`
 - `docs/large_project_dimensions_and_roles.md`
 - `docs/project_architecture_best_practices.md`
@@ -127,6 +130,7 @@ node scripts/generate_project_configs.js --profile nextjs-app-router --name your
 - `docs/tech_stack_guide.md`
 - `config/agent_manifest.json`
 - `scripts/fresh_clone_smoke_test.js`
+- `scripts/marketplace_install_smoke_test.js`
 
 ## Principles
 

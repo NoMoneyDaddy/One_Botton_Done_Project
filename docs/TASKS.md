@@ -14,10 +14,11 @@
 | T8 | x | 補開源維護基線 | `SECURITY.md`、`CONTRIBUTING.md`、`docs/release_version_policy.md` |
 | T9 | x | 吸收同類專案的 maturity / phase / audit 最佳實踐 | 新治理文件與 skill 回接 |
 | T10 | x | 補 machine-readable manifest 與 fresh clone smoke test | `config/agent_manifest.json`、`scripts/fresh_clone_smoke_test.js` |
-| T11 | ~ | 持續移除過時文件敘述與擴充平台實測 | 後續維護項 |
+| T11 | x | 補 provenance checklist 與 local marketplace smoke test | `docs/external_install_provenance_checklist.md`、`scripts/marketplace_install_smoke_test.js` |
+| T12 | ~ | 持續移除過時文件敘述與擴充平台實測 | 後續維護項 |
 
 ## Backlog
 
 - 補更多 profile 的官方 scaffold 與 config generation
 - 補更多平台實測證據，而不只相容性推論
-- 補 marketplace install / restart agent / trigger skill smoke test
+- 補真實 marketplace client / CLI end-to-end 安裝實測

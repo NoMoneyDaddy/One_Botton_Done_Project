@@ -31,14 +31,15 @@
 - .codex-plugin/plugin.json
 - .agents/plugins/marketplace.json
 - config/agent_manifest.json
+- docs/external_install_provenance_checklist.md
 - inspect、integrity、bootstrap、scaffold、config generator scripts
+- fresh clone 與 marketplace install smoke tests
 - skill / tooling profiles
 - sandbox tool setup plan
 
 ## 主要缺口
 
-1. 缺安全審查清單，尤其是外部 skill 與 install command provenance。
-2. 缺 marketplace install / restart agent / trigger skill 整合 smoke test。
+1. 缺真實 marketplace client 安裝實測證據，目前只有 repo 內 local marketplace smoke test。
 
 ## 建議路線
 
@@ -63,7 +64,8 @@
 - 定義 skills path。
 - 補 interface metadata。
 - 建立 marketplace.json 測試入口。
-- fresh clone 後用 Codex 安裝測試。
+- local marketplace install smoke test 已補。
+- 若取得真實 marketplace client / CLI，再補 end-to-end 安裝實測。
 
 ## 安全規則
 
@@ -75,5 +77,5 @@
 
 ## 最小下一步
 
-1. 補外部 skill / install command provenance checklist。
-2. 補 marketplace install / restart agent / trigger skill 整合 smoke test。
+1. 取得真實 marketplace client / CLI 後，補 end-to-end 安裝實測。
+2. 對高風險外部工具補實際 provenance 記錄樣本。

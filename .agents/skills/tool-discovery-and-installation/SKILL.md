@@ -16,6 +16,7 @@ description: Detect missing skills, MCP servers, CLIs, and sandbox tools; choose
 - `docs/capability_audit_and_install_loop.md`
 - `docs/loop_maturity_model.md`
 - `docs/skill_crystallization_loop.md`
+- `docs/external_install_provenance_checklist.md`
 
 ## 啟動順序
 

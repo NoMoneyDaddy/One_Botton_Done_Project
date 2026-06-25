@@ -29,6 +29,7 @@
 - repo integrity gate：`scripts/validate_repo_integrity.js`
 - skill 推薦 / 外部 skill 導引：`scripts/auto_skill_setup.js`
 - 工具發現與安全安裝引導：`tool-discovery-and-installation` + `scripts/setup_sandbox_tools.sh`
+- 外部安裝來源審查：`docs/external_install_provenance_checklist.md`
 - loop maturity 分級：`docs/loop_maturity_model.md`
 - engineering phase loop：`docs/engineering_phase_loop.md`
 - capability audit / install loop：`docs/capability_audit_and_install_loop.md`
@@ -37,6 +38,7 @@
 - agent manifest 草案：`docs/agent_manifest_spec.md`
 - 設定檔產生：`scripts/generate_project_configs.js`
 - sandbox / GitHub / remote 工具導引：`scripts/setup_sandbox_tools.sh`
+- local marketplace install smoke test：`scripts/marketplace_install_smoke_test.js`
 
 ## 支援定義 / What “Support” Means
 
@@ -157,6 +159,7 @@ node scripts/generate_project_configs.js --profile nextjs-app-router --name your
 - `docs/loop_circuit_breaker.md`
 - `docs/skill_crystallization_loop.md`
 - `docs/agent_manifest_spec.md`
+- `docs/external_install_provenance_checklist.md`
 - `docs/reference_repos_by_domain.md`
 - `docs/large_project_dimensions_and_roles.md`
 - `docs/project_architecture_best_practices.md`
@@ -167,6 +170,7 @@ node scripts/generate_project_configs.js --profile nextjs-app-router --name your
 - `docs/tech_stack_guide.md`
 - `config/agent_manifest.json`
 - `scripts/fresh_clone_smoke_test.js`
+- `scripts/marketplace_install_smoke_test.js`
 
 ## 專案結構 / Structure
 

@@ -24,13 +24,15 @@
 - `docs/skill_crystallization_loop.md` 已補上
 - `docs/agent_manifest_spec.md` 已補上
 - `config/agent_manifest.json` 已補上，作為 machine-readable manifest 草案
+- `docs/external_install_provenance_checklist.md` 已補上，作為外部安裝審查基線
 - `docs/reference_repos_by_domain.md` 已補上
 - `docs/large_project_dimensions_and_roles.md` 已補上
 - `scripts/fresh_clone_smoke_test.js` 已補上，驗證 fresh clone / bootstrap / session init 基線
+- `scripts/marketplace_install_smoke_test.js` 已補上，驗證 marketplace entry -> plugin -> skills path -> trigger skill 最小路徑
 
 ## Open Gaps
 
 - 更多技術棧 profile 尚未自動化
 - 更多平台仍需真機或真 sandbox 實測
 - 文件漂移已有自動 gate，但仍需隨平台實測持續更新
-- marketplace install / restart agent / trigger skill 的整合 smoke test 尚未補齊
+- 真實 marketplace client / CLI 的 end-to-end 安裝實測仍未補齊

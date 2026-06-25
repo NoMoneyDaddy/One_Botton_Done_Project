@@ -113,6 +113,8 @@
 - circuit breaker：`docs/loop_circuit_breaker.md`
 - skill crystallization：`docs/skill_crystallization_loop.md`
 - agent manifest：`docs/agent_manifest_spec.md`
+- GitHub 參考地圖：`docs/reference_repos_by_domain.md`
+- 大型專案面向與分工：`docs/large_project_dimensions_and_roles.md`
 - 互動流程：`docs/interactive_project_flow.md`
 - session loop 協定：`docs/session_loop_contract.md`
 - 腳本降級矩陣：`docs/script_fallback_matrix.md`

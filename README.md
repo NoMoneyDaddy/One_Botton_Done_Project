@@ -156,6 +156,8 @@ node scripts/generate_project_configs.js --profile nextjs-app-router --name your
 - `docs/loop_circuit_breaker.md`
 - `docs/skill_crystallization_loop.md`
 - `docs/agent_manifest_spec.md`
+- `docs/reference_repos_by_domain.md`
+- `docs/large_project_dimensions_and_roles.md`
 - `docs/project_architecture_best_practices.md`
 - `docs/project_lifecycle_automation.md`
 - `docs/platform_support_matrix.md`

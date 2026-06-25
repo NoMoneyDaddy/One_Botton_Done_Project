@@ -24,6 +24,8 @@
 - `docs/loop_circuit_breaker.md` 已補上
 - `docs/skill_crystallization_loop.md` 已補上
 - `docs/agent_manifest_spec.md` 已補上
+- `docs/reference_repos_by_domain.md` 已補上
+- `docs/large_project_dimensions_and_roles.md` 已補上
 
 ## Open Gaps
 

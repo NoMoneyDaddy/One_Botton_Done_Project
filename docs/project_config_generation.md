@@ -41,7 +41,7 @@ node scripts/generate_project_configs.js --profile nextjs-app-router --name my-a
 | `node-express-api` | API / webhook / backend service | `package.json`、TS 時 `tsconfig.json`、`.env.example`、`biome.json` |
 | `react-native-expo` | mobile app | 補 `.env.example`、`.gitignore`、`docs/STACK_SETUP.md`，並可 merge quality / Supabase baseline |
 | `capacitor-mobile-app` | web native mobile | 補 `.env.example`、`.gitignore`、`docs/STACK_SETUP.md`，並可 merge quality / Supabase baseline |
-| `flutter-app` | Flutter | 目前整理官方 scaffold 路徑，尚未補 config generation |
+| `flutter-app` | Flutter | 補 `.env.example`、`.gitignore`、`docs/STACK_SETUP.md`，並提供 `dart-define` / runtime config 基線 |
 | `tauri-desktop` | desktop app | 補 `.env.example`、`.gitignore`、`docs/STACK_SETUP.md`，並可 merge quality / Supabase baseline |
 | `electron-desktop` | desktop app | 補 `main.js`、`index.html`、`.env.example`、`.gitignore`、`docs/STACK_SETUP.md`，並可 merge quality / Supabase baseline |
 

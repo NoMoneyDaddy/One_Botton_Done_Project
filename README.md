@@ -50,7 +50,7 @@
 - repo tests：`scripts/run_repo_tests.js`
 - motion / Lottie skill lane：`text-to-lottie`
 - recurring monitor skill lane：`recurring-monitoring`
-- mobile / desktop profiles：`Expo`、`Capacitor`、`Tauri`、`Electron` 已可執行 scaffold，其餘仍是 `plan-only`
+- mobile / desktop profiles：`Expo`、`Capacitor`、`Flutter`、`Tauri`、`Electron` 已可執行 scaffold，其餘仍是 `plan-only`
 
 ## 支援定義 / What “Support” Means
 

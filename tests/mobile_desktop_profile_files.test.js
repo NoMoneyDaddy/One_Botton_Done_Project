@@ -104,3 +104,27 @@ test('electron-desktop profile emits main process starter and secret env baselin
   assert.match(files.get('index.html'), /Hello from Electron renderer/);
   assert.match(buildEnvExample('electron-desktop', { database: 'supabase' }), /SUPABASE_URL/);
 });
+
+test('flutter-app profile emits dart-define baseline and flutter follow-up note', () => {
+  const files = buildProfileFiles(
+    'flutter-app',
+    {
+      displayName: 'Flutter App',
+      officialScaffold: 'flutter create',
+      recommendedNode: 'n/a'
+    },
+    'flutter-smoke',
+    {
+      language: 'typescript',
+      styling: 'none',
+      database: 'supabase',
+      qualityTool: 'biome',
+      packageManager: 'npm'
+    }
+  );
+
+  assert.equal(files.has('package.json'), false);
+  assert.match(files.get('.env.example'), /dart-define/);
+  assert.match(files.get('.env.example'), /SUPABASE_URL/);
+  assert.match(files.get('docs/STACK_SETUP.md'), /flutter run/);
+});

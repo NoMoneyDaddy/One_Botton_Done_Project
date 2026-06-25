@@ -49,4 +49,4 @@
 - 真實 marketplace client / CLI 的 end-to-end 安裝實測仍未補齊
 - 更多 learning ledger 自動回寫規則尚未補上
 - 更多 examples / tests 仍未補齊
-- `Flutter`、`SwiftUI`、`Android Kotlin` 仍屬 `plan-only`，但 prerequisite doctor 已補上，缺的是 runnable scaffold / config generation / smoke
+- `Flutter` 已升成 runnable scaffold；`SwiftUI`、`Android Kotlin` 仍屬 `plan-only`

@@ -178,6 +178,10 @@ function buildGitignore(profile, options) {
     lines.push('node_modules', 'out');
   }
 
+  if (profile === 'flutter-app') {
+    lines.push('.dart_tool', '.flutter-plugins', '.flutter-plugins-dependencies', 'build');
+  }
+
   if (options.database === 'supabase') {
     lines.push('supabase/.temp', '.branches');
   }
@@ -437,6 +441,20 @@ function buildElectronPackageJson(name, options) {
   return pkg;
 }
 
+function buildFlutterDotenv(options) {
+  const lines = [
+    '# Flutter 建議改用 --dart-define 或 --dart-define-from-file',
+    '# 不要把真正秘密直接寫進 repo'
+  ];
+
+  if (options.database === 'supabase') {
+    lines.push('SUPABASE_URL=');
+    lines.push('SUPABASE_ANON_KEY=');
+  }
+
+  return `${lines.join('\n')}\n`;
+}
+
 function buildNextTsconfig() {
   return `${JSON.stringify(
     {
@@ -589,6 +607,9 @@ function buildEnvExample(profile, options) {
     } else if (profile === 'electron-desktop') {
       lines.push('SUPABASE_URL=');
       lines.push('SUPABASE_ANON_KEY=');
+    } else if (profile === 'flutter-app') {
+      lines.push('SUPABASE_URL=');
+      lines.push('SUPABASE_ANON_KEY=');
     } else {
       lines.push('SUPABASE_URL=');
       lines.push('SUPABASE_ANON_KEY=');
@@ -598,7 +619,8 @@ function buildEnvExample(profile, options) {
   return `${lines.join('\n')}\n`;
 }
 
-function installCommand(pm) {
+function installCommand(pm, profileKey) {
+  if (profileKey === 'flutter-app') return 'flutter pub get';
   if (pm === 'pnpm') return 'pnpm install';
   if (pm === 'yarn') return 'yarn install';
   if (pm === 'bun') return 'bun install';
@@ -607,7 +629,11 @@ function installCommand(pm) {
 
 function buildStackSetup(profileKey, profile, name, options) {
   const followUps = [];
-  const generated = ['package.json', '.gitignore', '.env.example'];
+  const generated = ['.gitignore', '.env.example'];
+
+  if (profileKey !== 'flutter-app') {
+    generated.unshift('package.json');
+  }
 
   if (options.language === 'typescript') generated.push('tsconfig.json');
   if (options.qualityTool === 'biome') generated.push('biome.json');
@@ -616,10 +642,11 @@ function buildStackSetup(profileKey, profile, name, options) {
   if (profileKey === 'vite-react') generated.push(viteConfigFile(options));
   if (profileKey === 'react-native-expo') generated.push('docs/STACK_SETUP.md');
   if (profileKey === 'capacitor-mobile-app') generated.push('docs/STACK_SETUP.md');
+  if (profileKey === 'flutter-app') generated.push('docs/STACK_SETUP.md');
   if (profileKey === 'tauri-desktop') generated.push('docs/STACK_SETUP.md');
   if (profileKey === 'electron-desktop') generated.push('main.js', 'index.html', 'docs/STACK_SETUP.md');
 
-  followUps.push(`1. 執行 \`${installCommand(options.packageManager)}\``);
+  followUps.push(`1. 執行 \`${installCommand(options.packageManager, profileKey)}\``);
   if (profileKey === 'nextjs-app-router') {
     followUps.push('2. 建立 `src/app/` 或 `app/` 內容，並讓 `next dev` / `next build` 自動產生 `next-env.d.ts`');
   }
@@ -642,6 +669,10 @@ function buildStackSetup(profileKey, profile, name, options) {
   if (profileKey === 'capacitor-mobile-app') {
     followUps.push('2. 先執行 `npm run build`，再用 `npx cap sync` 把 web bundle 同步到 native project');
     followUps.push('3. 若要進 iOS / Android，先確認 Xcode / Android Studio 環境，再執行 `npx cap add ios` / `npx cap add android`');
+  }
+  if (profileKey === 'flutter-app') {
+    followUps.push('2. 執行 `flutter run` 或 `flutter run -d chrome` 驗證 app 可啟動');
+    followUps.push('3. 秘密值優先用 `--dart-define` / `--dart-define-from-file`，不要直接硬寫在程式內');
   }
   if (profileKey === 'electron-desktop') {
     followUps.push('2. 執行 `npm run start` 啟動 Electron 主程序');
@@ -683,6 +714,7 @@ ${followUps.map((line) => `- ${line}`).join('\n')}
 - Next.js 官方安裝文件已支援 TypeScript、Tailwind、AGENTS.md，手動生成時仍應回官方文件確認版本需求。
 - Expo app config (\`app.json\` / \`app.config.ts\`) 會暴露 public config；秘密值不要直接寫進 app config。
 - Capacitor 的 native 專案不是永遠手動編；以 \`npx cap add\` / \`npx cap sync\` 為準，不要自行編造 platform 檔樹。
+- Flutter secrets 建議走 \`--dart-define\` / \`--dart-define-from-file\`，不要把正式 secrets 寫進 repo。
 - Tauri 專案啟動前通常還需要 Rust toolchain；scaffold 成功不等於本機原生依賴已完備。
 - Electron 官方最小 starter 只保證 dev 啟動；打包、簽章、auto-update 需額外工具鏈。
 - Tailwind v4 的 Next.js / Vite 方案都不一定需要傳統 \`tailwind.config.js\`；請以官方最新安裝頁為準。
@@ -748,11 +780,13 @@ function buildProfileFiles(profileKey, profile, name, options) {
     'electron-desktop': buildElectronPackageJson
   };
   const files = new Map();
-  const packageJson = packageBuilders[profileKey](name, options);
-
-  files.set('package.json', `${JSON.stringify(packageJson, null, 2)}\n`);
+  const packageBuilder = packageBuilders[profileKey];
+  if (packageBuilder) {
+    const packageJson = packageBuilder(name, options);
+    files.set('package.json', `${JSON.stringify(packageJson, null, 2)}\n`);
+  }
   files.set('.gitignore', buildGitignore(profileKey, options));
-  files.set('.env.example', buildEnvExample(profileKey, options));
+  files.set('.env.example', profileKey === 'flutter-app' ? buildFlutterDotenv(options) : buildEnvExample(profileKey, options));
   files.set('docs/STACK_SETUP.md', buildStackSetup(profileKey, profile, name, options));
 
   if (options.qualityTool === 'biome') {
@@ -858,7 +892,7 @@ function main() {
     console.log(`- ${result.file} | ${result.action}`);
   }
   console.log('\n下一步:');
-  console.log(`- ${installCommand(options.packageManager)}`);
+  console.log(`- ${installCommand(options.packageManager, options.profile)}`);
   console.log('- 讀 docs/STACK_SETUP.md');
   console.log('- 跑對應驗證指令');
 }

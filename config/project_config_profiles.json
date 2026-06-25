@@ -57,12 +57,12 @@
     },
     "flutter-app": {
       "displayName": "Flutter App",
-      "supportLevel": "plan-only",
+      "supportLevel": "full",
       "projectTypes": ["mobile-app"],
-      "languages": ["javascript"],
+      "languages": ["typescript", "javascript"],
       "styling": ["none"],
       "databases": ["none", "supabase"],
-      "qualityTools": ["none"],
+      "qualityTools": ["biome", "none"],
       "officialScaffold": "flutter create",
       "recommendedNode": "n/a"
     },

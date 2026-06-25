@@ -14,7 +14,7 @@
 | `node-express-api` | API service | `npm init -y` | 有 |
 | `react-native-expo` | 跨平台 mobile app | `create-expo-app` | 有 |
 | `capacitor-mobile-app` | Web Native mobile app | `@capacitor/create-app` | 有 |
-| `flutter-app` | Flutter mobile app | `flutter create` | 規劃中 / plan-only |
+| `flutter-app` | Flutter mobile app | `flutter create` | 有 |
 | `tauri-desktop` | 輕量 desktop app | `create-tauri-app` | 有 |
 | `electron-desktop` | Electron desktop app | 官方 first app tutorial | 有 |
 | `ios-swiftui` | iOS native | Xcode new project | 規劃中 / plan-only |
@@ -34,7 +34,7 @@
 | **React (Vite)** | 輕量、啟動極快、高度靈活、社群龐大 | 需自行配置路由與狀態管理、SEO 較弱 | 單頁應用 (SPA)、內部管理系統、數據儀表板 |
 | **Vue.js (Vite)** | 易學易用、雙向綁定、漸進式框架 | 目前本 repo 尚未提供對應 profile | 需手動擴充時可評估 |
 | **React Native + Expo** | 單一 JS/TS codebase 跑 iOS / Android / web | 已可走 repo scaffold / config overlay | 需要 mobile-first 時優先評估 |
-| **Flutter** | 真多平台、效能好、UI 一致性高 | 目前是 `plan-only` profile | 重視多平台一致性時可評估 |
+| **Flutter** | 真多平台、效能好、UI 一致性高 | 已可走 repo scaffold / config overlay | 重視多平台一致性時可評估 |
 
 **AI 推薦策略**：對於大多數商業級專案，強烈推薦 **Next.js App Router**，並採用 `src/app` + `features` + `lib` 的分層結構。
 
@@ -85,7 +85,7 @@
 | :--- | :--- | :--- |
 | **React Native + Expo** | iOS / Android / web 共用 JS/TS codebase，官方 scaffold 清楚 | `full` |
 | **Capacitor** | Web app 轉 iOS / Android 成本低，可保留現有前端 stack | `full` |
-| **Flutter** | 多平台一致性強，UI toolkit 完整 | `plan-only` |
+| **Flutter** | 多平台一致性強，UI toolkit 完整 | `full` |
 | **Tauri** | desktop 體積小、速度快，還能延伸到 mobile | `full` |
 | **Electron** | 生態成熟、桌面整合多 | `full` |
 | **SwiftUI / Android Kotlin** | 原生能力最完整 | `plan-only` |

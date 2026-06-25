@@ -8,9 +8,9 @@
   "status": "active",
   "phase": "Ship",
   "current_state": "ship-prep",
-  "current_task": "platform prerequisite doctor 已補上，能 machine-readable 檢查 mobile / desktop 原生依賴；準備提交新 PR",
+  "current_task": "Flutter 已升成 runnable scaffold，且 prerequisite doctor 已接進 scaffold gate；準備提交新 PR",
   "retry_count": 0,
   "blocked_reason": null,
-  "last_verified_at": "2026-06-26T03:00:00Z",
-  "updated_at": "2026-06-26T03:00:00Z"
+  "last_verified_at": "2026-06-25T23:01:02Z",
+  "updated_at": "2026-06-25T23:01:02Z"
 }

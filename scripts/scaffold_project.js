@@ -8,6 +8,7 @@ const repoRoot = path.resolve(__dirname, '..');
 const profilesPath = path.join(repoRoot, 'config', 'project_config_profiles.json');
 const initWorkspaceScript = path.join(repoRoot, 'scripts', 'init_project_workspace.js');
 const generateConfigsScript = path.join(repoRoot, 'scripts', 'generate_project_configs.js');
+const prerequisiteDoctorScript = path.join(repoRoot, 'scripts', 'platform_prerequisite_doctor.js');
 
 function parseArgs(argv) {
   const options = {
@@ -114,6 +115,42 @@ function runCommand(command, args, options = {}) {
 
   if (result.status !== 0) {
     throw new Error(`指令失敗: ${command} ${args.join(' ')}`);
+  }
+}
+
+function runJsonCommand(command, args, options = {}) {
+  const result = spawnSync(command, args, {
+    cwd: options.cwd || process.cwd(),
+    encoding: 'utf8',
+    shell: process.platform === 'win32'
+  });
+
+  if (result.status !== 0) {
+    throw new Error(`指令失敗: ${command} ${args.join(' ')}`);
+  }
+
+  return JSON.parse((result.stdout || '').trim());
+}
+
+function runPrerequisiteGate(profileKey) {
+  const payload = runJsonCommand(process.execPath, [prerequisiteDoctorScript, '--profile', profileKey, '--json']);
+  const result = payload.results[0];
+  if (!result) return;
+
+  if (result.status === 'not-ready') {
+    const blockers = result.checks
+      .filter((item) => item.status === 'fail')
+      .map((item) => `${item.displayName}(${item.actual})`)
+      .join(', ');
+    throw new Error(`profile ${profileKey} prerequisite not-ready: ${blockers}`);
+  }
+
+  if (result.status === 'partial') {
+    const warnings = result.checks
+      .filter((item) => item.status === 'warn')
+      .map((item) => `${item.displayName}(${item.actual})`)
+      .join(', ');
+    console.log(`⚠️ prerequisite partial: ${warnings}`);
   }
 }
 
@@ -256,9 +293,13 @@ function buildScaffoldCommand(profileKey, projectName, targetRoot, options) {
   }
 
   if (profileKey === 'flutter-app') {
+    const args = ['create', projectName];
+    if (options.platforms) {
+      args.push('--platforms', options.platforms);
+    }
     return {
       command: 'flutter',
-      args: ['create', projectName]
+      args
     };
   }
 
@@ -288,7 +329,8 @@ function buildScaffoldCommand(profileKey, projectName, targetRoot, options) {
   throw new Error(`尚未支援的 scaffold profile: ${profileKey}`);
 }
 
-function installCommand(packageManager) {
+function installCommand(packageManager, profileKey) {
+  if (profileKey === 'flutter-app') return 'flutter pub get';
   if (packageManager === 'pnpm') return 'pnpm install';
   if (packageManager === 'yarn') return 'yarn install';
   if (packageManager === 'bun') return 'bun install';
@@ -353,6 +395,8 @@ function main() {
     throw new Error(`profile ${options.profile} 目前是 plan-only；已整理官方 scaffold 路徑，但尚未開放自動執行`);
   }
 
+  runPrerequisiteGate(options.profile);
+
   ensureDir(path.dirname(targetRoot));
 
   if (options.profile === 'node-express-api') {
@@ -393,7 +437,7 @@ function main() {
   console.log('\nScaffold 完成。');
   console.log('下一步:');
   if (options.skipInstall) {
-    console.log(`- 先執行 ${installCommand(options.packageManager)}`);
+    console.log(`- 先執行 ${installCommand(options.packageManager, options.profile)}`);
   }
   console.log(`- cd ${targetRoot}`);
   console.log('- 讀 AGENTS.md 與 .loop/*');

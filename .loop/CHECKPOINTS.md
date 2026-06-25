@@ -9,6 +9,11 @@
 ## Entries
 
 - 2026-06-26
+  - 做了什麼：把 `flutter-app` 從 `plan-only` 升成 runnable scaffold；在 `scripts/scaffold_project.js` 接入 prerequisite gate；補 `generate_project_configs` 的 Flutter `.env.example` / `.gitignore` / `docs/STACK_SETUP.md` 基線，並完成實際 `flutter create` smoke。
+  - 怎麼驗證：`brew install --cask flutter`、`flutter --version`、`dart --version`、`node scripts/platform_prerequisite_doctor.js --profile flutter-app`、`node scripts/scaffold_project.js /tmp/obd-flutter-run --profile flutter-app --name obd_flutter_run --idea "flutter smoke" --database supabase --quality-tool biome --run`、`node scripts/run_repo_tests.js`、`node scripts/validate_repo_integrity.js`、`git diff --check`。
+  - 下一輪做什麼：開 PR、等 CI；若合併完成，再往 `SwiftUI` / `Android Kotlin` runnable scaffold，或把 `--platforms` CLI 正式接進 Flutter flow。
+
+- 2026-06-26
   - 做了什麼：新增 `config/platform_prerequisites.json`、`scripts/platform_prerequisite_doctor.js`、`docs/platform_prerequisite_doctor.md`，把 Expo / Capacitor / Flutter / Tauri / Electron / iOS / Android 的原生 prerequisite 變成 machine-readable doctor。
   - 怎麼驗證：`node scripts/run_repo_tests.js`、`node scripts/validate_repo_integrity.js`、`node scripts/platform_prerequisite_doctor.js --profile tauri-desktop`、`node scripts/platform_prerequisite_doctor.js --profile capacitor-mobile-app --json`、`git diff --check`。
   - 下一輪做什麼：開 PR、等 CI；若合併完成，再補 `Flutter` runnable scaffold 或把 prerequisite doctor 接 scaffold gate。

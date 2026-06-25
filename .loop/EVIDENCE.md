@@ -11,6 +11,16 @@
 ## Entries
 
 - 2026-06-26
+  - `brew install --cask flutter`
+  - `flutter --version`
+  - `dart --version`
+  - `node scripts/platform_prerequisite_doctor.js --profile flutter-app`
+  - `node scripts/scaffold_project.js /tmp/obd-flutter-run --profile flutter-app --name obd_flutter_run --idea "flutter smoke" --database supabase --quality-tool biome --run`
+  - `node scripts/run_repo_tests.js`
+  - `node scripts/validate_repo_integrity.js`
+  - `git diff --check`
+
+- 2026-06-26
   - `node scripts/run_repo_tests.js`
   - `node scripts/validate_repo_integrity.js`
   - `node scripts/platform_prerequisite_doctor.js --profile tauri-desktop`

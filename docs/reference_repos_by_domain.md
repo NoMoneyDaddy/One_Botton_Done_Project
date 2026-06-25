@@ -4,6 +4,25 @@
 
 調研日期：2026-06-25。
 
+## High-Star Snapshot
+
+以下星數為 2026-06-25 查詢時快照。用途不是追星，而是先過濾掉影響力太低、沉澱不足的候選。
+
+| 類別 | Repo | Stars | 為何值得看 |
+| --- | --- | ---: | --- |
+| skill framework | `obra/superpowers` | 238205 | skills framework + methodology 一起交付，最接近「能力市場 + 工程流程」 |
+| skill standard | `anthropics/skills` | 154974 | `SKILL.md` 事實標準來源之一 |
+| autonomous development | `OpenHands/OpenHands` | 78283 | 大型自治開發產品化與 eval / runtime / docs 結構 |
+| design-to-code | `abi/screenshot-to-code` | 73058 | 自動化網頁設計 / 視覺轉碼的代表作 |
+| agent loop runtime | `earendil-works/pi` | 65458 | 統一 LLM API、agent loop、CLI/TUI 的 runtime 參考 |
+| coding agent product | `cline/cline` | 63872 | IDE / CLI / SDK 多表面產品化 |
+| production skills | `addyosmani/agent-skills` | 66574 | 長期工程技能拆分方式成熟 |
+| resilient graph | `langchain-ai/langgraph` | 35693 | graph-based agent orchestration、持久狀態 |
+| agent instructions catalog | `github/awesome-copilot` | 35687 | instructions / agents / skills catalog 化做法 |
+| science skill library | `K-Dense-AI/scientific-agent-skills` | 29287 | 大型 domain skill library 與資料源整合 |
+| official skills | `vercel-labs/agent-skills` | 28311 | trigger-first skill 設計清楚 |
+| goal-completion loop | `snarktank/ralph` | 20594 | PRD 驅動重複 loop 直到完成 |
+
 ## Autonomous LLM / Agent Engineering
 
 | Repo | 類型 | 可借鏡 |
@@ -14,6 +33,12 @@
 | `FarzamMohammadi/the-engineer` | orchestration layer | requirements → delivery phase、plugin contracts、audit trail |
 | `Zhifeng-Niu/odyssey-engine` | autonomous iteration engine | tier / orientation / convergence / checkpoint loop |
 | `lsdefine/GenericAgent` | self-evolving agent | skill tree、能力結晶化、原子工具 + 極小核心 |
+| `cline/cline` | autonomous coding agent product | SDK / IDE / CLI 多形態產品化、工具調用邊界 |
+| `campfirein/byterover-cli` | portable memory layer | 跨 session 記憶層，可作為 strategy memory 參考 |
+| `jmilinovich/goal-md` | goal specification file | 用結構化 goal 檔驅動 agent loop 的輕量方法 |
+| `earendil-works/pi` | agent loop runtime | 統一 LLM API、loop runtime、TUI/CLI 介面分層 |
+| `snarktank/ralph` | PRD completion loop | 以 PRD item 為收斂單位的重複執行模型 |
+| `the-open-engine/zeroshot` | reviewer-enforced loop | 獨立 reviewer feedback 不可省略，適合 verify gate 參考 |
 
 ## CI / Automation
 
@@ -29,6 +54,11 @@
 | --- | --- | --- |
 | `vercel/next.js` | frontend platform | `bench`、`evals`、`examples`、monorepo、release 腳本、升級指南 |
 | `microsoft/playwright` | web testing & automation | 跨瀏覽器驗證、examples、docs、穩定測試文化 |
+| `nexu-io/open-design` | automated web / app design | 本地優先設計生成、設計系統、匯出與 sandbox 預覽 |
+| `BuilderIO/figma-html` | design-to-code utility | 網站轉 Figma 的雙向設計參考 |
+| `karero/website-builder` | website-builder skill suite | AI 網站建置 skill 化做法 |
+| `abi/screenshot-to-code` | screenshot-to-code | 視覺輸入轉 HTML / Tailwind / React / Vue 的實戰參考 |
+| `microsoft/design-to-code` | enterprise design system tooling | 設計系統、元件、流程工具鏈整合思路 |
 
 ## Backend Engineering
 
@@ -53,6 +83,34 @@
 | `open-kya/kya-standard` | agent governance standard | 機器可讀 agent 邊界宣告 |
 | `cobusgreyling/loop-engineering` | loop governance | maturity、patterns、operating loops |
 | `cyberCharl/drydock` | workbench / state store | items、runs、audit trail、pause flag |
+| `microsoft/agent-governance-toolkit` | governance hardening toolkit | policy enforcement、sandbox、zero-trust 身分與 OWASP Agentic Top 10 映射 |
+
+## Skills / Skill Standards
+
+| Repo | 類型 | 可借鏡 |
+| --- | --- | --- |
+| `anthropics/skills` | official skill repo | SKILL.md 基礎格式與示例 |
+| `vercel-labs/agent-skills` | official skills | trigger-first skill 結構 |
+| `addyosmani/agent-skills` | production skills | lifecycle 與長期工程技能 |
+| `obra/superpowers` | skills framework | 技能方法論與 distribution |
+| `agentskills/agentskills` | skill specification | 技能標準化與可攜格式 |
+| `sickn33/antigravity-awesome-skills` | large skill library | 大規模 skills catalog 與 installer 思路 |
+| `github/awesome-copilot` | instructions / agents catalog | catalog、分類、社群收錄模式 |
+| `K-Dense-AI/scientific-agent-skills` | domain skill library | 大型專業領域 skill bundles 的結構參考 |
+| `googleworkspace/cli` | tool + skills bundle | 單一 CLI 搭配 skills 的產品包裝方式 |
+
+## Loop AI Methodologies
+
+| Repo | 類型 | 可借鏡 |
+| --- | --- | --- |
+| `cobusgreyling/loop-engineering` | loop methodology | patterns、primitives、maturity |
+| `Zhifeng-Niu/odyssey-engine` | iteration methodology | convergence、tier、orientation |
+| `lodekeeper/lodeloop` | verification loop | circuit breaker、verify loop |
+| `jmilinovich/goal-md` | goal file methodology | 結構化 goal 檔驅動 loop |
+| `modelscope/AgentEvolver` | self-evolving methodology | questioning / navigating / attributing |
+| `snarktank/ralph` | execution loop | PRD item 持續重試直到完成 |
+| `earendil-works/pi` | runtime loop toolkit | agent loop + terminal UX + runtime 分層 |
+| `the-open-engine/zeroshot` | review-enforced loop | 獨立 reviewer 作為收斂條件 |
 
 ## Practical Reading Order
 

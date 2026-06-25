@@ -56,6 +56,14 @@ function buildPlan() {
 
 - 待補
 
+## Loop Settings
+
+- maturity_level: L1
+- tier: standard
+- orientation: engineer
+- time_budget: 待補
+- convergence_state: closed
+
 ## Acceptance Criteria
 
 - 待補
@@ -66,10 +74,16 @@ function buildState(now) {
   return `${JSON.stringify(
     {
       mode: 'session-loop',
+      maturity_level: 'L1',
+      tier: 'standard',
+      orientation: 'engineer',
+      time_budget: null,
+      convergence_state: 'closed',
       status: 'active',
       phase: 'Define',
       current_state: 'intake',
       current_task: null,
+      retry_count: 0,
       blocked_reason: null,
       last_verified_at: null,
       updated_at: now
@@ -114,6 +128,9 @@ function buildPolicy() {
 
 ## Default
 
+- 預設 autonomy level 是 L1 report-only
+- 有 verifier 才升 L2
+- 有 scope / budget / audit 才升 L3
 - 先短版確認，再進實作 loop
 - 大任務先建 spec / task
 - 每輪都要更新 loop 狀態
@@ -136,6 +153,7 @@ function buildPolicy() {
 - 需要使用者做不可逆選擇
 - 外部服務不可用且無替代方案
 - 同一錯誤連修 3 次仍失敗
+- circuit breaker open
 `;
 }
 

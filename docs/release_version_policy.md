@@ -32,6 +32,10 @@
 6. fresh clone install smoke test
 7. restart agent 後確認 skill 可被觸發
 
+建議也補：
+
+8. `config/agent_manifest.json`
+
 ## Changelog
 
 每次 release 應記錄：
@@ -41,4 +45,3 @@
 - 安全或權限變更
 - 已知缺口
 - 驗證命令
-

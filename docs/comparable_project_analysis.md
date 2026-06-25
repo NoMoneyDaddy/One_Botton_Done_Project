@@ -47,6 +47,7 @@
 - Loop circuit breaker。
 - Skill crystallization loop。
 - Agent manifest spec。
+- High-star reference snapshot，避免只看小型實驗 repo。
 
 ### Avoid
 
@@ -77,6 +78,11 @@
 | `lodekeeper/lodeloop` | circuit breaker、verify loop | `docs/loop_circuit_breaker.md` |
 | `open-kya/kya-standard` | machine-readable governance disclosure | `docs/agent_manifest_spec.md` |
 | `cyberCharl/drydock` | run registry、audit surface | 後續 state store / daemon 方向參考 |
+| `OpenHands/OpenHands` | 大型自治開發產品化、runtime / eval / docs 三面齊備 | 後續若擴成 product，可補 eval 與 runtime 邊界文件 |
+| `abi/screenshot-to-code` | 視覺輸入轉前端程式碼 | 後續可加 `design-to-code` skill，而不是把設計能力硬塞進主 loop |
+| `earendil-works/pi` | loop runtime、TUI、統一 provider 介面 | 若未來做 daemon / local runtime，可參考 runtime 分層 |
+| `snarktank/ralph` | 目標導向反覆 loop 到完成 | 可補 `goal -> verify -> repeat` 的任務模板 |
+| `microsoft/agent-governance-toolkit` | policy enforcement、zero-trust、sandbox | 後續安全章節可補 agent execution policy matrix |
 
 ## Adoption Map
 
@@ -88,6 +94,8 @@
 - blocked / escalation states
 - capability gap classification
 - circuit breaker
+- machine-readable manifest
+- fresh-clone smoke test
 
 ### Adapt With Repo Context
 
@@ -95,6 +103,8 @@
 - plugin opacity / adapter contracts
 - self-evolving skill scoring
 - task / run registry
+- design-to-code as optional skill lane
+- reviewer-enforced convergence
 
 ### Avoid For Now
 
@@ -115,3 +125,8 @@
 - https://github.com/lodekeeper/lodeloop
 - https://github.com/open-kya/kya-standard
 - https://github.com/cyberCharl/drydock
+- https://github.com/OpenHands/OpenHands
+- https://github.com/abi/screenshot-to-code
+- https://github.com/earendil-works/pi
+- https://github.com/snarktank/ralph
+- https://github.com/microsoft/agent-governance-toolkit

@@ -32,3 +32,9 @@
 - `audit_surfaces`
 - `secret_handling`
 - `kill_switch_conditions`
+
+## Current Repo Mapping
+
+目前 machine-readable 草案落在：
+
+- `config/agent_manifest.json`

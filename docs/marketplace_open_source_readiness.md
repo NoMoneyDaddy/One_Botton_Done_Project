@@ -25,20 +25,21 @@
 - AGENTS.md / CLAUDE.md / GEMINI.md
 - SECURITY.md
 - CONTRIBUTING.md
+- LICENSE
 - .agents/skills canonical runtime
 - .claude/skills 與 skills mirrors
+- .codex-plugin/plugin.json
+- .agents/plugins/marketplace.json
+- config/agent_manifest.json
 - inspect、integrity、bootstrap、scaffold、config generator scripts
 - skill / tooling profiles
 - sandbox tool setup plan
 
 ## 主要缺口
 
-1. 缺 LICENSE。
-2. 缺正式 plugin manifest。
-3. 缺 marketplace metadata。
-4. release / version policy 已補。
-5. 缺安全審查清單，尤其是外部 skill 與 install command provenance。
-6. 缺上架前 smoke test：fresh clone、install、restart agent、trigger skill。
+1. release / version policy 已補。
+2. 缺安全審查清單，尤其是外部 skill 與 install command provenance。
+3. 缺上架前 smoke test：fresh clone、install、restart agent、trigger skill。
 
 ## 建議路線
 

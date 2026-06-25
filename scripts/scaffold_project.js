@@ -166,6 +166,10 @@ function resolveProfile(config, options) {
     throw new Error(`不支援的 profile: ${options.profile}`);
   }
 
+  if ((profile.supportLevel || 'full') === 'plan-only') {
+    return profile;
+  }
+
   if (!profile.languages.includes(options.language)) {
     throw new Error(`profile ${options.profile} 不支援 language=${options.language}`);
   }
@@ -357,6 +361,9 @@ function printPlan(profileKey, profile, targetRoot, projectName, options, scaffo
   console.log(`- Profile: ${profile.displayName} (${profileKey})`);
   console.log(`- Support level: ${profile.supportLevel || 'full'}`);
   console.log(`- 官方 scaffold baseline: ${profile.officialScaffold}`);
+  if (profile.manualRunbook) {
+    console.log(`- Manual runbook: ${profile.manualRunbook}`);
+  }
   console.log(`- Recommended Node.js: ${profile.recommendedNode}`);
   console.log(`- Language: ${options.language}`);
   console.log(`- Styling: ${options.styling}`);
@@ -399,7 +406,8 @@ function main() {
   }
 
   if ((profile.supportLevel || 'full') === 'plan-only') {
-    throw new Error(`profile ${options.profile} 目前是 plan-only；已整理官方 scaffold 路徑，但尚未開放自動執行`);
+    const runbookHint = profile.manualRunbook ? `；先照 ${profile.manualRunbook} 走官方建立流程` : '';
+    throw new Error(`profile ${options.profile} 目前是 plan-only；已整理官方 scaffold 路徑，但尚未開放自動執行${runbookHint}`);
   }
 
   runPrerequisiteGate(options.profile);
@@ -464,5 +472,6 @@ if (require.main === module) {
 
 module.exports = {
   parseArgs,
-  buildScaffoldCommand
+  buildScaffoldCommand,
+  resolveProfile
 };

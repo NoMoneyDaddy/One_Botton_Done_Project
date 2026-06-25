@@ -9,6 +9,11 @@
 ## Entries
 
 - 2026-06-26
+  - 做了什麼：補 `ios-swiftui` / `android-kotlin` 的官方 bootstrap runbook 與 machine-readable metadata；`scaffold_project.js` 現在對 plan-only native profile 會直接指向 runbook，而不是先被預設 `typescript/biome` 擋住。
+  - 怎麼驗證：`node scripts/run_repo_tests.js`、`node scripts/validate_repo_integrity.js`、`node scripts/scaffold_project.js /tmp/obd-ios-plan --profile ios-swiftui --run --language typescript`、`git diff --check`。
+  - 下一輪做什麼：開 PR、等 CI；若合併完成，再往 native prerequisite 安裝 runbook 或更細的 Xcode / Android Studio doctor 推進。
+
+- 2026-06-26
   - 做了什麼：補 `scripts/scaffold_project.js` 的 `--platforms` 解析與匯出測試介面，讓 `flutter create --platforms ...` 真的可由 CLI 轉發；同步更新 `docs/scaffold_project.md`。
   - 怎麼驗證：`node scripts/run_repo_tests.js`、`node scripts/validate_repo_integrity.js`、`node scripts/scaffold_project.js /tmp/obd-flutter-platforms --profile flutter-app --name obd_flutter_platforms --idea "flutter platforms smoke" --database supabase --quality-tool biome --platforms android,web --run`、`git diff --check`。
   - 下一輪做什麼：開 PR、等 CI；若合併完成，再往 `ios-swiftui` / `android-kotlin` runnable scaffold 或更細的 native prerequisite runbook。

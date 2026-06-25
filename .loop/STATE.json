@@ -8,9 +8,9 @@
   "status": "active",
   "phase": "Ship",
   "current_state": "ship-prep",
-  "current_task": "Flutter `--platforms` CLI 已補實作與 smoke；準備提交下一個小 PR",
+  "current_task": "native plan-only profile 已補官方 runbook 與 machine-readable metadata；準備提交下一個小 PR",
   "retry_count": 0,
   "blocked_reason": null,
-  "last_verified_at": "2026-06-25T23:04:45Z",
-  "updated_at": "2026-06-25T23:04:45Z"
+  "last_verified_at": "2026-06-25T23:09:17Z",
+  "updated_at": "2026-06-25T23:09:17Z"
 }

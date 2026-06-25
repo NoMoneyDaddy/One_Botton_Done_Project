@@ -26,6 +26,11 @@
 | Addy Osmani agent-skills | lifecycle map 很清楚；slash command 對應 define / plan / build / verify / review / ship；跨工具安裝文件完整 | scope 大，入口多，可能讓新使用者不知道先用哪條路 | 保留 lifecycle map，但維持本 repo 的低 token、單一入口原則 |
 | Superpowers | 方法論完整；多平台 distribution；有 codex plugin、hooks、tests、release notes；自動化程度高 | 重量級；subagent-driven workflow 對不支援 subagent 的平台會退化 | 借鏡 plugin-first distribution、tests、release notes；避免過度強制 subagents |
 | Composio awesome-codex-skills | catalog 量大；安裝指令明確；分類多，適合找候選 skill | awesome list 容易品質不均；商業整合導向較強；不等同安全可信來源 | 作為候選發現來源；導入前仍需 provenance、license、script review |
+| `dresnite/loops` | loop 定義、run registry、budget / task 上限、logs / stop 流程清楚 | 還輕量；目前 provider 面窄；比較像單機 loop engine | 借鏡 budget / task guardrails 與 run-process 心智模型 |
+| `NousResearch/hermes-agent` | learning loop、memory、跨平台 gateway、長時運行架構成熟 | 產品面很大；不是 repo-first 最小核心；整體偏重 | 借鏡 learning loop、memory persistence、agent 自我沉澱 skills |
+| `HKUDS/OpenHarness` | permissions、hooks、swarm、memory、tool runtime 一體化 | runtime 比本 repo 重很多；需要較完整 agent host | 借鏡 execution policy matrix、permission modes、hook surfaces |
+| `kevinrgu/autoagent` | benchmark score 驅動 meta-agent 反覆優化 harness | 依賴 benchmark 生態；更偏研究 / 實驗 loop | 借鏡 learning ledger、score / keep-or-discard、program-the-meta-agent 思路 |
+| `deusyu/harness-engineering` / `walkinglabs/learn-harness-engineering` / `nexu-io/harness-engineering-guide` | 教學脈絡清楚，適合把方法論拆成可學習模組 | 以學習 / 索引為主，不是直接可執行 runtime | 借鏡 reading path、concept map、reference structure |
 
 ## Direction
 
@@ -85,6 +90,11 @@
 | `earendil-works/pi` | loop runtime、TUI、統一 provider 介面 | 若未來做 daemon / local runtime，可參考 runtime 分層 |
 | `snarktank/ralph` | 目標導向反覆 loop 到完成 | 可補 `goal -> verify -> repeat` 的任務模板 |
 | `microsoft/agent-governance-toolkit` | policy enforcement、zero-trust、sandbox | 後續安全章節可補 agent execution policy matrix |
+| `dresnite/loops` | budget / task guardrails | `config/execution_policy_matrix.json` 後續可再補 budget policy |
+| `HKUDS/OpenHarness` | permission modes、path / command rules、hooks | 補 machine-readable approval / execution policy |
+| `NousResearch/hermes-agent` | built-in learning loop、memory、skills self-improvement | 後續補 machine-readable learning ledger |
+| `kevinrgu/autoagent` | benchmark / score 驅動 meta-agent 優化 harness | 後續補 learning ledger + score-based keep/discard |
+| `deusyu/harness-engineering` | repo-as-record、entropy management | 文件與治理層持續維持 repo-first |
 
 ## Adoption Map
 
@@ -98,12 +108,14 @@
 - circuit breaker
 - machine-readable manifest
 - fresh-clone smoke test
+- machine-readable execution policy / approval matrix
 
 ### Adapt With Repo Context
 
 - long-lived daemon orchestration
 - plugin opacity / adapter contracts
 - self-evolving skill scoring
+- learning ledger / score-based improvement loop
 - task / run registry
 - design-to-code as optional skill lane
 - reviewer-enforced convergence
@@ -132,3 +144,13 @@
 - https://github.com/earendil-works/pi
 - https://github.com/snarktank/ralph
 - https://github.com/microsoft/agent-governance-toolkit
+- https://github.com/dresnite/loops
+- https://github.com/nousresearch/hermes-agent
+- https://github.com/HKUDS/OpenHarness
+- https://github.com/deusyu/harness-engineering
+- https://github.com/walkinglabs/learn-harness-engineering
+- https://github.com/nexu-io/harness-engineering-guide
+- https://github.com/ai-boost/awesome-harness-engineering
+- https://github.com/kevinrgu/autoagent
+- https://hackmd.io/@BASHCAT/SkQEW0F2bg
+- https://gist.github.com/xgqfrms-GitHub/34b482aace58a8dbb9134a2e86a2626c

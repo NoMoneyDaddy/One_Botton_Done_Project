@@ -16,7 +16,8 @@
 | T10 | x | 補 machine-readable manifest 與 fresh clone smoke test | `config/agent_manifest.json`、`scripts/fresh_clone_smoke_test.js` |
 | T11 | x | 補 provenance checklist 與 local marketplace smoke test | `docs/external_install_provenance_checklist.md`、`scripts/marketplace_install_smoke_test.js` |
 | T12 | x | 補自治評估 gate 與 loop promotion 入口 | `scripts/evaluate_session_loop.js`、`docs/loop_evaluation_gate.md` |
-| T13 | ~ | 持續移除過時文件敘述與擴充平台實測 | 後續維護項 |
+| T13 | x | 補 machine-readable policy / approval matrix | `config/execution_policy_matrix.json`、`docs/agent_execution_policy_matrix.md` |
+| T14 | ~ | 持續移除過時文件敘述與擴充平台實測 | 後續維護項 |
 
 ## Backlog
 
@@ -24,4 +25,3 @@
 - 補更多平台實測證據，而不只相容性推論
 - 補真實 marketplace client / CLI end-to-end 安裝實測
 - 補 machine-readable learning ledger / retrospective loop
-- 補 machine-readable policy / approval matrix

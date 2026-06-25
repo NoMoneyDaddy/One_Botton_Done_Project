@@ -11,15 +11,15 @@
 | --- | --- | --- |
 | Product / Requirements | 成功條件、非目標、roadmap、需求優先級 | `the-engineer`、`django/django` |
 | Architecture | 分層、模組邊界、介面契約、可替換性 | `fastify/fastify`、`langgraph` |
-| Agent Runtime | loop、state、retry、blocked、budget、policy | `loop-engineering`、`odyssey-engine`、`drydock` |
+| Agent Runtime | loop、state、retry、blocked、budget、policy | `loop-engineering`、`odyssey-engine`、`drydock`、`loops` |
 | Frontend | design system、accessibility、story / example、browser verification | `next.js`、`playwright` |
 | Backend | API discipline、integration tests、migration / compatibility | `fastify`、`django` |
 | CI / Delivery | lint、test、build、release、dependency automation | `reviewdog`、`renovate`、`osv-scanner` |
 | Security | secret hygiene、SAST、dependency scan、security policy | `semgrep`、`osv-scanner`、`SECURITY.md` 型 repo |
 | Observability | logs、metrics、traces、audit trail、incident clues | `the-engineer`、`drydock` |
 | Documentation | README、usage guides、contribution、ADR、upgrade notes | `next.js`、`fastify`、`autogen` |
-| Governance | CODEOWNERS / OWNERS、charter、review path、support path | `kubernetes`、`fastify` |
-| Evaluation | benchmark、regression、quality gates、human review | `AgentEvolver`、`OpenHands`、`next.js` |
+| Governance | CODEOWNERS / OWNERS、charter、review path、support path、approval matrix、permission modes | `kubernetes`、`fastify`、`OpenHarness` |
+| Evaluation | benchmark、regression、quality gates、human review、score-driven keep / discard | `AgentEvolver`、`OpenHands`、`next.js`、`autoagent` |
 
 ## Suggested Roles
 
@@ -61,6 +61,7 @@
 - circuit breaker
 - evidence log
 - machine-readable manifest
+- machine-readable execution policy / approval matrix
 
 ## Adoption Rule For This Repo
 

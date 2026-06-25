@@ -49,6 +49,7 @@
     "docs/STATE.md",
     "docs/ADRS.md"
   ],
+  "policy_matrix": "config/execution_policy_matrix.json",
   "secret_handling": "environment-variables-only",
   "kill_switch_conditions": [
     "same_error_3x",

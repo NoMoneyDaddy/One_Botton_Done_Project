@@ -116,6 +116,7 @@
 | `github/awesome-copilot` | instructions / agents catalog | catalog、分類、社群收錄模式 |
 | `K-Dense-AI/scientific-agent-skills` | domain skill library | 大型專業領域 skill bundles 的結構參考 |
 | `googleworkspace/cli` | tool + skills bundle | 單一 CLI 搭配 skills 的產品包裝方式 |
+| `Chravel-Inc/chravel-web` | repo-native plugin + skills | skill/plugin、ACTIVE/_archive 文件分層、monitoring discipline、runbook 密度值得借鏡 |
 
 ## Loop AI Methodologies
 

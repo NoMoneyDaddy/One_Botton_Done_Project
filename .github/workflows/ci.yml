@@ -31,6 +31,7 @@ jobs:
           node --check scripts/auto_skill_setup.js
           node --check scripts/bootstrap_agent_files.js
           node --check scripts/generate_project_configs.js
+          node --check scripts/export_task_bundle.js
           node --check scripts/init_project_workspace.js
           node --check scripts/init_session_loop.js
           node --check scripts/inspect_agent_capabilities.js
@@ -67,6 +68,11 @@ jobs:
       - name: Summarize learning ledger
         run: |
           node scripts/summarize_learning_ledger.js
+
+      - name: Export task bundle
+        run: |
+          node scripts/export_task_bundle.js
+          test -f ".loop/task_bundle.json"
 
       - name: Smoke test config generator
         run: |

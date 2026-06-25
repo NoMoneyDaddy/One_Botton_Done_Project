@@ -64,6 +64,18 @@
       ]
     },
     {
+      "path": "scripts/export_task_bundle.js",
+      "category": "accelerator",
+      "requires": ["node", "filesystem:read", "filesystem:write"],
+      "scope": ["local-dev", "sandbox", "remote-runner", "ci"],
+      "fallback_mode": "manual-task-bundle-export",
+      "fallback_steps": [
+        "讀 docs/SPEC.md 的 Goal / Constraints / Interfaces / Invariants / Tasks",
+        "人工整理成 machine-readable JSON",
+        "寫到 .loop/task_bundle.json 或目標輸出路徑"
+      ]
+    },
+    {
       "path": "scripts/init_session_loop.js",
       "category": "strong-accelerator",
       "requires": ["node", "filesystem:write"],

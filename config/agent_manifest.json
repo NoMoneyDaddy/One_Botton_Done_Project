@@ -53,6 +53,8 @@
   "policy_matrix": "config/execution_policy_matrix.json",
   "learning_ledger": ".loop/LEARNINGS.json",
   "surface_manifest": "config/repo_surface_manifest.json",
+  "task_bundle_schema": "config/task_bundle_schema.json",
+  "official_doc_sources": "config/official_doc_sources.json",
   "secret_handling": "environment-variables-only",
   "kill_switch_conditions": [
     "same_error_3x",

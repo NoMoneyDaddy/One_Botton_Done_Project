@@ -21,7 +21,10 @@
 | T15 | x | 抽 repo surface manifest，整併 bootstrap / integrity 清單 | `config/repo_surface_manifest.json` |
 | T16 | x | 補 CODEOWNERS、CHANGELOG、minimal example | `.github/CODEOWNERS`、`CHANGELOG.md`、`examples/minimal-workspace/README.md` |
 | T17 | x | 補 text-to-lottie skill lane、tests、learning ledger summary | `text-to-lottie`、`tests/*`、`scripts/summarize_learning_ledger.js` |
-| T18 | ~ | 持續移除過時文件敘述與擴充平台實測 | 後續維護項 |
+| T18 | x | 補 recurring monitor、docs lifecycle、task bundle | `recurring-monitoring`、`docs/documentation_lifecycle_strategy.md`、`scripts/export_task_bundle.js` |
+| T19 | x | 補 mobile / desktop plan-only profiles 與官方文檔來源 | `config/project_config_profiles.json`、`config/official_doc_sources.json` |
+| T20 | x | 補 env/configuration loop 基線 | `docs/environment_variable_configuration_loop.md` |
+| T21 | ~ | 持續移除過時文件敘述與擴充平台實測 | 後續維護項 |
 
 ## Backlog
 

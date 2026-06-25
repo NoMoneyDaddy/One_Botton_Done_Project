@@ -38,6 +38,24 @@
         "地理位置服務"
       ]
     },
+    "desktop-app": {
+      "name": "桌面應用程式",
+      "description": "macOS / Windows / Linux 桌面應用",
+      "recommendedStack": {
+        "frontend": "Tauri + React/Vite 或 Electron + React",
+        "backend": "本地 runtime + Node/Rust bridge",
+        "database": "SQLite 或 PostgreSQL/Supabase",
+        "deployment": "Tauri bundler / Electron builder",
+        "testing": "Playwright + package smoke tests"
+      },
+      "keywords": ["desktop", "macos", "windows", "linux", "tauri", "electron"],
+      "exampleFeatures": [
+        "檔案系統整合",
+        "系統通知",
+        "本地資料儲存",
+        "自動更新"
+      ]
+    },
     "landing-page": {
       "name": "落地頁面",
       "description": "高轉換率的行銷落地頁",

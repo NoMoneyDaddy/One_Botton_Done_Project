@@ -25,6 +25,8 @@ Its job is to give multiple AI tools the same source of truth, the same project 
 - `.loop/LEARNINGS.json` for the machine-readable learning ledger
 - `config/repo_surface_manifest.json` for the machine-readable repo surface source of truth
 - `scripts/summarize_learning_ledger.js` for learning-ledger summary and score aggregation
+- `scripts/export_task_bundle.js` for exporting `docs/SPEC.md` into a machine-readable task bundle
+- `config/official_doc_sources.json` for official-doc lookup sources by environment
 - `tool-discovery-and-installation` plus `scripts/setup_sandbox_tools.sh` for safe tool discovery and opt-in installation
 - `docs/loop_maturity_model.md` for autonomy rollout
 - `docs/engineering_phase_loop.md` for phase-based delivery
@@ -38,6 +40,8 @@ Its job is to give multiple AI tools the same source of truth, the same project 
 - `scripts/marketplace_install_smoke_test.js` for local marketplace install path verification
 - `scripts/run_repo_tests.js` for minimal repository tests
 - `text-to-lottie` as the optional motion / Lottie skill lane
+- `recurring-monitoring` as the recurring PR/deploy/watch supervision lane
+- mobile / desktop plan-only profiles as the expansion baseline
 - 21 localized workflow skills plus extra local skills such as `goal-loop`, `project-config-generation`, `interview-me`, `observability-and-instrumentation`, and `biome-quality-automation`
 
 ## Supported AI surfaces
@@ -81,6 +85,7 @@ Optional extra checks:
 ```bash
 node scripts/run_repo_tests.js
 node scripts/summarize_learning_ledger.js
+node scripts/export_task_bundle.js
 ```
 
 5. For a new project:
@@ -134,6 +139,9 @@ node scripts/generate_project_configs.js --profile nextjs-app-router --name your
 - `docs/loop_evaluation_gate.md`
 - `docs/agent_execution_policy_matrix.md`
 - `docs/learning_ledger_loop.md`
+- `docs/recurring_monitor_loop.md`
+- `docs/documentation_lifecycle_strategy.md`
+- `docs/official_docs_and_github_research_policy.md`
 - `docs/capability_audit_and_install_loop.md`
 - `docs/loop_circuit_breaker.md`
 - `docs/skill_crystallization_loop.md`
@@ -149,10 +157,13 @@ node scripts/generate_project_configs.js --profile nextjs-app-router --name your
 - `docs/tech_stack_guide.md`
 - `config/agent_manifest.json`
 - `config/repo_surface_manifest.json`
+- `config/task_bundle_schema.json`
+- `config/official_doc_sources.json`
 - `.loop/LEARNINGS.json`
 - `scripts/fresh_clone_smoke_test.js`
 - `scripts/marketplace_install_smoke_test.js`
 - `scripts/run_repo_tests.js`
+- `scripts/export_task_bundle.js`
 - `examples/text-to-lottie/README.md`
 - `examples/minimal-workspace/README.md`
 

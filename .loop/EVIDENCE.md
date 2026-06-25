@@ -11,6 +11,13 @@
 ## Entries
 
 - 2026-06-25
+  - `node scripts/export_task_bundle.js`
+  - `node scripts/run_repo_tests.js`
+  - `node scripts/validate_repo_integrity.js`
+  - `node scripts/evaluate_session_loop.js .`
+  - `git diff --check`
+
+- 2026-06-25
   - `node scripts/run_repo_tests.js`
   - `node scripts/validate_repo_integrity.js`
   - `node scripts/summarize_learning_ledger.js`

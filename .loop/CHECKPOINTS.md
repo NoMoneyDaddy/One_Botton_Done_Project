@@ -9,6 +9,11 @@
 ## Entries
 
 - 2026-06-25
+  - 做了什麼：新增 `recurring-monitoring` skill lane 與 docs lifecycle / official-doc research policy / env configuration loop，並新增 `config/task_bundle_schema.json`、`scripts/export_task_bundle.js`、`.loop/task_bundle.json`，把 `docs/SPEC.md` 匯出成 machine-readable task bundle；同時補 `config/official_doc_sources.json` 與 mobile / desktop `plan-only` profiles。
+  - 怎麼驗證：`node scripts/export_task_bundle.js`、`node scripts/run_repo_tests.js`、`node scripts/validate_repo_integrity.js`、`node scripts/evaluate_session_loop.js .`、`git diff --check`。
+  - 下一輪做什麼：push 到 PR #5，等 CI / review；若 green，直接 merge，之後再補真正可執行的 mobile / desktop scaffold。
+
+- 2026-06-25
   - 做了什麼：新增 `text-to-lottie` skill lane、`examples/text-to-lottie/README.md`、`tests/*`、`scripts/run_repo_tests.js`、`scripts/summarize_learning_ledger.js`，並把它們接回 `skill_profiles`、CI、surface manifest。
   - 怎麼驗證：`node scripts/run_repo_tests.js`、`node scripts/validate_repo_integrity.js`、`node scripts/summarize_learning_ledger.js`、`git diff --check`。
   - 下一輪做什麼：等 PR review；若無新 comment，可準備合併，之後再補 learning ledger 自動回寫 review feedback。

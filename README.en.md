@@ -62,6 +62,7 @@ node scripts/validate_repo_integrity.js
 If tools are missing, read `.agents/skills/tool-discovery-and-installation/SKILL.md` and start with:
 
 ```bash
+bash scripts/setup_sandbox_tools.sh --doctor
 bash scripts/setup_sandbox_tools.sh --plan
 ```
 

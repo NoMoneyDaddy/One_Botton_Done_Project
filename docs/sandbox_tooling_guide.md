@@ -4,9 +4,13 @@
 
 新 sandbox、GitHub Codespaces、遠端 agent session 先做這三步：
 
-1. `bash scripts/setup_sandbox_tools.sh --plan`
+1. `bash scripts/setup_sandbox_tools.sh --doctor`
 2. `bash scripts/setup_sandbox_tools.sh --install-core`
 3. 需要 repo 搜尋或真實瀏覽器驗證時，再跑 `bash scripts/setup_sandbox_tools.sh --install-ai`
+
+若只想先看完整建議清單，再補跑：
+
+`bash scripts/setup_sandbox_tools.sh --plan`
 
 ## 必裝 Core
 
@@ -63,6 +67,7 @@ npx @biomejs/biome ci .
   - `alias bat='batcat'`
 - `playwright-cli`、`agent-browser`、`mcp-cli` 依賴 `npm`；`semble` 依賴 `uv`。
 - 要在 CI / sandbox 跑瀏覽器驗證時，先確認 Node.js 與權限存在，再裝 AI 補強工具。
+- 優先順序：先 `--doctor` 看缺口，再決定要不要 `--install-*`。
 
 ## 常用範例
 

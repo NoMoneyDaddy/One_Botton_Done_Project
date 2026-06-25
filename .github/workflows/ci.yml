@@ -65,6 +65,16 @@ jobs:
           test -f "$tmp/docs/STACK_SETUP.md"
           test -f "$tmp/.env.example"
 
+          tmp="$(mktemp -d)"
+          node scripts/generate_project_configs.js --profile nextjs-app-router --name smoke-next-js --language javascript --styling tailwind --database none --quality-tool biome --target "$tmp" --write
+          test -f "$tmp/next.config.mjs"
+          test ! -f "$tmp/tsconfig.json"
+
+          tmp="$(mktemp -d)"
+          node scripts/generate_project_configs.js --profile vite-react --name smoke-vite-js --language javascript --styling tailwind --database none --quality-tool biome --target "$tmp" --write
+          test -f "$tmp/vite.config.js"
+          test ! -f "$tmp/tsconfig.json"
+
       - name: Smoke test project init
         run: |
           tmp="$(mktemp -d)"

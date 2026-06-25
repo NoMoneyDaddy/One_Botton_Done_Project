@@ -170,9 +170,13 @@ function parseArgs(argv) {
 
   for (let i = 0; i < argv.length; i += 1) {
     const arg = argv[i];
-    if (!arg.startsWith('--') && options.targetDir === '.') options.targetDir = arg;
-    if (arg === '--goal') options.goal = argv[i + 1] || options.goal;
+    if (arg === '--goal') {
+      options.goal = argv[i + 1] || options.goal;
+      i += 1;
+      continue;
+    }
     if (arg === '--force') options.force = true;
+    if (!arg.startsWith('--') && options.targetDir === '.') options.targetDir = arg;
   }
 
   return options;

@@ -18,10 +18,18 @@ function parseArgs(argv) {
 
   for (let i = 0; i < argv.length; i += 1) {
     const arg = argv[i];
-    if (!arg.startsWith('--') && !options.targetDir) options.targetDir = arg;
-    if (arg === '--name') options.projectName = argv[i + 1] || options.projectName;
-    if (arg === '--idea') options.projectIdea = argv[i + 1] || '';
+    if (arg === '--name') {
+      options.projectName = argv[i + 1] || options.projectName;
+      i += 1;
+      continue;
+    }
+    if (arg === '--idea') {
+      options.projectIdea = argv[i + 1] || '';
+      i += 1;
+      continue;
+    }
     if (arg === '--force') options.force = true;
+    if (!arg.startsWith('--') && !options.targetDir) options.targetDir = arg;
   }
 
   return options;

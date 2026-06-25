@@ -121,6 +121,11 @@ function copyDirectory(sourceDir, targetDir, relativePath) {
     }
 
     ensureDir(path.dirname(childTarget));
+    if (!force && fs.existsSync(childTarget)) {
+      console.log(`⏭️ 跳過既有檔案: ${childRelativePath}`);
+      continue;
+    }
+
     fs.copyFileSync(childSource, childTarget);
     console.log(`✅ 已建立: ${childRelativePath}`);
   }

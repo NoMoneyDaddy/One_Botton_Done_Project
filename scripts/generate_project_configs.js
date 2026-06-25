@@ -388,6 +388,13 @@ export default nextConfig;
 `;
 }
 
+function buildNextConfigJs() {
+  return `const nextConfig = {};
+
+export default nextConfig;
+`;
+}
+
 function buildPostcssConfig() {
   return `const config = {
   plugins: {
@@ -414,6 +421,14 @@ export default defineConfig({
   plugins: [${plugins.join(', ')}]
 });
 `;
+}
+
+function nextConfigFile(options) {
+  return options.language === 'typescript' ? 'next.config.ts' : 'next.config.mjs';
+}
+
+function viteConfigFile(options) {
+  return options.language === 'typescript' ? 'vite.config.ts' : 'vite.config.js';
 }
 
 function buildEnvExample(profile, options) {
@@ -451,16 +466,18 @@ function buildStackSetup(profileKey, profile, name, options) {
 
   if (options.language === 'typescript') generated.push('tsconfig.json');
   if (options.qualityTool === 'biome') generated.push('biome.json');
-  if (profileKey === 'nextjs-app-router') generated.push('next.config.ts');
+  if (profileKey === 'nextjs-app-router') generated.push(nextConfigFile(options));
   if (profileKey === 'nextjs-app-router' && options.styling === 'tailwind') generated.push('postcss.config.mjs');
-  if (profileKey === 'vite-react') generated.push('vite.config.ts');
+  if (profileKey === 'vite-react') generated.push(viteConfigFile(options));
 
   followUps.push(`1. 執行 \`${installCommand(options.packageManager)}\``);
   if (profileKey === 'nextjs-app-router') {
     followUps.push('2. 建立 `src/app/` 或 `app/` 內容，並讓 `next dev` / `next build` 自動產生 `next-env.d.ts`');
   }
   if (profileKey === 'vite-react') {
-    followUps.push('2. 建立 `src/main.tsx`、`src/App.tsx`，若使用 Tailwind，在 CSS 中加入 `@import "tailwindcss";`');
+    const mainFile = options.language === 'typescript' ? 'src/main.tsx' : 'src/main.jsx';
+    const appFile = options.language === 'typescript' ? 'src/App.tsx' : 'src/App.jsx';
+    followUps.push(`2. 建立 \`${mainFile}\`、\`${appFile}\`，若使用 Tailwind，在 CSS 中加入 \`@import "tailwindcss";\``);
   }
   if (profileKey === 'node-express-api') {
     followUps.push('2. 建立 `src/index.ts` 或 `src/index.js` 作為 API 入口');
@@ -533,14 +550,14 @@ function buildProfileFiles(profileKey, profile, name, options) {
   }
 
   if (profileKey === 'nextjs-app-router') {
-    files.set('next.config.ts', buildNextConfig());
+    files.set(nextConfigFile(options), options.language === 'typescript' ? buildNextConfig() : buildNextConfigJs());
     if (options.styling === 'tailwind') {
       files.set('postcss.config.mjs', buildPostcssConfig());
     }
   }
 
   if (profileKey === 'vite-react') {
-    files.set('vite.config.ts', buildViteConfig(options));
+    files.set(viteConfigFile(options), buildViteConfig(options));
   }
 
   return files;
@@ -576,10 +593,11 @@ function writeAll(targetRoot, files, options) {
     if (relativePath === 'package.json') {
       ensureDir(path.dirname(targetPath));
       const generated = JSON.parse(content);
-      const existing = fs.existsSync(targetPath) ? readJson(targetPath) : {};
+      const existed = fs.existsSync(targetPath);
+      const existing = existed ? readJson(targetPath) : {};
       const merged = mergePackageJson(existing, generated, options.force);
       fs.writeFileSync(targetPath, `${JSON.stringify(merged, null, 2)}\n`);
-      results.push({ file: relativePath, action: fs.existsSync(targetPath) ? 'merged' : 'written' });
+      results.push({ file: relativePath, action: existed ? 'merged' : 'written' });
       continue;
     }
 

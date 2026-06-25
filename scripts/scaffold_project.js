@@ -27,18 +27,50 @@ function parseArgs(argv) {
 
   for (let i = 0; i < argv.length; i += 1) {
     const arg = argv[i];
-    if (!arg.startsWith('--') && !options.targetDir) options.targetDir = arg;
-    if (arg === '--profile') options.profile = argv[i + 1] || options.profile;
-    if (arg === '--name') options.projectName = argv[i + 1] || options.projectName;
-    if (arg === '--idea') options.projectIdea = argv[i + 1] || options.projectIdea;
-    if (arg === '--language') options.language = argv[i + 1] || options.language;
-    if (arg === '--styling') options.styling = argv[i + 1] || options.styling;
-    if (arg === '--database') options.database = argv[i + 1] || options.database;
-    if (arg === '--quality-tool') options.qualityTool = argv[i + 1] || options.qualityTool;
-    if (arg === '--package-manager') options.packageManager = argv[i + 1] || options.packageManager;
+    if (arg === '--profile') {
+      options.profile = argv[i + 1] || options.profile;
+      i += 1;
+      continue;
+    }
+    if (arg === '--name') {
+      options.projectName = argv[i + 1] || options.projectName;
+      i += 1;
+      continue;
+    }
+    if (arg === '--idea') {
+      options.projectIdea = argv[i + 1] || options.projectIdea;
+      i += 1;
+      continue;
+    }
+    if (arg === '--language') {
+      options.language = argv[i + 1] || options.language;
+      i += 1;
+      continue;
+    }
+    if (arg === '--styling') {
+      options.styling = argv[i + 1] || options.styling;
+      i += 1;
+      continue;
+    }
+    if (arg === '--database') {
+      options.database = argv[i + 1] || options.database;
+      i += 1;
+      continue;
+    }
+    if (arg === '--quality-tool') {
+      options.qualityTool = argv[i + 1] || options.qualityTool;
+      i += 1;
+      continue;
+    }
+    if (arg === '--package-manager') {
+      options.packageManager = argv[i + 1] || options.packageManager;
+      i += 1;
+      continue;
+    }
     if (arg === '--skip-install') options.skipInstall = true;
     if (arg === '--run') options.run = true;
     if (arg === '--force') options.force = true;
+    if (!arg.startsWith('--') && !options.targetDir) options.targetDir = arg;
   }
 
   return options;
@@ -69,7 +101,7 @@ function runCommand(command, args, options = {}) {
   const result = spawnSync(command, args, {
     stdio: 'inherit',
     cwd: options.cwd || process.cwd(),
-    shell: false
+    shell: process.platform === 'win32'
   });
 
   if (result.status !== 0) {

@@ -14,6 +14,13 @@
 - 不能跑腳本就走手動 fallback
 - 不因單一腳本失敗就整個停工
 
+## 平台原則
+
+- `scripts/*.js` 以 Node.js 為基準，目標支援 macOS / Linux / Windows。
+- `scripts/*.sh` 是 shell-bound，只保證 macOS / Linux / Git Bash / WSL 這類 shell 環境。
+- Windows 原生環境不能跑 `.sh` 時，不視為失敗；照本文件 fallback。
+- 需要 package manager、network、browser、MCP 的步驟都要先看當前 sandbox 權限。
+
 ## 決策順序
 
 1. 先讀 `config/script_capabilities.json`

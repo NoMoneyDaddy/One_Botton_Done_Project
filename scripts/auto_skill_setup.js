@@ -8,10 +8,11 @@ const { spawnSync } = require('child_process');
 const repoRoot = path.resolve(__dirname, '..');
 const profileConfigPath = path.join(repoRoot, 'config/skill_profiles.json');
 const toolingConfigPath = path.join(repoRoot, 'config/tooling_profiles.json');
-const installerRoot = '/Users/ru/.codex/skills/.system/skill-installer';
+const codexHome = process.env.CODEX_HOME || path.join(os.homedir(), '.codex');
+const installerRoot =
+  process.env.CODEX_SKILL_INSTALLER_ROOT || path.join(codexHome, 'skills', '.system', 'skill-installer');
 const listScript = path.join(installerRoot, 'scripts/list-skills.py');
 const installScript = path.join(installerRoot, 'scripts/install-skill-from-github.py');
-const codexHome = process.env.CODEX_HOME || path.join(os.homedir(), '.codex');
 const installedRoot = path.join(codexHome, 'skills');
 
 function parseArgs(argv) {
@@ -26,11 +27,31 @@ function parseArgs(argv) {
 
   for (let i = 0; i < argv.length; i += 1) {
     const arg = argv[i];
-    if (arg === '--project-type') options.projectType = argv[i + 1] || options.projectType;
-    if (arg === '--ui-style') options.uiStyle = argv[i + 1] || '';
-    if (arg === '--deployment') options.deployment = argv[i + 1] || '';
-    if (arg === '--database') options.database = argv[i + 1] || '';
-    if (arg === '--language') options.language = argv[i + 1] || '';
+    if (arg === '--project-type') {
+      options.projectType = argv[i + 1] || options.projectType;
+      i += 1;
+      continue;
+    }
+    if (arg === '--ui-style') {
+      options.uiStyle = argv[i + 1] || '';
+      i += 1;
+      continue;
+    }
+    if (arg === '--deployment') {
+      options.deployment = argv[i + 1] || '';
+      i += 1;
+      continue;
+    }
+    if (arg === '--database') {
+      options.database = argv[i + 1] || '';
+      i += 1;
+      continue;
+    }
+    if (arg === '--language') {
+      options.language = argv[i + 1] || '';
+      i += 1;
+      continue;
+    }
     if (arg === '--install') options.install = true;
   }
 
@@ -107,6 +128,10 @@ function commandExists(command) {
 }
 
 function fetchCuratedSkills() {
+  if (!fs.existsSync(listScript)) {
+    return [];
+  }
+
   const result = spawnSync('python3', [listScript, '--format', 'json'], {
     encoding: 'utf8'
   });
@@ -127,10 +152,26 @@ function installGithubSkill(skill) {
     console.log(`⚠️ 無法自動安裝 ${skill.name}，缺少 repo/path`);
     return false;
   }
+  if (!fs.existsSync(installScript)) {
+    console.log(`⚠️ 找不到 skill installer: ${installScript}`);
+    return false;
+  }
 
   const args = [installScript, '--repo', skill.repo, '--path', skill.path];
   const result = spawnSync('python3', args, { stdio: 'inherit' });
   return result.status === 0;
+}
+
+function resolveSkillStatus(skill, installed) {
+  if (skill.source === 'internal') return '已內建';
+  if (installed) return '已可用';
+  return '未安裝';
+}
+
+function resolveCuratedStatus(skill, availableInCurated) {
+  if (skill.source === 'internal') return 'repo 內建 workflow';
+  if (availableInCurated) return 'curated 可用';
+  return '非 curated / 外部來源';
 }
 
 function main() {
@@ -161,17 +202,10 @@ function main() {
 
   console.log('建議 skills:');
   for (const skill of resolvedSkills) {
-    const installed = skill.source === 'internal'
-      ? true
-      : installedSkills.has(skill.name) || internalSkills.has(skill.name);
+    const installed = skill.source === 'internal' || installedSkills.has(skill.name) || internalSkills.has(skill.name);
     const availableInCurated = curatedNames.has(skill.name);
-    const status = skill.source === 'internal' ? '已內建' : installed ? '已可用' : '未安裝';
-    const curated =
-      skill.source === 'internal'
-        ? 'repo 內建 workflow'
-        : availableInCurated
-          ? 'curated 可用'
-          : '非 curated / 外部來源';
+    const status = resolveSkillStatus(skill, installed);
+    const curated = resolveCuratedStatus(skill, availableInCurated);
     console.log(`- ${skill.name} | ${status} | ${curated} | ${skill.reason}`);
   }
 

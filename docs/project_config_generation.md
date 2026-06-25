@@ -36,9 +36,9 @@ node scripts/generate_project_configs.js --profile nextjs-app-router --name my-a
 
 | Profile | 用途 | 可產生重點 |
 | --- | --- | --- |
-| `nextjs-app-router` | 全端 Web / SaaS / 內容網站 | `package.json`、`tsconfig.json`、`next.config.ts`、`postcss.config.mjs`、`.env.example`、`biome.json` |
-| `vite-react` | SPA / dashboard / 前端站 | `package.json`、`tsconfig.json`、`vite.config.ts`、`.env.example`、`biome.json` |
-| `node-express-api` | API / webhook / backend service | `package.json`、`tsconfig.json`、`.env.example`、`biome.json` |
+| `nextjs-app-router` | 全端 Web / SaaS / 內容網站 | `package.json`、TS 時 `tsconfig.json` + `next.config.ts`，JS 時 `next.config.mjs`、`postcss.config.mjs`、`.env.example`、`biome.json` |
+| `vite-react` | SPA / dashboard / 前端站 | `package.json`、TS 時 `tsconfig.json` + `vite.config.ts`，JS 時 `vite.config.js`、`.env.example`、`biome.json` |
+| `node-express-api` | API / webhook / backend service | `package.json`、TS 時 `tsconfig.json`、`.env.example`、`biome.json` |
 
 ## 選項
 

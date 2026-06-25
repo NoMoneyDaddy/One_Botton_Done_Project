@@ -20,12 +20,13 @@
 | T14 | x | 補 machine-readable learning ledger / retrospective loop | `.loop/LEARNINGS.json`、`docs/learning_ledger_loop.md` |
 | T15 | x | 抽 repo surface manifest，整併 bootstrap / integrity 清單 | `config/repo_surface_manifest.json` |
 | T16 | x | 補 CODEOWNERS、CHANGELOG、minimal example | `.github/CODEOWNERS`、`CHANGELOG.md`、`examples/minimal-workspace/README.md` |
-| T17 | ~ | 持續移除過時文件敘述與擴充平台實測 | 後續維護項 |
+| T17 | x | 補 text-to-lottie skill lane、tests、learning ledger summary | `text-to-lottie`、`tests/*`、`scripts/summarize_learning_ledger.js` |
+| T18 | ~ | 持續移除過時文件敘述與擴充平台實測 | 後續維護項 |
 
 ## Backlog
 
 - 補更多 profile 的官方 scaffold 與 config generation
 - 補更多平台實測證據，而不只相容性推論
 - 補真實 marketplace client / CLI end-to-end 安裝實測
-- 補 learning ledger 自動摘要 / score aggregation
+- 補更進一步的 learning ledger 自動回寫 / review feedback ingestion
 - 補更多 runnable examples / tests

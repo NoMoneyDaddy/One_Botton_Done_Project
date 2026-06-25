@@ -70,6 +70,8 @@
     "scripts/scaffold_project.js",
     "scripts/auto_skill_setup.js",
     "scripts/bootstrap_agent_files.js",
+    "scripts/run_repo_tests.js",
+    "scripts/summarize_learning_ledger.js",
     "scripts/validate_repo_integrity.js",
     "scripts/export_skills_for_hermes_openclaw.sh",
     "scripts/setup_sandbox_tools.sh",
@@ -77,6 +79,8 @@
     "prompts/interactive_tech_stack_prompt.md",
     "prompts/legacy_project_improvement_prompt.md",
     "examples/minimal-workspace/README.md",
+    "examples/text-to-lottie/README.md",
+    "tests",
     ".agents/skills",
     "skills"
   ],
@@ -132,7 +136,10 @@
     "config/script_capabilities.json",
     "config/skill_profiles.json",
     "config/tooling_profiles.json",
-    "examples/minimal-workspace/README.md"
+    "examples/minimal-workspace/README.md",
+    "examples/text-to-lottie/README.md",
+    "tests/repo_surface_manifest.test.js",
+    "tests/learning_ledger_summary.test.js"
   ],
   "integrity_required_dirs": [
     ".agents/skills",
@@ -141,6 +148,7 @@
     "docs",
     "scripts",
     "config",
-    "examples"
+    "examples",
+    "tests"
   ]
 }

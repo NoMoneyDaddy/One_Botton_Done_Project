@@ -30,6 +30,7 @@
 - `docs/agent_manifest_spec.md` 已補上
 - `config/agent_manifest.json` 已補上，作為 machine-readable manifest 草案
 - `.github/CODEOWNERS`、`CHANGELOG.md`、`examples/minimal-workspace/README.md` 已補上，補齊治理與最小 runnable surface
+- `text-to-lottie` skill lane、`examples/text-to-lottie/README.md`、`tests/*`、`scripts/run_repo_tests.js`、`scripts/summarize_learning_ledger.js` 已補上
 - `docs/external_install_provenance_checklist.md` 已補上，作為外部安裝審查基線
 - `docs/reference_repos_by_domain.md` 已補上
 - `docs/large_project_dimensions_and_roles.md` 已補上

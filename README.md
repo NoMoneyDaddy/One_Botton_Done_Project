@@ -32,6 +32,7 @@
 - machine-readable policy / approval matrix：`config/execution_policy_matrix.json`
 - machine-readable learning ledger：`.loop/LEARNINGS.json`
 - machine-readable repo surface manifest：`config/repo_surface_manifest.json`
+- learning ledger summary：`scripts/summarize_learning_ledger.js`
 - 工具發現與安全安裝引導：`tool-discovery-and-installation` + `scripts/setup_sandbox_tools.sh`
 - 外部安裝來源審查：`docs/external_install_provenance_checklist.md`
 - loop maturity 分級：`docs/loop_maturity_model.md`
@@ -43,6 +44,8 @@
 - 設定檔產生：`scripts/generate_project_configs.js`
 - sandbox / GitHub / remote 工具導引：`scripts/setup_sandbox_tools.sh`
 - local marketplace install smoke test：`scripts/marketplace_install_smoke_test.js`
+- repo tests：`scripts/run_repo_tests.js`
+- motion / Lottie skill lane：`text-to-lottie`
 
 ## 支援定義 / What “Support” Means
 
@@ -118,6 +121,13 @@ AI 需要安裝未知工具時，先讀 `.agents/skills/tool-discovery-and-insta
 L1 report-only
 ```
 
+可額外跑：
+
+```bash
+node scripts/run_repo_tests.js
+node scripts/summarize_learning_ledger.js
+```
+
 8. 若要先跑官方骨架：
 
 ```bash
@@ -183,6 +193,8 @@ node scripts/generate_project_configs.js --profile nextjs-app-router --name your
 - `.loop/LEARNINGS.json`
 - `scripts/fresh_clone_smoke_test.js`
 - `scripts/marketplace_install_smoke_test.js`
+- `scripts/run_repo_tests.js`
+- `examples/text-to-lottie/README.md`
 - `examples/minimal-workspace/README.md`
 
 ## 專案結構 / Structure

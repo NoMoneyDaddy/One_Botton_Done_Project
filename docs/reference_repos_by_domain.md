@@ -76,6 +76,7 @@
 | `karero/website-builder` | website-builder skill suite | AI 網站建置 skill 化做法 |
 | `abi/screenshot-to-code` | screenshot-to-code | 視覺輸入轉 HTML / Tailwind / React / Vue 的實戰參考 |
 | `microsoft/design-to-code` | enterprise design system tooling | 設計系統、元件、流程工具鏈整合思路 |
+| `diffusionstudio/lottie` | text-to-lottie skill runtime | 讓 coding agent 產 Lottie / animated SVG / motion asset 的技能化做法 |
 
 ## Backend Engineering
 

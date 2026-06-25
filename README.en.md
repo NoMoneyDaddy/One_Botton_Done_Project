@@ -24,6 +24,7 @@ Its job is to give multiple AI tools the same source of truth, the same project 
 - `config/execution_policy_matrix.json` for machine-readable approval and execution policy
 - `.loop/LEARNINGS.json` for the machine-readable learning ledger
 - `config/repo_surface_manifest.json` for the machine-readable repo surface source of truth
+- `scripts/summarize_learning_ledger.js` for learning-ledger summary and score aggregation
 - `tool-discovery-and-installation` plus `scripts/setup_sandbox_tools.sh` for safe tool discovery and opt-in installation
 - `docs/loop_maturity_model.md` for autonomy rollout
 - `docs/engineering_phase_loop.md` for phase-based delivery
@@ -35,6 +36,8 @@ Its job is to give multiple AI tools the same source of truth, the same project 
 - `scripts/generate_project_configs.js` for stack-aware config generation
 - `config/script_capabilities.json` plus `docs/script_fallback_matrix.md` for script portability and fallback routing
 - `scripts/marketplace_install_smoke_test.js` for local marketplace install path verification
+- `scripts/run_repo_tests.js` for minimal repository tests
+- `text-to-lottie` as the optional motion / Lottie skill lane
 - 21 localized workflow skills plus extra local skills such as `goal-loop`, `project-config-generation`, `interview-me`, `observability-and-instrumentation`, and `biome-quality-automation`
 
 ## Supported AI surfaces
@@ -72,6 +75,13 @@ bash scripts/setup_sandbox_tools.sh --plan
 ```
 
 Default autonomy starts at `L1 report-only`.
+
+Optional extra checks:
+
+```bash
+node scripts/run_repo_tests.js
+node scripts/summarize_learning_ledger.js
+```
 
 5. For a new project:
 
@@ -142,6 +152,8 @@ node scripts/generate_project_configs.js --profile nextjs-app-router --name your
 - `.loop/LEARNINGS.json`
 - `scripts/fresh_clone_smoke_test.js`
 - `scripts/marketplace_install_smoke_test.js`
+- `scripts/run_repo_tests.js`
+- `examples/text-to-lottie/README.md`
 - `examples/minimal-workspace/README.md`
 
 ## Principles

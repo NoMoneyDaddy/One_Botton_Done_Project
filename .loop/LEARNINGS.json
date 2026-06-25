@@ -10,7 +10,8 @@
       "只在文件口頭宣告學習，沒有結構化 ledger"
     ],
     "next_experiments": [
-      "把更多 PR / review feedback 回寫成 keep-or-discard 條目"
+      "把更多 PR / review feedback 回寫成 keep-or-discard 條目",
+      "用 summarize_learning_ledger.js 做 score aggregation"
     ]
   },
   "entries": [

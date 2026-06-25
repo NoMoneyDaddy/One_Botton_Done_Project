@@ -56,6 +56,7 @@ Mirror paths:
 | `website-best-practices` | 網站語意、效能、內容結構 |
 | `responsive-design-best-practices` | RWD、斷點、流動版面 |
 | `observability-and-instrumentation` | logs / metrics / tracing / runtime signals |
+| `text-to-lottie` | Lottie / motion graphics / animated SVG 路由 |
 
 ## Routing Notes
 

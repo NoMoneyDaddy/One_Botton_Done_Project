@@ -40,6 +40,30 @@
       ]
     },
     {
+      "path": "scripts/run_repo_tests.js",
+      "category": "quality-gate",
+      "requires": ["node", "filesystem:read"],
+      "scope": ["local-dev", "sandbox", "remote-runner", "ci"],
+      "fallback_mode": "manual-test-execution",
+      "fallback_steps": [
+        "逐一執行 tests/*.test.js 的關鍵檢查邏輯",
+        "至少確認 repo_surface_manifest 與 learning ledger summary 的核心不變量",
+        "把結果寫入 .loop/EVIDENCE.md 或 docs/STATE.md"
+      ]
+    },
+    {
+      "path": "scripts/summarize_learning_ledger.js",
+      "category": "accelerator",
+      "requires": ["node", "filesystem:read"],
+      "scope": ["local-dev", "sandbox", "remote-runner", "ci"],
+      "fallback_mode": "manual-learning-summary",
+      "fallback_steps": [
+        "讀 .loop/LEARNINGS.json",
+        "人工統計 keep / discard / retry / investigate 數量",
+        "把摘要寫入 .loop/CHECKPOINTS.md 或 docs/STATE.md"
+      ]
+    },
+    {
       "path": "scripts/init_session_loop.js",
       "category": "strong-accelerator",
       "requires": ["node", "filesystem:write"],

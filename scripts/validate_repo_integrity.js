@@ -17,6 +17,8 @@ const requiredFiles = [
   '.github/copilot-instructions.md',
   '.github/workflows/ci.yml',
   '.gemini/commands/goal.toml',
+  'docs/session_loop_contract.md',
+  'docs/loop_evaluation_gate.md',
   '.loop/GOAL.md',
   '.loop/PLAN.md',
   '.loop/STATE.json',

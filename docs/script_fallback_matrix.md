@@ -39,6 +39,7 @@
 | Script | 類型 | 需要 | 跑不了時怎麼辦 |
 | --- | --- | --- | --- |
 | `scripts/inspect_agent_capabilities.js` | accelerator | `node` `filesystem:read` | 人工盤點 skills / MCP / tools，寫入 `docs/STATE.md` |
+| `scripts/evaluate_session_loop.js` | quality-gate | `node` `filesystem:read` | 人工檢查 `.loop/*`、`STATE.json` schema、evidence、checkpoint、policy，決定 hold / continue / promote |
 | `scripts/validate_repo_integrity.js` | quality-gate | `node` `filesystem:read` | 人工確認入口檔、skill mirrors、JSON、script capabilities、本地文件連結 |
 | `scripts/init_session_loop.js` | strong-accelerator | `node` `filesystem:write` | 手動建立 `.loop/*` |
 | `scripts/init_project_workspace.js` | strong-accelerator | `node` `filesystem:write` | 手動建立入口檔、docs、`.loop/*` |

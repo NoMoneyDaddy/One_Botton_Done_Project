@@ -1,10 +1,16 @@
 {
   "mode": "session-loop",
+  "maturity_level": "L2",
+  "tier": "standard",
+  "orientation": "engineer",
+  "time_budget": null,
+  "convergence_state": "closed",
   "status": "active",
   "phase": "Ship",
   "current_state": "ship-prep",
-  "current_task": "本地優化與驗證完成，等待 commit / push / PR 確認",
+  "current_task": "自治評估 gate 已補上；等待下一輪自治學習 / approval matrix 補強",
+  "retry_count": 0,
   "blocked_reason": null,
-  "last_verified_at": "2026-06-25T00:22:03Z",
-  "updated_at": "2026-06-25T00:22:03Z"
+  "last_verified_at": "2026-06-25T14:13:00Z",
+  "updated_at": "2026-06-25T14:13:00Z"
 }

@@ -14,6 +14,19 @@
       ]
     },
     {
+      "path": "scripts/evaluate_session_loop.js",
+      "category": "quality-gate",
+      "requires": ["node", "filesystem:read"],
+      "scope": ["local-dev", "sandbox", "remote-runner", "ci"],
+      "fallback_mode": "manual-loop-evaluation",
+      "fallback_steps": [
+        "讀 docs/session_loop_contract.md 與 docs/loop_evaluation_gate.md",
+        "人工檢查 .loop/* 六個核心檔案是否存在且不是 placeholder",
+        "人工檢查 STATE.json 欄位、evidence、checkpoint、policy 是否齊全",
+        "把判斷結果寫入 .loop/CHECKPOINTS.md 或 docs/STATE.md"
+      ]
+    },
+    {
       "path": "scripts/validate_repo_integrity.js",
       "category": "quality-gate",
       "requires": ["node", "filesystem:read"],

@@ -11,6 +11,13 @@
 ## Entries
 
 - 2026-06-25
+  - `node scripts/evaluate_session_loop.js .`
+  - `node scripts/evaluate_session_loop.js . --json`
+  - `node scripts/validate_repo_integrity.js`
+  - `node scripts/inspect_agent_capabilities.js`
+  - `git diff --check`
+
+- 2026-06-25
   - `node --check scripts/inspect_agent_capabilities.js`
   - `node --check scripts/bootstrap_agent_files.js`
   - `node --check scripts/init_project_workspace.js`

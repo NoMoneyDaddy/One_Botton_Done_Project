@@ -54,6 +54,25 @@ node scripts/init_project_workspace.js ../your-project --name your-project --ide
 5. 回寫 `CHECKPOINTS.md`
 6. 回寫 `EVIDENCE.md`
 7. 更新 `STATE.json`
+8. 跑 `node scripts/evaluate_session_loop.js .`
+
+## 評估 gate
+
+若要判斷現在的 `.loop/*` 只是存在，還是真的可升自治 / 可進 ship gate，跑：
+
+```bash
+node scripts/evaluate_session_loop.js .
+```
+
+若要當作 quality gate：
+
+```bash
+node scripts/evaluate_session_loop.js . --fail-on-hold
+```
+
+詳見：
+
+- `docs/loop_evaluation_gate.md`
 
 ## 狀態模型
 

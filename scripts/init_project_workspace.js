@@ -59,18 +59,19 @@ ${projectIdea || '待補：請先完成需求釐清。'}
 ## 開發流程
 
 1. 先讀 \`AGENTS.md\`
-2. 若在 sandbox / remote，先跑 \`bash scripts/setup_sandbox_tools.sh --plan\`
+2. 若在 sandbox / remote，先跑 \`bash scripts/setup_sandbox_tools.sh --doctor\`
 3. 先跑 \`node scripts/inspect_agent_capabilities.js\`
-4. 先跑 \`node scripts/validate_repo_integrity.js\`
-5. 若缺 \`.loop/*\`，先跑 \`node scripts/init_session_loop.js . --goal "${projectIdea || '待補目標'}"\`
-6. 再讀 \`docs/interactive_project_flow.md\`、\`docs/SPEC.md\`、\`docs/TASKS.md\`
-7. 技術棧確認後，先跑 \`node scripts/generate_project_configs.js --profile <profile> --name ${projectName}\`
-8. 依 Task List 逐步實作與驗證
-9. 除錯與決策記錄到 \`docs/DEBUG_NOTES.md\` 與 \`docs/STATE.md\`
-10. 技術棧相關實作前，先讀對應 \`.agents/skills/*-best-practices/SKILL.md\`
-11. 若是 JS / TS 專案，先讀 \`docs/biome_quality_loop.md\`
-12. 若要補官方骨架，可改用 \`node scripts/scaffold_project.js ../your-project --profile <profile>\`
-13. 若要給 Hermes / OpenClaw 全域吃 skills，可跑 \`bash scripts/export_skills_for_hermes_openclaw.sh --plan\`
+4. 若已有 \`.loop/*\`，先跑 \`node scripts/evaluate_session_loop.js .\`
+5. 先跑 \`node scripts/validate_repo_integrity.js\`
+6. 若缺 \`.loop/*\`，先跑 \`node scripts/init_session_loop.js . --goal "${projectIdea || '待補目標'}"\`
+7. 再讀 \`docs/interactive_project_flow.md\`、\`docs/SPEC.md\`、\`docs/TASKS.md\`
+8. 技術棧確認後，先跑 \`node scripts/generate_project_configs.js --profile <profile> --name ${projectName}\`
+9. 依 Task List 逐步實作與驗證
+10. 除錯與決策記錄到 \`docs/DEBUG_NOTES.md\` 與 \`docs/STATE.md\`
+11. 技術棧相關實作前，先讀對應 \`.agents/skills/*-best-practices/SKILL.md\`
+12. 若是 JS / TS 專案，先讀 \`docs/biome_quality_loop.md\`
+13. 若要補官方骨架，可改用 \`node scripts/scaffold_project.js ../your-project --profile <profile>\`
+14. 若要給 Hermes / OpenClaw 全域吃 skills，可跑 \`bash scripts/export_skills_for_hermes_openclaw.sh --plan\`
 
 ## 驗證
 
@@ -92,17 +93,18 @@ ${projectIdea || 'TODO: clarify the product idea first.'}
 ## Workflow
 
 1. Read \`AGENTS.md\`
-2. If running in sandbox / remote, run \`bash scripts/setup_sandbox_tools.sh --plan\`
+2. If running in sandbox / remote, run \`bash scripts/setup_sandbox_tools.sh --doctor\`
 3. Run \`node scripts/inspect_agent_capabilities.js\`
-4. Run \`node scripts/validate_repo_integrity.js\`
-5. If \`.loop/*\` is missing, run \`node scripts/init_session_loop.js . --goal "${projectIdea || 'TODO objective'}"\`
-6. Read \`docs/interactive_project_flow.md\`, \`docs/SPEC.md\`, and \`docs/TASKS.md\`
-7. After the stack is confirmed, run \`node scripts/generate_project_configs.js --profile <profile> --name ${projectName}\`
-8. Implement step by step from the task list
-9. Record debugging notes in \`docs/DEBUG_NOTES.md\` and current state in \`docs/STATE.md\`
-10. Read the matching local best-practice skills before stack-specific work
-11. For JS / TS projects, read \`docs/biome_quality_loop.md\`
-12. If you need the official framework scaffold first, use \`node scripts/scaffold_project.js ../your-project --profile <profile>\`
+4. If \`.loop/*\` already exists, run \`node scripts/evaluate_session_loop.js .\`
+5. Run \`node scripts/validate_repo_integrity.js\`
+6. If \`.loop/*\` is missing, run \`node scripts/init_session_loop.js . --goal "${projectIdea || 'TODO objective'}"\`
+7. Read \`docs/interactive_project_flow.md\`, \`docs/SPEC.md\`, and \`docs/TASKS.md\`
+8. After the stack is confirmed, run \`node scripts/generate_project_configs.js --profile <profile> --name ${projectName}\`
+9. Implement step by step from the task list
+10. Record debugging notes in \`docs/DEBUG_NOTES.md\` and current state in \`docs/STATE.md\`
+11. Read the matching local best-practice skills before stack-specific work
+12. For JS / TS projects, read \`docs/biome_quality_loop.md\`
+13. If you need the official framework scaffold first, use \`node scripts/scaffold_project.js ../your-project --profile <profile>\`
 
 ## Verification
 

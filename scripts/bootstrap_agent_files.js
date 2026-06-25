@@ -47,6 +47,7 @@ const entriesToCopy = [
   'docs/project_config_generation.md',
   'docs/scaffold_project.md',
   'docs/session_loop_contract.md',
+  'docs/loop_evaluation_gate.md',
   'docs/script_fallback_matrix.md',
   'docs/loop_maturity_model.md',
   'docs/engineering_phase_loop.md',
@@ -73,6 +74,7 @@ const entriesToCopy = [
   'config/skill_profiles.json',
   'config/tooling_profiles.json',
   'scripts/inspect_agent_capabilities.js',
+  'scripts/evaluate_session_loop.js',
   'scripts/init_session_loop.js',
   'scripts/init_project_workspace.js',
   'scripts/fresh_clone_smoke_test.js',
@@ -161,11 +163,11 @@ function main() {
   console.log('下一步:');
   console.log('1. 讓 AI 先讀取 AGENTS.md');
   console.log('2. 需要英文入口時，可同步閱讀 README.en.md');
-  console.log('3. 若在 GitHub / sandbox / remote，先跑 bash scripts/setup_sandbox_tools.sh --plan');
+  console.log('3. 若在 GitHub / sandbox / remote，先跑 bash scripts/setup_sandbox_tools.sh --doctor');
   console.log('4. 先跑 node scripts/inspect_agent_capabilities.js');
   console.log('5. 再跑 node scripts/validate_repo_integrity.js');
-  console.log('6. 讀 docs/loop_maturity_model.md 與 docs/engineering_phase_loop.md');
-  console.log('7. 讀 docs/capability_audit_and_install_loop.md、docs/loop_circuit_breaker.md、docs/agent_manifest_spec.md');
+  console.log('6. 若已有 .loop/*，跑 node scripts/evaluate_session_loop.js .');
+  console.log('7. 讀 docs/loop_maturity_model.md、docs/engineering_phase_loop.md、docs/loop_evaluation_gate.md');
   console.log('8. 若缺 .loop/*，先跑 node scripts/init_session_loop.js . --goal "<objective>"');
   console.log('9. 新專案若要先建官方骨架，可跑 node scripts/scaffold_project.js ../my-app --profile <profile>');
   console.log('10. 技術棧確認後，可先跑 node scripts/generate_project_configs.js --profile <profile> --name <projectName>');

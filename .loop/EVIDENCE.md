@@ -13,6 +13,12 @@
 - 2026-06-26
   - `node scripts/run_repo_tests.js`
   - `node scripts/validate_repo_integrity.js`
+  - `node scripts/scaffold_project.js /tmp/obd-ios-plan --profile ios-swiftui --run --language typescript`
+  - `git diff --check`
+
+- 2026-06-26
+  - `node scripts/run_repo_tests.js`
+  - `node scripts/validate_repo_integrity.js`
   - `node scripts/scaffold_project.js /tmp/obd-flutter-platforms --profile flutter-app --name obd_flutter_platforms --idea "flutter platforms smoke" --database supabase --quality-tool biome --platforms android,web --run`
   - `git diff --check`
 

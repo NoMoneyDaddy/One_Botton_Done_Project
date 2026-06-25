@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "updated_at": "2026-06-25T23:04:45Z",
+  "updated_at": "2026-06-25T23:09:17Z",
   "rollup": {
     "retained_patterns": [
       "先用 machine-readable policy 定義自治邊界",
@@ -13,10 +13,26 @@
       "把更多 PR / review feedback 回寫成 keep-or-discard 條目",
       "用 summarize_learning_ledger.js 做 score aggregation",
       "把 SwiftUI / Android Kotlin 往 runnable scaffold 推進",
-      "把 prerequisite doctor 接到更多 workflow，含 native runbook 與更細的平台選項"
+      "把 prerequisite doctor 接到更多 workflow，含 Xcode / Android Studio 更細的 native 安裝 runbook"
     ]
   },
   "entries": [
+    {
+      "id": "2026-06-26-native-runbook-metadata",
+      "date": "2026-06-26",
+      "context": "原生 iOS / Android profile 仍是 plan-only，但先前只寫了簡短 scaffold 名稱，agent 很容易在預設 web 參數上先撞牆",
+      "change": "新增 native bootstrap runbook、profile manualRunbook / officialDocs metadata，並讓 plan-only profile 直接回到官方建立流程提示",
+      "hypothesis": "對尚未 runnable 的 profile，先把官方 IDE 路徑與 machine-readable runbook 固化，能降低 agent 亂猜 CLI 或被無關參數卡住的風險",
+      "result": "保留",
+      "decision": "keep",
+      "evidence_refs": [
+        "docs/native_app_bootstrap_runbook.md",
+        "config/project_config_profiles.json",
+        "scripts/scaffold_project.js",
+        "tests/scaffold_project.test.js"
+      ],
+      "next_action": "往 native prerequisite 安裝 runbook 或真正 runnable scaffold 繼續推進"
+    },
     {
       "id": "2026-06-26-flutter-platforms-cli",
       "date": "2026-06-26",

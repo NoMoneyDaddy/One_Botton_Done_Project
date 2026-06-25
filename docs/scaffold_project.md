@@ -40,6 +40,8 @@ node scripts/scaffold_project.js ../my-flutter-app --profile flutter-app --datab
 | `flutter-app` | `flutter create` |
 | `tauri-desktop` | `create-tauri-app` |
 | `electron-desktop` | Electron 官方 first app baseline |
+| `ios-swiftui` | Xcode `iOS > App`，細節見 `docs/native_app_bootstrap_runbook.md#ios-swiftui` |
+| `android-kotlin` | Android Studio `Empty Activity`，細節見 `docs/native_app_bootstrap_runbook.md#android-kotlin` |
 
 ## 內部流程
 
@@ -53,10 +55,12 @@ node scripts/scaffold_project.js ../my-flutter-app --profile flutter-app --datab
 - 官方 scaffold 負責最新骨架
 - 本 repo 負責治理層、loop、skills、補充設定檔
 - 避免自己手寫過時的框架骨架
+- 原生 iOS / Android 若仍是 `plan-only`，先走官方 IDE runbook，再接治理層
 
 ## 相關文件
 
 - `docs/project_config_generation.md`
+- `docs/native_app_bootstrap_runbook.md`
 - `docs/session_loop_contract.md`
 - `docs/project_architecture_best_practices.md`
 - `docs/script_fallback_matrix.md`

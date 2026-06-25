@@ -17,8 +17,8 @@
 | `flutter-app` | Flutter mobile app | `flutter create` | 有 |
 | `tauri-desktop` | 輕量 desktop app | `create-tauri-app` | 有 |
 | `electron-desktop` | Electron desktop app | 官方 first app tutorial | 有 |
-| `ios-swiftui` | iOS native | Xcode new project | 規劃中 / plan-only |
-| `android-kotlin` | Android native | Android Studio new project | 規劃中 / plan-only |
+| `ios-swiftui` | iOS native | Xcode new project | 規劃中 / plan-only，先看 `docs/native_app_bootstrap_runbook.md` |
+| `android-kotlin` | Android native | Android Studio new project | 規劃中 / plan-only，先看 `docs/native_app_bootstrap_runbook.md` |
 
 若超出上表：
 

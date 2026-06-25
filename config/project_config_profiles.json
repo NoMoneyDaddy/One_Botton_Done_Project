@@ -97,7 +97,12 @@
       "databases": ["none"],
       "qualityTools": ["none"],
       "officialScaffold": "Xcode new project",
-      "recommendedNode": "n/a"
+      "recommendedNode": "n/a",
+      "manualRunbook": "docs/native_app_bootstrap_runbook.md#ios-swiftui",
+      "officialDocs": [
+        "https://developer.apple.com/documentation/xcode/creating-an-xcode-project-for-an-app",
+        "https://developer.apple.com/documentation/xcode/building-and-running-an-app"
+      ]
     },
     "android-kotlin": {
       "displayName": "Android Kotlin",
@@ -108,7 +113,12 @@
       "databases": ["none"],
       "qualityTools": ["none"],
       "officialScaffold": "Android Studio new project",
-      "recommendedNode": "n/a"
+      "recommendedNode": "n/a",
+      "manualRunbook": "docs/native_app_bootstrap_runbook.md#android-kotlin",
+      "officialDocs": [
+        "https://developer.android.com/studio/projects/create-project",
+        "https://developer.android.com/studio/run"
+      ]
     }
   }
 }

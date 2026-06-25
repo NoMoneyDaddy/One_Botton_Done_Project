@@ -8,9 +8,9 @@
   "status": "active",
   "phase": "Ship",
   "current_state": "ship-prep",
-  "current_task": "native plan-only profile 已補官方 runbook 與 machine-readable metadata；準備提交下一個小 PR",
+  "current_task": "已補跨 AI 能力可攜矩陣、session/task/runtime 契約，且 Android Kotlin prerequisite 已達 ready；準備提交下一個 PR",
   "retry_count": 0,
   "blocked_reason": null,
-  "last_verified_at": "2026-06-25T23:09:17Z",
-  "updated_at": "2026-06-25T23:09:17Z"
+  "last_verified_at": "2026-06-25T23:33:39Z",
+  "updated_at": "2026-06-25T23:33:39Z"
 }

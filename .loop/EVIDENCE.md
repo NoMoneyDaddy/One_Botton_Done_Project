@@ -13,6 +13,22 @@
 - 2026-06-26
   - `node scripts/run_repo_tests.js`
   - `node scripts/validate_repo_integrity.js`
+  - `git diff --check`
+
+- 2026-06-26
+  - `brew install --cask android-studio android-platform-tools android-commandlinetools`
+  - `brew install cocoapods`
+  - `brew install openjdk`
+  - `sdkmanager --version`
+  - `emulator -version`
+  - `node scripts/run_repo_tests.js`
+  - `node scripts/validate_repo_integrity.js`
+  - `node scripts/platform_prerequisite_doctor.js --profile android-kotlin`
+  - `git diff --check`
+
+- 2026-06-26
+  - `node scripts/run_repo_tests.js`
+  - `node scripts/validate_repo_integrity.js`
   - `node scripts/scaffold_project.js /tmp/obd-ios-plan --profile ios-swiftui --run --language typescript`
   - `git diff --check`
 

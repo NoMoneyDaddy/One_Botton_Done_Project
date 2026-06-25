@@ -53,6 +53,8 @@
   "policy_matrix": "config/execution_policy_matrix.json",
   "learning_ledger": ".loop/LEARNINGS.json",
   "surface_manifest": "config/repo_surface_manifest.json",
+  "capability_portability_matrix": "config/capability_portability_matrix.json",
+  "session_task_schema": "config/session_task_schema.json",
   "task_bundle_schema": "config/task_bundle_schema.json",
   "official_doc_sources": "config/official_doc_sources.json",
   "platform_prerequisites": "config/platform_prerequisites.json",

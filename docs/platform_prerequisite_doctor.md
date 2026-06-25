@@ -83,6 +83,38 @@ node scripts/platform_prerequisite_doctor.js --json
 - web / PWA 路徑可先工作
 - 要進 iOS / Android 時，doctor 會把 native 缺口打出來
 
+### iOS SwiftUI
+
+- required：
+  - Xcode
+  - Xcode Command Line Tools
+  - `Xcode.app`
+- optional：
+  - `xcrun simctl`
+  - CocoaPods
+
+這代表：
+
+- 先把官方 Xcode 建立流程與完整 app 裝好
+- 若只是少 simulator tooling，狀態會是 `partial`
+
+### Android Kotlin
+
+- required：
+  - JDK 17+
+  - `adb`
+  - `sdkmanager`
+- optional：
+  - `Android Studio.app`
+  - `avdmanager`
+  - `emulator`
+
+這代表：
+
+- SDK 管理與 platform tools 是最低可驗證基線
+- Java runtime 若缺，`sdkmanager` / `avdmanager` 會是假安裝、真不可用
+- 若 emulator 鏈不完整，doctor 會標成 `partial`，提醒還不能視為完整本機 Android 開發環境
+
 ## 相關文件
 
 - `docs/project_config_generation.md`

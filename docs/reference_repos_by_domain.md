@@ -32,6 +32,9 @@
 | `microsoft/autogen` | agent framework | 多代理對話、跨語言結構、docs / support / security 面齊全 |
 | `langchain-ai/langgraph` | resilient agent framework | agent graph、examples、docs、repo 級 `AGENTS.md` / `CLAUDE.md` |
 | `OpenHands/OpenHands` | AI-driven development | 大型自治開發系統的 productization、bench / eval / skills |
+| `Simpleyyt/ai-manus` | productized agent runtime | frontend/backend/sandbox 分層、session + sandbox + event stream 的產品化視角 |
+| `Fosowl/agenticSeek` | local-first agent product | local provider matrix、Docker / host networking、CLI/Web 雙模式與 troubleshooting 密度 |
+| `FoundationAgents/OpenManus` | lightweight open manus clone | quick-start、config surface、可選 multi-agent / MCP 入口 |
 | `FarzamMohammadi/the-engineer` | orchestration layer | requirements → delivery phase、plugin contracts、audit trail |
 | `Zhifeng-Niu/odyssey-engine` | autonomous iteration engine | tier / orientation / convergence / checkpoint loop |
 | `lsdefine/GenericAgent` | self-evolving agent | skill tree、能力結晶化、原子工具 + 極小核心 |

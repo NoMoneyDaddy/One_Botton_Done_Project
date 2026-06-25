@@ -50,10 +50,17 @@ function uniqueChecksForProfiles(profileEntries) {
 
 function runCheck(definition) {
   if (definition.type === 'command-exists') {
-    const result = spawnSync(definition.command, ['--version'], { encoding: 'utf8' });
+    const result = spawnSync(definition.command, definition.args || ['--version'], { encoding: 'utf8' });
     return {
       present: result.status === 0 || result.error == null,
       output: `${result.stdout || ''}${result.stderr || ''}`.trim()
+    };
+  }
+
+  if (definition.type === 'path-exists') {
+    return {
+      present: fs.existsSync(definition.path),
+      output: definition.path
     };
   }
 

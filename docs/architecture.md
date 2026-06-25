@@ -44,7 +44,7 @@
 文件分三類：
 
 - 核心工作流：`docs/interactive_project_flow.md`、`docs/project_usage_guide.md`
-- 相容與架構：`docs/platform_support_matrix.md`、`docs/ai-tool-compatibility.md`、`docs/project_architecture_best_practices.md`
+- 相容與架構：`docs/platform_support_matrix.md`、`docs/ai-tool-compatibility.md`、`docs/cross_ai_capability_portability.md`、`docs/project_architecture_best_practices.md`、`docs/sandbox_session_runtime_topology.md`、`docs/event_stream_contract.md`、`docs/local_provider_and_runtime_matrix.md`
 - 狀態與決策：`docs/SPEC.md`、`docs/TASKS.md`、`docs/STATE.md`、`docs/DEBUG_NOTES.md`、`docs/ADRS.md`
 
 規則：

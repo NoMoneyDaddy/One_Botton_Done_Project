@@ -7,6 +7,11 @@
 這個 repo 現在對 **Codex / Claude Code / Cursor** 是強支援。
 對 **Hermes / OpenClaw / NanoClaw** 也能接，但有各自原生入口，不能假設完全等價。
 
+若你要的目標是「不同 AI 讀完本 repo 都盡量拿到同一套能力」，先讀：
+
+- `docs/cross_ai_capability_portability.md`
+- `config/capability_portability_matrix.json`
+
 另外，repo 內所有 `SKILL.md` 已經都有 YAML frontmatter，符合 OpenClaw / Hermes 這類 skill runtime 的基本要求。
 
 ## 支援矩陣

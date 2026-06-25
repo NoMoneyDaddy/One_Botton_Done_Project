@@ -38,6 +38,7 @@ Its job is to give multiple AI tools the same source of truth, the same project 
 - `scripts/generate_project_configs.js` for stack-aware config generation
 - `config/script_capabilities.json` plus `docs/script_fallback_matrix.md` for script portability and fallback routing
 - `scripts/marketplace_install_smoke_test.js` for local marketplace install path verification
+- `scripts/platform_prerequisite_doctor.js` for machine-readable native/mobile/desktop prerequisite checks
 - `scripts/run_repo_tests.js` for minimal repository tests
 - `text-to-lottie` as the optional motion / Lottie skill lane
 - `recurring-monitoring` as the recurring PR/deploy/watch supervision lane
@@ -86,6 +87,7 @@ Optional extra checks:
 node scripts/run_repo_tests.js
 node scripts/summarize_learning_ledger.js
 node scripts/export_task_bundle.js
+node scripts/platform_prerequisite_doctor.js
 ```
 
 5. For a new project:
@@ -152,6 +154,7 @@ node scripts/generate_project_configs.js --profile nextjs-app-router --name your
 - `docs/project_architecture_best_practices.md`
 - `docs/project_lifecycle_automation.md`
 - `docs/platform_support_matrix.md`
+- `docs/platform_prerequisite_doctor.md`
 - `docs/sandbox_tooling_guide.md`
 - `docs/third_party_skills.md`
 - `docs/tech_stack_guide.md`
@@ -164,6 +167,7 @@ node scripts/generate_project_configs.js --profile nextjs-app-router --name your
 - `scripts/marketplace_install_smoke_test.js`
 - `scripts/run_repo_tests.js`
 - `scripts/export_task_bundle.js`
+- `scripts/platform_prerequisite_doctor.js`
 - `examples/text-to-lottie/README.md`
 - `examples/minimal-workspace/README.md`
 

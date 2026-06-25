@@ -29,6 +29,12 @@
 - session loop 評估 gate：`scripts/evaluate_session_loop.js`
 - repo integrity gate：`scripts/validate_repo_integrity.js`
 - skill 推薦 / 外部 skill 導引：`scripts/auto_skill_setup.js`
+- machine-readable policy / approval matrix：`config/execution_policy_matrix.json`
+- machine-readable learning ledger：`.loop/LEARNINGS.json`
+- machine-readable repo surface manifest：`config/repo_surface_manifest.json`
+- learning ledger summary：`scripts/summarize_learning_ledger.js`
+- task bundle export：`scripts/export_task_bundle.js`
+- official docs source map：`config/official_doc_sources.json`
 - 工具發現與安全安裝引導：`tool-discovery-and-installation` + `scripts/setup_sandbox_tools.sh`
 - 外部安裝來源審查：`docs/external_install_provenance_checklist.md`
 - loop maturity 分級：`docs/loop_maturity_model.md`
@@ -40,6 +46,10 @@
 - 設定檔產生：`scripts/generate_project_configs.js`
 - sandbox / GitHub / remote 工具導引：`scripts/setup_sandbox_tools.sh`
 - local marketplace install smoke test：`scripts/marketplace_install_smoke_test.js`
+- repo tests：`scripts/run_repo_tests.js`
+- motion / Lottie skill lane：`text-to-lottie`
+- recurring monitor skill lane：`recurring-monitoring`
+- mobile / desktop profiles：`plan-only` 基線已補
 
 ## 支援定義 / What “Support” Means
 
@@ -115,6 +125,14 @@ AI 需要安裝未知工具時，先讀 `.agents/skills/tool-discovery-and-insta
 L1 report-only
 ```
 
+可額外跑：
+
+```bash
+node scripts/run_repo_tests.js
+node scripts/summarize_learning_ledger.js
+node scripts/export_task_bundle.js
+```
+
 8. 若要先跑官方骨架：
 
 ```bash
@@ -136,6 +154,7 @@ node scripts/generate_project_configs.js --profile nextjs-app-router --name your
 - `AGENTS.md`
 - `CLAUDE.md`
 - `GEMINI.md`
+- `CHANGELOG.md`
 - `SECURITY.md`
 - `CONTRIBUTING.md`
 - `docs/interactive_project_flow.md`
@@ -159,6 +178,11 @@ node scripts/generate_project_configs.js --profile nextjs-app-router --name your
 - `docs/loop_maturity_model.md`
 - `docs/engineering_phase_loop.md`
 - `docs/loop_evaluation_gate.md`
+- `docs/agent_execution_policy_matrix.md`
+- `docs/learning_ledger_loop.md`
+- `docs/recurring_monitor_loop.md`
+- `docs/documentation_lifecycle_strategy.md`
+- `docs/official_docs_and_github_research_policy.md`
 - `docs/capability_audit_and_install_loop.md`
 - `docs/loop_circuit_breaker.md`
 - `docs/skill_crystallization_loop.md`
@@ -173,8 +197,16 @@ node scripts/generate_project_configs.js --profile nextjs-app-router --name your
 - `docs/third_party_skills.md`
 - `docs/tech_stack_guide.md`
 - `config/agent_manifest.json`
+- `config/repo_surface_manifest.json`
+- `config/task_bundle_schema.json`
+- `config/official_doc_sources.json`
+- `.loop/LEARNINGS.json`
 - `scripts/fresh_clone_smoke_test.js`
 - `scripts/marketplace_install_smoke_test.js`
+- `scripts/run_repo_tests.js`
+- `scripts/export_task_bundle.js`
+- `examples/text-to-lottie/README.md`
+- `examples/minimal-workspace/README.md`
 
 ## 專案結構 / Structure
 

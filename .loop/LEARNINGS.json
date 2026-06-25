@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0.0",
+  "updated_at": "2026-06-25T16:30:00Z",
+  "rollup": {
+    "retained_patterns": [
+      "先用 machine-readable policy 定義自治邊界",
+      "每輪修改都要有 evidence 與 checkpoint"
+    ],
+    "discarded_patterns": [
+      "只在文件口頭宣告學習，沒有結構化 ledger"
+    ],
+    "next_experiments": [
+      "把更多 PR / review feedback 回寫成 keep-or-discard 條目",
+      "用 summarize_learning_ledger.js 做 score aggregation",
+      "把 mobile / desktop plan-only profiles 逐步升級成 runnable scaffold"
+    ]
+  },
+  "entries": [
+    {
+      "id": "2026-06-25-task-bundle-monitoring",
+      "date": "2026-06-25",
+      "context": "吸收 chravel loop 與多個 autonomous engineering 專案的 monitor / docs lifecycle / PRD machine-readable 實踐",
+      "change": "新增 recurring-monitoring skill、docs lifecycle 策略、official-doc + GitHub research policy、env/config loop，並把 SPEC 匯出成 machine-readable task bundle",
+      "hypothesis": "把監控、文件更新、官方文檔來源與 task bundle 納入固定介面，能讓 unattended development loop 在跨環境情境下更穩定",
+      "result": "保留",
+      "decision": "keep",
+      "evidence_refs": [
+        "docs/recurring_monitor_loop.md",
+        "docs/documentation_lifecycle_strategy.md",
+        "docs/official_docs_and_github_research_policy.md",
+        "docs/environment_variable_configuration_loop.md",
+        "config/official_doc_sources.json",
+        "config/task_bundle_schema.json",
+        "scripts/export_task_bundle.js"
+      ],
+      "next_action": "把 plan-only mobile / desktop profiles 接真正腳手架驗證與 smoke test"
+    },
+    {
+      "id": "2026-06-25-policy-matrix",
+      "date": "2026-06-25",
+      "context": "吸收 loops / hermes-agent / OpenHarness / autoagent 的治理與自治實踐",
+      "change": "新增 execution policy matrix，明確定義 allow / verifier / human-gate / deny",
+      "hypothesis": "先把 approval / execution 邊界 machine-readable，能降低 unattended loop 漂移風險",
+      "result": "保留",
+      "decision": "keep",
+      "evidence_refs": [
+        "docs/agent_execution_policy_matrix.md",
+        "config/execution_policy_matrix.json",
+        "docs/comparable_project_analysis.md"
+      ],
+      "next_action": "把 learning / retrospective 也變成 machine-readable，接回 .loop gate"
+    }
+  ]
+}

@@ -199,6 +199,13 @@ function buildApiCommand(targetRoot) {
   };
 }
 
+function buildManualPlanCommand(label) {
+  return {
+    command: 'manual',
+    args: [label]
+  };
+}
+
 function buildScaffoldCommand(profileKey, projectName, targetRoot, options) {
   if (profileKey === 'nextjs-app-router') {
     return buildNextCommand(projectName, options);
@@ -210,6 +217,46 @@ function buildScaffoldCommand(profileKey, projectName, targetRoot, options) {
 
   if (profileKey === 'node-express-api') {
     return buildApiCommand(targetRoot);
+  }
+
+  if (profileKey === 'react-native-expo') {
+    return {
+      command: 'npx',
+      args: ['create-expo-app@latest', projectName]
+    };
+  }
+
+  if (profileKey === 'capacitor-mobile-app') {
+    return {
+      command: 'npm',
+      args: ['init', '@capacitor/app@latest', projectName]
+    };
+  }
+
+  if (profileKey === 'flutter-app') {
+    return {
+      command: 'flutter',
+      args: ['create', projectName]
+    };
+  }
+
+  if (profileKey === 'tauri-desktop') {
+    return {
+      command: 'npm',
+      args: ['create', 'tauri-app@latest', projectName]
+    };
+  }
+
+  if (profileKey === 'electron-desktop') {
+    return buildManualPlanCommand('follow electron official quick start tutorial');
+  }
+
+  if (profileKey === 'ios-swiftui') {
+    return buildManualPlanCommand('create a new Xcode SwiftUI project');
+  }
+
+  if (profileKey === 'android-kotlin') {
+    return buildManualPlanCommand('create a new Android Studio Kotlin project');
   }
 
   throw new Error(`尚未支援的 scaffold profile: ${profileKey}`);
@@ -231,6 +278,7 @@ function printPlan(profileKey, profile, targetRoot, projectName, options, scaffo
   console.log('Scaffold 計畫');
   console.log(`- 目標目錄: ${targetRoot}`);
   console.log(`- Profile: ${profile.displayName} (${profileKey})`);
+  console.log(`- Support level: ${profile.supportLevel || 'full'}`);
   console.log(`- 官方 scaffold baseline: ${profile.officialScaffold}`);
   console.log(`- Recommended Node.js: ${profile.recommendedNode}`);
   console.log(`- Language: ${options.language}`);
@@ -270,6 +318,10 @@ function main() {
     console.log(`- 真的執行時，加上 --run`);
     console.log(`- 若只想先看治理層，可用 node scripts/init_project_workspace.js ${targetRoot} --name ${projectName} --idea "${options.projectIdea || '待補'}"`);
     return;
+  }
+
+  if ((profile.supportLevel || 'full') === 'plan-only') {
+    throw new Error(`profile ${options.profile} 目前是 plan-only；已整理官方 scaffold 路徑，但尚未開放自動執行`);
   }
 
   ensureDir(path.dirname(targetRoot));

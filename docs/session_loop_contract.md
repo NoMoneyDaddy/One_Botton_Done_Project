@@ -18,6 +18,7 @@
   CHECKPOINTS.md
   EVIDENCE.md
   POLICY.md
+  LEARNINGS.json
 ```
 
 ## 檔案責任
@@ -30,6 +31,7 @@
 | `.loop/CHECKPOINTS.md` | 每輪做了什麼、下一輪做什麼 |
 | `.loop/EVIDENCE.md` | test / lint / build / runtime 證據 |
 | `.loop/POLICY.md` | 什麼情況可自動繼續，什麼情況該停 |
+| `.loop/LEARNINGS.json` | machine-readable learning ledger，記 keep / discard / retry |
 
 ## 初始化
 
@@ -53,8 +55,9 @@ node scripts/init_project_workspace.js ../your-project --name your-project --ide
 4. 修改 / 驗證
 5. 回寫 `CHECKPOINTS.md`
 6. 回寫 `EVIDENCE.md`
-7. 更新 `STATE.json`
-8. 跑 `node scripts/evaluate_session_loop.js .`
+7. 回寫 `LEARNINGS.json`
+8. 更新 `STATE.json`
+9. 跑 `node scripts/evaluate_session_loop.js .`
 
 ## 評估 gate
 
@@ -142,3 +145,4 @@ node scripts/evaluate_session_loop.js . --fail-on-hold
 - 可以自動持續，但停止條件要明確
 - repo 檔案優先於聊天記憶
 - 腳本只是加速器；若跑不了，改走 `docs/script_fallback_matrix.md`
+- 同一個修正是否值得延續，要回寫到 `.loop/LEARNINGS.json`

@@ -157,6 +157,23 @@ function buildPolicy() {
 `;
 }
 
+function buildLearnings(now) {
+  return `${JSON.stringify(
+    {
+      schema_version: '1.0.0',
+      updated_at: now,
+      rollup: {
+        retained_patterns: [],
+        discarded_patterns: [],
+        next_experiments: []
+      },
+      entries: []
+    },
+    null,
+    2
+  )}\n`;
+}
+
 function initLoopFiles(targetRoot, goal, force) {
   const now = new Date().toISOString();
   const loopRoot = path.join(targetRoot, '.loop');
@@ -166,7 +183,8 @@ function initLoopFiles(targetRoot, goal, force) {
     ['.loop/STATE.json', buildState(now)],
     ['.loop/CHECKPOINTS.md', buildCheckpoints()],
     ['.loop/EVIDENCE.md', buildEvidence()],
-    ['.loop/POLICY.md', buildPolicy()]
+    ['.loop/POLICY.md', buildPolicy()],
+    ['.loop/LEARNINGS.json', buildLearnings(now)]
   ]);
 
   const results = [];

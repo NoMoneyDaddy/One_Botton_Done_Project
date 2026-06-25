@@ -22,76 +22,16 @@ if (!targetArg) {
 const repoRoot = path.resolve(__dirname, '..');
 const targetRoot = path.resolve(process.cwd(), targetArg);
 
-const entriesToCopy = [
-  'AGENTS.md',
-  'CLAUDE.md',
-  'GEMINI.md',
-  'README.en.md',
-  'SECURITY.md',
-  'CONTRIBUTING.md',
-  '.loop',
-  '.gemini/commands',
-  '.cursorrules',
-  '.cursor/rules',
-  '.claude/skills',
-  '.github/copilot-instructions.md',
-  '.github/workflows',
-  'docs/agent_bootstrap_workflow.md',
-  'docs/agent_skill_catalog.md',
-  'docs/ai-tool-compatibility.md',
-  'docs/architecture.md',
-  'docs/interactive_project_flow.md',
-  'docs/project_usage_guide.md',
-  'docs/example_sessions.md',
-  'docs/biome_quality_loop.md',
-  'docs/project_config_generation.md',
-  'docs/scaffold_project.md',
-  'docs/session_loop_contract.md',
-  'docs/loop_evaluation_gate.md',
-  'docs/script_fallback_matrix.md',
-  'docs/loop_maturity_model.md',
-  'docs/engineering_phase_loop.md',
-  'docs/capability_audit_and_install_loop.md',
-  'docs/loop_circuit_breaker.md',
-  'docs/skill_crystallization_loop.md',
-  'docs/agent_manifest_spec.md',
-  'docs/external_install_provenance_checklist.md',
-  'docs/marketplace_open_source_readiness.md',
-  'docs/release_version_policy.md',
-  'docs/platform_support_matrix.md',
-  'docs/project_lifecycle_automation.md',
-  'docs/project_architecture_best_practices.md',
-  'docs/SPEC_FORMAT.md',
-  'docs/subagent_dispatch.md',
-  'docs/sandbox_tooling_guide.md',
-  'docs/third_party_skills.md',
-  'docs/reference_repos_by_domain.md',
-  'docs/large_project_dimensions_and_roles.md',
-  'config/env_templates.json',
-  'config/agent_manifest.json',
-  'config/project_config_profiles.json',
-  'config/script_capabilities.json',
-  'config/skill_profiles.json',
-  'config/tooling_profiles.json',
-  'scripts/inspect_agent_capabilities.js',
-  'scripts/evaluate_session_loop.js',
-  'scripts/init_session_loop.js',
-  'scripts/init_project_workspace.js',
-  'scripts/fresh_clone_smoke_test.js',
-  'scripts/marketplace_install_smoke_test.js',
-  'scripts/generate_project_configs.js',
-  'scripts/scaffold_project.js',
-  'scripts/auto_skill_setup.js',
-  'scripts/bootstrap_agent_files.js',
-  'scripts/validate_repo_integrity.js',
-  'scripts/export_skills_for_hermes_openclaw.sh',
-  'scripts/setup_sandbox_tools.sh',
-  'prompts/interactive_api_key_prompt.md',
-  'prompts/interactive_tech_stack_prompt.md',
-  'prompts/legacy_project_improvement_prompt.md',
-  '.agents/skills',
-  'skills'
-];
+function readSurfaceManifest() {
+  const manifestPath = path.join(repoRoot, 'config', 'repo_surface_manifest.json');
+  const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+
+  if (!Array.isArray(manifest.bootstrap_entries) || manifest.bootstrap_entries.length === 0) {
+    throw new Error('repo_surface_manifest.json 缺 bootstrap_entries');
+  }
+
+  return manifest;
+}
 
 function ensureDir(dirPath) {
   if (!fs.existsSync(dirPath)) {
@@ -150,12 +90,13 @@ function copyDirectory(sourceDir, targetDir, relativePath) {
 }
 
 function main() {
+  const surfaceManifest = readSurfaceManifest();
   ensureDir(targetRoot);
 
   console.log(`📁 目標目錄: ${targetRoot}`);
   console.log(`🧠 複製代理規範檔...`);
 
-  for (const relativePath of entriesToCopy) {
+  for (const relativePath of surfaceManifest.bootstrap_entries) {
     copyEntry(relativePath);
   }
 

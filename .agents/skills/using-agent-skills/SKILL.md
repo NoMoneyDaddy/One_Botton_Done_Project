@@ -27,10 +27,12 @@ description: Meta skill entrypoint. Select the right workflow skill for the curr
 14. Supabase：`supabase-best-practices`
 15. 網站基線：`website-best-practices`
 16. RWD / 行動端：`responsive-design-best-practices`
-17. 測試 / runtime 問題：`browser-testing-with-devtools` 或 `debugging-and-error-recovery`
-18. 準備合併：`code-review-and-quality`
-19. 上線前缺觀測：`observability-and-instrumentation`
-20. 準備部署：`ci-cd-and-automation` + `shipping-and-launch`
+17. 需要 Lottie / motion graphics / animated SVG：`text-to-lottie`
+18. 要 babysit / monitor / watch 長時間任務：`recurring-monitoring`
+19. 測試 / runtime 問題：`browser-testing-with-devtools` 或 `debugging-and-error-recovery`
+20. 準備合併：`code-review-and-quality`
+21. 上線前缺觀測：`observability-and-instrumentation`
+22. 準備部署：`ci-cd-and-automation` + `shipping-and-launch`
 
 ## 兩種模式
 

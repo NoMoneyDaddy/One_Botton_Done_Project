@@ -11,6 +11,8 @@
 | `cavekit-check` | `JuliusBrussee/cavekit` `skills/check` | MIT | 已本地化為 `docs/SPEC.md` |
 | `ui-ux-designer` | `sickn33/antigravity-awesome-skills` `skills/ui-ux-designer` | MIT | 保留 UI/UX / accessibility 導向 |
 | `typescript-best-practices` | `shinpr/claude-code-workflows` `skills/typescript-rules` | MIT | 已裁切為 repo 通用 TypeScript 規則 |
+| `text-to-lottie` | `diffusionstudio/lottie` | MIT | 保留 Lottie 動畫 prompt 與落地路由，作為可選 motion skill lane |
+| `recurring-monitoring` | `Chravel-Inc/chravel-web` `skills/loop` | repo-level / mixed | 吸收 recurring watch 決策矩陣、exit policy、artifact discipline，但去除 Claude 專屬 cron 綁定 |
 
 ## 參考但未直接導入
 
@@ -47,5 +49,6 @@
 - TypeScript handbook / tsconfig：`typescriptlang.org`
 - MDN Responsive Design：`developer.mozilla.org`
 - web.dev Responsive Design：`web.dev/learn/design`
+- diffusionstudio/lottie README：`github.com/diffusionstudio/lottie`
 - Ponytail plugin README：`github.com/DietrichGebert/ponytail`
 - mcp-cli README：`github.com/doggy8088/mcp-cli`

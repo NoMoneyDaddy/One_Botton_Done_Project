@@ -16,12 +16,20 @@
 | T10 | x | 補 machine-readable manifest 與 fresh clone smoke test | `config/agent_manifest.json`、`scripts/fresh_clone_smoke_test.js` |
 | T11 | x | 補 provenance checklist 與 local marketplace smoke test | `docs/external_install_provenance_checklist.md`、`scripts/marketplace_install_smoke_test.js` |
 | T12 | x | 補自治評估 gate 與 loop promotion 入口 | `scripts/evaluate_session_loop.js`、`docs/loop_evaluation_gate.md` |
-| T13 | ~ | 持續移除過時文件敘述與擴充平台實測 | 後續維護項 |
+| T13 | x | 補 machine-readable policy / approval matrix | `config/execution_policy_matrix.json`、`docs/agent_execution_policy_matrix.md` |
+| T14 | x | 補 machine-readable learning ledger / retrospective loop | `.loop/LEARNINGS.json`、`docs/learning_ledger_loop.md` |
+| T15 | x | 抽 repo surface manifest，整併 bootstrap / integrity 清單 | `config/repo_surface_manifest.json` |
+| T16 | x | 補 CODEOWNERS、CHANGELOG、minimal example | `.github/CODEOWNERS`、`CHANGELOG.md`、`examples/minimal-workspace/README.md` |
+| T17 | x | 補 text-to-lottie skill lane、tests、learning ledger summary | `text-to-lottie`、`tests/*`、`scripts/summarize_learning_ledger.js` |
+| T18 | x | 補 recurring monitor、docs lifecycle、task bundle | `recurring-monitoring`、`docs/documentation_lifecycle_strategy.md`、`scripts/export_task_bundle.js` |
+| T19 | x | 補 mobile / desktop plan-only profiles 與官方文檔來源 | `config/project_config_profiles.json`、`config/official_doc_sources.json` |
+| T20 | x | 補 env/configuration loop 基線 | `docs/environment_variable_configuration_loop.md` |
+| T21 | ~ | 持續移除過時文件敘述與擴充平台實測 | 後續維護項 |
 
 ## Backlog
 
 - 補更多 profile 的官方 scaffold 與 config generation
 - 補更多平台實測證據，而不只相容性推論
 - 補真實 marketplace client / CLI end-to-end 安裝實測
-- 補 machine-readable learning ledger / retrospective loop
-- 補 machine-readable policy / approval matrix
+- 補更進一步的 learning ledger 自動回寫 / review feedback ingestion
+- 補更多 runnable examples / tests

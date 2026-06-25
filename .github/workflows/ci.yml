@@ -31,10 +31,13 @@ jobs:
           node --check scripts/auto_skill_setup.js
           node --check scripts/bootstrap_agent_files.js
           node --check scripts/generate_project_configs.js
+          node --check scripts/export_task_bundle.js
           node --check scripts/init_project_workspace.js
           node --check scripts/init_session_loop.js
           node --check scripts/inspect_agent_capabilities.js
+          node --check scripts/run_repo_tests.js
           node --check scripts/scaffold_project.js
+          node --check scripts/summarize_learning_ledger.js
           node --check scripts/validate_repo_integrity.js
 
       - name: Check shell syntax
@@ -50,12 +53,26 @@ jobs:
         run: |
           node scripts/validate_repo_integrity.js
 
+      - name: Run repo tests
+        run: |
+          node scripts/run_repo_tests.js
+
       - name: Smoke test session loop
         run: |
           tmp="$(mktemp -d)"
           node scripts/init_session_loop.js "$tmp" --goal "ci smoke"
           test -f "$tmp/.loop/GOAL.md"
           test -f "$tmp/.loop/STATE.json"
+          test -f "$tmp/.loop/LEARNINGS.json"
+
+      - name: Summarize learning ledger
+        run: |
+          node scripts/summarize_learning_ledger.js
+
+      - name: Export task bundle
+        run: |
+          node scripts/export_task_bundle.js
+          test -f ".loop/task_bundle.json"
 
       - name: Smoke test config generator
         run: |

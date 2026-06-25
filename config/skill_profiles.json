@@ -183,6 +183,20 @@
         "reason": "介面品質、設計系統與可用性"
       }
     ],
+    "motion-ui": [
+      {
+        "name": "text-to-lottie",
+        "source": "internal",
+        "reason": "需要 Lottie / motion graphics / animated SVG 時的技能路由"
+      }
+    ],
+    "monitoring": [
+      {
+        "name": "recurring-monitoring",
+        "source": "internal",
+        "reason": "定期 watch / babysit / monitor PR、deploy、long-running task"
+      }
+    ],
     "typescript": [
       {
         "name": "typescript-best-practices",
@@ -223,6 +237,18 @@
         "projectType": ["web-app", "landing-page", "data-dashboard", "ecommerce"]
       },
       "include": ["workflow-core", "quality-core", "core", "web-app"]
+    },
+    {
+      "when": {
+        "uiStyle": ["animated", "motion-heavy", "premium", "marketing"]
+      },
+      "include": ["motion-ui"]
+    },
+    {
+      "when": {
+        "projectType": ["web-app", "api-service", "mobile-app", "desktop-app"]
+      },
+      "include": ["monitoring"]
     },
     {
       "when": {

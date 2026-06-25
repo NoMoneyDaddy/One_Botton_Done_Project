@@ -42,6 +42,21 @@
 | `snarktank/ralph` | PRD completion loop | 以 PRD item 為收斂單位的重複執行模型 |
 | `the-open-engine/zeroshot` | reviewer-enforced loop | 獨立 reviewer feedback 不可省略，適合 verify gate 參考 |
 
+## Harness Engineering / Meta-Agent Evolution
+
+| Repo / Resource | 類型 | 可借鏡 |
+| --- | --- | --- |
+| `dresnite/loops` | lightweight loop engine | budget / task guardrails、run / logs / stop process model |
+| `NousResearch/hermes-agent` | self-improving agent product | built-in learning loop、memory、skills self-improvement、長時運行邊界 |
+| `HKUDS/OpenHarness` | open harness runtime | permission modes、path / command rules、hooks、tool / memory / swarm runtime |
+| `deusyu/harness-engineering` | learning guide | repo-as-record、mechanical enforcement、entropy management |
+| `walkinglabs/learn-harness-engineering` | beginner tutorial | onboarding / teaching flow、從 0 到 1 的學習路徑 |
+| `nexu-io/harness-engineering-guide` | open guide | concepts、papers、tools、resources 的 guide 結構 |
+| `ai-boost/awesome-harness-engineering` | awesome list | 候選工具、patterns、evals、memory、MCP、permissions 索引 |
+| `kevinrgu/autoagent` | autonomous harness engineering | benchmark score hill-climbing、meta-agent 改 harness 而不是人直接改 |
+| `https://hackmd.io/@BASHCAT/SkQEW0F2bg` | long-form article | Guides × Sensors 2x2、Harness templates、MDE -> AI harness 類比 |
+| `https://gist.github.com/xgqfrms-GitHub/34b482aace58a8dbb9134a2e86a2626c` | supplemental gist | 舊前端資源索引；僅作低優先補充，不作核心治理依據 |
+
 ## CI / Automation
 
 | Repo | 類型 | 可借鏡 |
@@ -61,6 +76,7 @@
 | `karero/website-builder` | website-builder skill suite | AI 網站建置 skill 化做法 |
 | `abi/screenshot-to-code` | screenshot-to-code | 視覺輸入轉 HTML / Tailwind / React / Vue 的實戰參考 |
 | `microsoft/design-to-code` | enterprise design system tooling | 設計系統、元件、流程工具鏈整合思路 |
+| `diffusionstudio/lottie` | text-to-lottie skill runtime | 讓 coding agent 產 Lottie / animated SVG / motion asset 的技能化做法 |
 
 ## Backend Engineering
 
@@ -100,6 +116,7 @@
 | `github/awesome-copilot` | instructions / agents catalog | catalog、分類、社群收錄模式 |
 | `K-Dense-AI/scientific-agent-skills` | domain skill library | 大型專業領域 skill bundles 的結構參考 |
 | `googleworkspace/cli` | tool + skills bundle | 單一 CLI 搭配 skills 的產品包裝方式 |
+| `Chravel-Inc/chravel-web` | repo-native plugin + skills | skill/plugin、ACTIVE/_archive 文件分層、monitoring discipline、runbook 密度值得借鏡 |
 
 ## Loop AI Methodologies
 
@@ -126,3 +143,9 @@
 8. `fastify/fastify`
 9. `semgrep/semgrep`
 10. `open-kya/kya-standard`
+11. `dresnite/loops`
+12. `HKUDS/OpenHarness`
+13. `NousResearch/hermes-agent`
+14. `kevinrgu/autoagent`
+15. `deusyu/harness-engineering`
+16. `https://hackmd.io/@BASHCAT/SkQEW0F2bg`

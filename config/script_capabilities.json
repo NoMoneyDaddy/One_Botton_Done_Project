@@ -21,8 +21,8 @@
       "fallback_mode": "manual-loop-evaluation",
       "fallback_steps": [
         "讀 docs/session_loop_contract.md 與 docs/loop_evaluation_gate.md",
-        "人工檢查 .loop/* 六個核心檔案是否存在且不是 placeholder",
-        "人工檢查 STATE.json 欄位、evidence、checkpoint、policy 是否齊全",
+        "人工檢查 .loop/* 七個核心檔案是否存在且不是 placeholder",
+        "人工檢查 STATE.json、LEARNINGS.json、evidence、checkpoint、policy 是否齊全",
         "把判斷結果寫入 .loop/CHECKPOINTS.md 或 docs/STATE.md"
       ]
     },
@@ -40,6 +40,42 @@
       ]
     },
     {
+      "path": "scripts/run_repo_tests.js",
+      "category": "quality-gate",
+      "requires": ["node", "filesystem:read"],
+      "scope": ["local-dev", "sandbox", "remote-runner", "ci"],
+      "fallback_mode": "manual-test-execution",
+      "fallback_steps": [
+        "逐一執行 tests/*.test.js 的關鍵檢查邏輯",
+        "至少確認 repo_surface_manifest 與 learning ledger summary 的核心不變量",
+        "把結果寫入 .loop/EVIDENCE.md 或 docs/STATE.md"
+      ]
+    },
+    {
+      "path": "scripts/summarize_learning_ledger.js",
+      "category": "accelerator",
+      "requires": ["node", "filesystem:read"],
+      "scope": ["local-dev", "sandbox", "remote-runner", "ci"],
+      "fallback_mode": "manual-learning-summary",
+      "fallback_steps": [
+        "讀 .loop/LEARNINGS.json",
+        "人工統計 keep / discard / retry / investigate 數量",
+        "把摘要寫入 .loop/CHECKPOINTS.md 或 docs/STATE.md"
+      ]
+    },
+    {
+      "path": "scripts/export_task_bundle.js",
+      "category": "accelerator",
+      "requires": ["node", "filesystem:read", "filesystem:write"],
+      "scope": ["local-dev", "sandbox", "remote-runner", "ci"],
+      "fallback_mode": "manual-task-bundle-export",
+      "fallback_steps": [
+        "讀 docs/SPEC.md 的 Goal / Constraints / Interfaces / Invariants / Tasks",
+        "人工整理成 machine-readable JSON",
+        "寫到 .loop/task_bundle.json 或目標輸出路徑"
+      ]
+    },
+    {
       "path": "scripts/init_session_loop.js",
       "category": "strong-accelerator",
       "requires": ["node", "filesystem:write"],
@@ -51,7 +87,8 @@
         "手動建立 .loop/STATE.json",
         "手動建立 .loop/CHECKPOINTS.md",
         "手動建立 .loop/EVIDENCE.md",
-        "手動建立 .loop/POLICY.md"
+        "手動建立 .loop/POLICY.md",
+        "手動建立 .loop/LEARNINGS.json"
       ]
     },
     {

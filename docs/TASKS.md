@@ -26,7 +26,8 @@
 | T20 | x | 補 env/configuration loop 基線 | `docs/environment_variable_configuration_loop.md` |
 | T21 | x | 補 Expo / Tauri runnable scaffold | `scripts/scaffold_project.js`、`scripts/generate_project_configs.js`、`tests/mobile_desktop_profile_files.test.js` |
 | T22 | x | 補 Capacitor / Electron runnable scaffold | `scripts/scaffold_project.js`、`scripts/generate_project_configs.js`、`tests/mobile_desktop_profile_files.test.js` |
-| T23 | ~ | 持續移除過時文件敘述與擴充其他平台實測 | 後續維護項 |
+| T23 | x | 補 platform prerequisite doctor | `config/platform_prerequisites.json`、`scripts/platform_prerequisite_doctor.js`、`tests/platform_prerequisite_doctor.test.js` |
+| T24 | ~ | 持續移除過時文件敘述與擴充其他平台實測 | 後續維護項 |
 
 ## Backlog
 

@@ -155,6 +155,18 @@
       ]
     },
     {
+      "path": "scripts/platform_prerequisite_doctor.js",
+      "category": "environment-bound",
+      "requires": ["node", "shell"],
+      "scope": ["local-dev", "sandbox", "remote-runner", "ci"],
+      "fallback_mode": "manual-platform-prerequisite-audit",
+      "fallback_steps": [
+        "讀 config/platform_prerequisites.json 與 docs/platform_prerequisite_doctor.md",
+        "人工逐項檢查 node、rust、flutter、xcode、android sdk 等依賴",
+        "把結果寫到 docs/STATE.md 或 .loop/EVIDENCE.md"
+      ]
+    },
+    {
       "path": "scripts/auto_skill_setup.js",
       "category": "accelerator",
       "requires": ["node", "filesystem:read"],

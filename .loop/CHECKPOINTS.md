@@ -9,6 +9,11 @@
 ## Entries
 
 - 2026-06-26
+  - 做了什麼：新增 `config/platform_prerequisites.json`、`scripts/platform_prerequisite_doctor.js`、`docs/platform_prerequisite_doctor.md`，把 Expo / Capacitor / Flutter / Tauri / Electron / iOS / Android 的原生 prerequisite 變成 machine-readable doctor。
+  - 怎麼驗證：`node scripts/run_repo_tests.js`、`node scripts/validate_repo_integrity.js`、`node scripts/platform_prerequisite_doctor.js --profile tauri-desktop`、`node scripts/platform_prerequisite_doctor.js --profile capacitor-mobile-app --json`、`git diff --check`。
+  - 下一輪做什麼：開 PR、等 CI；若合併完成，再補 `Flutter` runnable scaffold 或把 prerequisite doctor 接 scaffold gate。
+
+- 2026-06-26
   - 做了什麼：把 `capacitor-mobile-app`、`electron-desktop` 從 `plan-only` 升成 runnable scaffold；補 `generate_project_configs` 的 Capacitor / Electron baseline merge，並加入 `main.js` / `index.html` 與 profile 測試。
   - 怎麼驗證：`node scripts/run_repo_tests.js`、`node scripts/validate_repo_integrity.js`、`node scripts/scaffold_project.js /tmp/obd-capacitor-run2 --profile capacitor-mobile-app ... --run`、`node scripts/scaffold_project.js /tmp/obd-electron-run2 --profile electron-desktop ... --run`、`git diff --check`。
   - 下一輪做什麼：開 PR、等 CI；若合併完成，再補 `Flutter` 或 native prerequisite doctor。

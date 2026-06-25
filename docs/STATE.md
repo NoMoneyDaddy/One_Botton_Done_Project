@@ -39,6 +39,7 @@
 - `docs/large_project_dimensions_and_roles.md` 已補上
 - `scripts/fresh_clone_smoke_test.js` 已補上，驗證 fresh clone / bootstrap / session init 基線
 - `scripts/marketplace_install_smoke_test.js` 已補上，驗證 marketplace entry -> plugin -> skills path -> trigger skill 最小路徑
+- `config/platform_prerequisites.json`、`scripts/platform_prerequisite_doctor.js`、`docs/platform_prerequisite_doctor.md` 已補上，作為跨 mobile / desktop 原生依賴 gate
 
 ## Open Gaps
 
@@ -48,4 +49,4 @@
 - 真實 marketplace client / CLI 的 end-to-end 安裝實測仍未補齊
 - 更多 learning ledger 自動回寫規則尚未補上
 - 更多 examples / tests 仍未補齊
-- `Flutter`、`SwiftUI`、`Android Kotlin` 仍屬 `plan-only`，尚未補 config generation / smoke / runbook
+- `Flutter`、`SwiftUI`、`Android Kotlin` 仍屬 `plan-only`，但 prerequisite doctor 已補上，缺的是 runnable scaffold / config generation / smoke

@@ -47,6 +47,7 @@
     "docs/marketplace_open_source_readiness.md",
     "docs/release_version_policy.md",
     "docs/platform_support_matrix.md",
+    "docs/platform_prerequisite_doctor.md",
     "docs/project_lifecycle_automation.md",
     "docs/project_architecture_best_practices.md",
     "docs/SPEC_FORMAT.md",
@@ -60,6 +61,7 @@
     "config/execution_policy_matrix.json",
     "config/learning_ledger_schema.json",
     "config/official_doc_sources.json",
+    "config/platform_prerequisites.json",
     "config/project_config_profiles.json",
     "config/repo_surface_manifest.json",
     "config/script_capabilities.json",
@@ -74,6 +76,7 @@
     "scripts/marketplace_install_smoke_test.js",
     "scripts/generate_project_configs.js",
     "scripts/scaffold_project.js",
+    "scripts/platform_prerequisite_doctor.js",
     "scripts/auto_skill_setup.js",
     "scripts/bootstrap_agent_files.js",
     "scripts/export_task_bundle.js",
@@ -144,6 +147,7 @@
     "config/execution_policy_matrix.json",
     "config/learning_ledger_schema.json",
     "config/official_doc_sources.json",
+    "config/platform_prerequisites.json",
     "config/repo_surface_manifest.json",
     "config/project_config_profiles.json",
     "config/script_capabilities.json",
@@ -154,7 +158,8 @@
     "examples/text-to-lottie/README.md",
     "tests/repo_surface_manifest.test.js",
     "tests/learning_ledger_summary.test.js",
-    "tests/task_bundle_export.test.js"
+    "tests/task_bundle_export.test.js",
+    "tests/platform_prerequisite_doctor.test.js"
   ],
   "integrity_required_dirs": [
     ".agents/skills",

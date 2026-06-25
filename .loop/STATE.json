@@ -8,9 +8,9 @@
   "status": "active",
   "phase": "Ship",
   "current_state": "ship-prep",
-  "current_task": "Capacitor / Electron 已升成 runnable scaffold，並完成實際 scaffold smoke；準備提交新 PR",
+  "current_task": "platform prerequisite doctor 已補上，能 machine-readable 檢查 mobile / desktop 原生依賴；準備提交新 PR",
   "retry_count": 0,
   "blocked_reason": null,
-  "last_verified_at": "2026-06-26T02:20:00Z",
-  "updated_at": "2026-06-26T02:20:00Z"
+  "last_verified_at": "2026-06-26T03:00:00Z",
+  "updated_at": "2026-06-26T03:00:00Z"
 }

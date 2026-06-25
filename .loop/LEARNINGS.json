@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "updated_at": "2026-06-26T02:20:00Z",
+  "updated_at": "2026-06-26T03:00:00Z",
   "rollup": {
     "retained_patterns": [
       "先用 machine-readable policy 定義自治邊界",
@@ -12,10 +12,26 @@
     "next_experiments": [
       "把更多 PR / review feedback 回寫成 keep-or-discard 條目",
       "用 summarize_learning_ledger.js 做 score aggregation",
-      "把 Flutter / native prerequisite doctor 補成 machine-readable gate"
+      "把 Flutter runnable scaffold 補上，並把 prerequisite doctor 更早接到 scaffold gate"
     ]
   },
   "entries": [
+    {
+      "id": "2026-06-26-prerequisite-doctor",
+      "date": "2026-06-26",
+      "context": "cross-environment profile 越來越多，僅靠 README 提醒已不足",
+      "change": "新增 machine-readable prerequisite doctor，統一檢查 Node、Rust、Flutter、Xcode、Android SDK 等條件",
+      "hypothesis": "把平台依賴變成結構化 doctor，能讓 agent 在宣稱 runnable 前先有客觀 gate，降低假陽性能力敘述",
+      "result": "保留",
+      "decision": "keep",
+      "evidence_refs": [
+        "config/platform_prerequisites.json",
+        "scripts/platform_prerequisite_doctor.js",
+        "docs/platform_prerequisite_doctor.md",
+        "tests/platform_prerequisite_doctor.test.js"
+      ],
+      "next_action": "把 prerequisite doctor 接到 scaffold / config workflow 的更早階段"
+    },
     {
       "id": "2026-06-26-capacitor-electron-runnable",
       "date": "2026-06-26",

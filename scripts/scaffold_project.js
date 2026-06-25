@@ -97,6 +97,14 @@ function ensureDir(dirPath) {
   }
 }
 
+function slugifyIdentifier(value) {
+  return String(value || 'app')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '')
+    .replace(/^[^a-z]+/, '')
+    || 'app';
+}
+
 function runCommand(command, args, options = {}) {
   const result = spawnSync(command, args, {
     stdio: 'inherit',
@@ -234,7 +242,16 @@ function buildScaffoldCommand(profileKey, projectName, targetRoot, options) {
   if (profileKey === 'capacitor-mobile-app') {
     return {
       command: 'npm',
-      args: ['init', '@capacitor/app@latest', projectName]
+      args: [
+        'init',
+        '@capacitor/app@latest',
+        targetRoot,
+        '--',
+        '--name',
+        projectName,
+        '--app-id',
+        `com.nomoneydaddy.${slugifyIdentifier(projectName)}`
+      ]
     };
   }
 
@@ -254,7 +271,10 @@ function buildScaffoldCommand(profileKey, projectName, targetRoot, options) {
   }
 
   if (profileKey === 'electron-desktop') {
-    return buildManualPlanCommand('follow electron official quick start tutorial');
+    return {
+      command: 'internal-electron-bootstrap',
+      args: [projectName]
+    };
   }
 
   if (profileKey === 'ios-swiftui') {
@@ -276,6 +296,9 @@ function installCommand(packageManager) {
 }
 
 function formatCommand(scaffold) {
+  if (scaffold.command === 'internal-electron-bootstrap') {
+    return `mkdir -p <target> && (cd <target> && npm init -y && npm install -D electron)`;
+  }
   const command = `${scaffold.command} ${scaffold.args.join(' ')}`;
   return scaffold.cwd ? `(cd ${scaffold.cwd} && ${command})` : command;
 }
@@ -336,7 +359,15 @@ function main() {
     ensureDir(targetRoot);
   }
 
-  runCommand(scaffold.command, scaffold.args, { cwd: scaffold.cwd || path.dirname(targetRoot) });
+  if (options.profile === 'electron-desktop') {
+    ensureDir(targetRoot);
+    runCommand('npm', ['init', '-y'], { cwd: targetRoot });
+    if (!options.skipInstall) {
+      runCommand('npm', ['install', '-D', 'electron'], { cwd: targetRoot });
+    }
+  } else {
+    runCommand(scaffold.command, scaffold.args, { cwd: scaffold.cwd || path.dirname(targetRoot) });
+  }
   runCommand(process.execPath, [initWorkspaceScript, targetRoot, '--name', projectName, '--idea', options.projectIdea || '', '--force']);
   runCommand(process.execPath, [
     generateConfigsScript,

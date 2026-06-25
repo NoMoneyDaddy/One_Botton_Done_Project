@@ -10,6 +10,13 @@
 
 ## Entries
 
+- 2026-06-26
+  - `node scripts/run_repo_tests.js`
+  - `node scripts/validate_repo_integrity.js`
+  - `node scripts/scaffold_project.js /tmp/obd-capacitor-run2 --profile capacitor-mobile-app --name obd-capacitor-run2 --idea "capacitor smoke" --database supabase --quality-tool biome --run`
+  - `node scripts/scaffold_project.js /tmp/obd-electron-run2 --profile electron-desktop --name obd-electron-run2 --idea "electron smoke" --database supabase --quality-tool biome --run`
+  - `git diff --check`
+
 - 2026-06-25
   - `node scripts/run_repo_tests.js`
   - `node scripts/validate_repo_integrity.js`

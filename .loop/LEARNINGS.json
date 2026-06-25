@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "updated_at": "2026-06-25T16:40:00Z",
+  "updated_at": "2026-06-26T02:20:00Z",
   "rollup": {
     "retained_patterns": [
       "先用 machine-readable policy 定義自治邊界",
@@ -12,10 +12,27 @@
     "next_experiments": [
       "把更多 PR / review feedback 回寫成 keep-or-discard 條目",
       "用 summarize_learning_ledger.js 做 score aggregation",
-      "把 Capacitor / Electron 也補成 runnable scaffold"
+      "把 Flutter / native prerequisite doctor 補成 machine-readable gate"
     ]
   },
   "entries": [
+    {
+      "id": "2026-06-26-capacitor-electron-runnable",
+      "date": "2026-06-26",
+      "context": "把 hybrid mobile / desktop 支援從文件規劃再往前推一輪",
+      "change": "將 capacitor-mobile-app 與 electron-desktop 升成 runnable scaffold，並補 config overlay、Electron starter files 與實際 scaffold smoke",
+      "hypothesis": "優先吃官方 scaffold 明確、依賴面可控的 profile，能持續把 cross-environment 支援轉成可驗證能力，而不是只停在技術選型文件",
+      "result": "保留",
+      "decision": "keep",
+      "evidence_refs": [
+        "scripts/scaffold_project.js",
+        "scripts/generate_project_configs.js",
+        "tests/mobile_desktop_profile_files.test.js",
+        "docs/tech_stack_guide.md",
+        "docs/project_config_generation.md"
+      ],
+      "next_action": "補 Flutter 或 native prerequisite doctor，讓剩餘平台也有明確 gate"
+    },
     {
       "id": "2026-06-25-expo-tauri-runnable",
       "date": "2026-06-25",

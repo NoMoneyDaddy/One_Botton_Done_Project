@@ -25,7 +25,8 @@
 | T19 | x | 補 mobile / desktop plan-only profiles 與官方文檔來源 | `config/project_config_profiles.json`、`config/official_doc_sources.json` |
 | T20 | x | 補 env/configuration loop 基線 | `docs/environment_variable_configuration_loop.md` |
 | T21 | x | 補 Expo / Tauri runnable scaffold | `scripts/scaffold_project.js`、`scripts/generate_project_configs.js`、`tests/mobile_desktop_profile_files.test.js` |
-| T22 | ~ | 持續移除過時文件敘述與擴充其他平台實測 | 後續維護項 |
+| T22 | x | 補 Capacitor / Electron runnable scaffold | `scripts/scaffold_project.js`、`scripts/generate_project_configs.js`、`tests/mobile_desktop_profile_files.test.js` |
+| T23 | ~ | 持續移除過時文件敘述與擴充其他平台實測 | 後續維護項 |
 
 ## Backlog
 

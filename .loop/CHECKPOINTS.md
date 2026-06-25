@@ -8,6 +8,11 @@
 
 ## Entries
 
+- 2026-06-26
+  - 做了什麼：把 `capacitor-mobile-app`、`electron-desktop` 從 `plan-only` 升成 runnable scaffold；補 `generate_project_configs` 的 Capacitor / Electron baseline merge，並加入 `main.js` / `index.html` 與 profile 測試。
+  - 怎麼驗證：`node scripts/run_repo_tests.js`、`node scripts/validate_repo_integrity.js`、`node scripts/scaffold_project.js /tmp/obd-capacitor-run2 --profile capacitor-mobile-app ... --run`、`node scripts/scaffold_project.js /tmp/obd-electron-run2 --profile electron-desktop ... --run`、`git diff --check`。
+  - 下一輪做什麼：開 PR、等 CI；若合併完成，再補 `Flutter` 或 native prerequisite doctor。
+
 - 2026-06-25
   - 做了什麼：把 `react-native-expo`、`tauri-desktop` 從 `plan-only` 升成 runnable scaffold；補 `generate_project_configs` 的 mobile / desktop baseline merge，並新增 `tests/mobile_desktop_profile_files.test.js`。
   - 怎麼驗證：`node scripts/run_repo_tests.js`、`node scripts/validate_repo_integrity.js`、`node scripts/evaluate_session_loop.js .`、`node scripts/scaffold_project.js /tmp/obd-expo-run --profile react-native-expo ... --skip-install --run`、`node scripts/scaffold_project.js /tmp/obd-tauri-run --profile tauri-desktop ... --run`、`git diff --check`。

@@ -69,11 +69,19 @@ function writeFileIfAllowed(filePath, content, force) {
 function mergePackageJson(existing, generated, force) {
   const merged = { ...existing };
 
-  for (const key of ['name', 'private', 'type', 'engines']) {
+  for (const key of ['name', 'private', 'type', 'engines', 'main']) {
     if (generated[key] === undefined) continue;
     if (force || merged[key] === undefined) {
       merged[key] = generated[key];
     }
+  }
+
+  if (!force && existing.name === 'capacitor-app' && generated.name) {
+    merged.name = generated.name;
+  }
+
+  if (!force && existing.main === 'index.js' && generated.main === 'main.js') {
+    merged.main = generated.main;
   }
 
   for (const key of ['scripts', 'dependencies', 'devDependencies']) {
@@ -160,6 +168,14 @@ function buildGitignore(profile, options) {
 
   if (profile === 'tauri-desktop') {
     lines.push('dist', '.vite', 'src-tauri/target', 'target');
+  }
+
+  if (profile === 'capacitor-mobile-app') {
+    lines.push('dist', '.vite', 'android', 'ios');
+  }
+
+  if (profile === 'electron-desktop') {
+    lines.push('node_modules', 'out');
   }
 
   if (options.database === 'supabase') {
@@ -364,6 +380,63 @@ function buildTauriPackageJson(name, options) {
   return pkg;
 }
 
+function buildCapacitorPackageJson(name, options) {
+  const pkg = packageJsonBase(name);
+  pkg.type = 'module';
+  pkg.scripts = {};
+  pkg.dependencies = {};
+  pkg.devDependencies = {};
+
+  if (options.language === 'typescript') {
+    pkg.devDependencies.typescript = 'latest';
+    pkg.scripts.typecheck = 'tsc --noEmit';
+  }
+
+  if (options.database === 'supabase') {
+    pkg.dependencies['@supabase/supabase-js'] = 'latest';
+  }
+
+  if (options.qualityTool === 'biome') {
+    pkg.devDependencies['@biomejs/biome'] = 'latest';
+    pkg.scripts.format = 'biome format --write .';
+    pkg.scripts.lint = 'biome lint .';
+    pkg.scripts.check = 'biome check .';
+    pkg.scripts['check:write'] = 'biome check --write .';
+  }
+
+  return pkg;
+}
+
+function buildElectronPackageJson(name, options) {
+  const pkg = packageJsonBase(name);
+  pkg.main = options.language === 'typescript' ? 'main.js' : 'main.js';
+  pkg.type = 'commonjs';
+  pkg.scripts = {
+    start: 'electron .'
+  };
+  pkg.dependencies = {};
+  pkg.devDependencies = {};
+
+  if (options.language === 'typescript') {
+    pkg.devDependencies.typescript = 'latest';
+    pkg.scripts.typecheck = 'tsc --noEmit';
+  }
+
+  if (options.database === 'supabase') {
+    pkg.dependencies['@supabase/supabase-js'] = 'latest';
+  }
+
+  if (options.qualityTool === 'biome') {
+    pkg.devDependencies['@biomejs/biome'] = 'latest';
+    pkg.scripts.format = 'biome format --write .';
+    pkg.scripts.lint = 'biome lint .';
+    pkg.scripts.check = 'biome check .';
+    pkg.scripts['check:write'] = 'biome check --write .';
+  }
+
+  return pkg;
+}
+
 function buildNextTsconfig() {
   return `${JSON.stringify(
     {
@@ -504,12 +577,18 @@ function buildEnvExample(profile, options) {
     } else if (profile === 'react-native-expo') {
       lines.push('EXPO_PUBLIC_SUPABASE_URL=');
       lines.push('EXPO_PUBLIC_SUPABASE_ANON_KEY=');
+    } else if (profile === 'capacitor-mobile-app') {
+      lines.push('VITE_SUPABASE_URL=');
+      lines.push('VITE_SUPABASE_ANON_KEY=');
     } else if (profile === 'vite-react') {
       lines.push('VITE_SUPABASE_URL=');
       lines.push('VITE_SUPABASE_ANON_KEY=');
     } else if (profile === 'tauri-desktop') {
       lines.push('VITE_SUPABASE_URL=');
       lines.push('VITE_SUPABASE_ANON_KEY=');
+    } else if (profile === 'electron-desktop') {
+      lines.push('SUPABASE_URL=');
+      lines.push('SUPABASE_ANON_KEY=');
     } else {
       lines.push('SUPABASE_URL=');
       lines.push('SUPABASE_ANON_KEY=');
@@ -536,7 +615,9 @@ function buildStackSetup(profileKey, profile, name, options) {
   if (profileKey === 'nextjs-app-router' && options.styling === 'tailwind') generated.push('postcss.config.mjs');
   if (profileKey === 'vite-react') generated.push(viteConfigFile(options));
   if (profileKey === 'react-native-expo') generated.push('docs/STACK_SETUP.md');
+  if (profileKey === 'capacitor-mobile-app') generated.push('docs/STACK_SETUP.md');
   if (profileKey === 'tauri-desktop') generated.push('docs/STACK_SETUP.md');
+  if (profileKey === 'electron-desktop') generated.push('main.js', 'index.html', 'docs/STACK_SETUP.md');
 
   followUps.push(`1. 執行 \`${installCommand(options.packageManager)}\``);
   if (profileKey === 'nextjs-app-router') {
@@ -557,6 +638,14 @@ function buildStackSetup(profileKey, profile, name, options) {
   if (profileKey === 'tauri-desktop') {
     followUps.push('2. 先確認 Rust toolchain 已安裝，再執行 `npm run tauri dev`');
     followUps.push('3. 若要改前端框架，再回官方 `create-tauri-app` 文件選別的 template');
+  }
+  if (profileKey === 'capacitor-mobile-app') {
+    followUps.push('2. 先執行 `npm run build`，再用 `npx cap sync` 把 web bundle 同步到 native project');
+    followUps.push('3. 若要進 iOS / Android，先確認 Xcode / Android Studio 環境，再執行 `npx cap add ios` / `npx cap add android`');
+  }
+  if (profileKey === 'electron-desktop') {
+    followUps.push('2. 執行 `npm run start` 啟動 Electron 主程序');
+    followUps.push('3. 若要打包，後續再接 Electron Forge / Builder，不要在基線階段假裝已完成');
   }
   if (options.database === 'supabase') {
     followUps.push('4. 補齊 `.env.example` 對應的 Supabase URL / key');
@@ -593,9 +682,58 @@ ${followUps.map((line) => `- ${line}`).join('\n')}
 - Greenfield 專案若還沒建，優先用官方 scaffold 建骨架，再用本 repo 補治理層與 quality / env / config 對齊。
 - Next.js 官方安裝文件已支援 TypeScript、Tailwind、AGENTS.md，手動生成時仍應回官方文件確認版本需求。
 - Expo app config (\`app.json\` / \`app.config.ts\`) 會暴露 public config；秘密值不要直接寫進 app config。
+- Capacitor 的 native 專案不是永遠手動編；以 \`npx cap add\` / \`npx cap sync\` 為準，不要自行編造 platform 檔樹。
 - Tauri 專案啟動前通常還需要 Rust toolchain；scaffold 成功不等於本機原生依賴已完備。
+- Electron 官方最小 starter 只保證 dev 啟動；打包、簽章、auto-update 需額外工具鏈。
 - Tailwind v4 的 Next.js / Vite 方案都不一定需要傳統 \`tailwind.config.js\`；請以官方最新安裝頁為準。
 - Supabase CLI 的 \`supabase/config.toml\` 由 \`supabase init\` 產生；不要在 repo 內假造過時模板。
+`;
+}
+
+function buildElectronMain() {
+  return `const { app, BrowserWindow } = require('electron/main');
+
+const createWindow = () => {
+  const win = new BrowserWindow({
+    width: 800,
+    height: 600,
+  });
+
+  win.loadFile('index.html');
+};
+
+app.whenReady().then(() => {
+  createWindow();
+
+  app.on('activate', () => {
+    if (BrowserWindow.getAllWindows().length === 0) {
+      createWindow();
+    }
+  });
+});
+
+app.on('window-all-closed', () => {
+  if (process.platform !== 'darwin') {
+    app.quit();
+  }
+});
+`;
+}
+
+function buildElectronIndexHtml() {
+  return `<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
+    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
+    <title>Hello from Electron renderer!</title>
+  </head>
+  <body>
+    <h1>Hello from Electron renderer!</h1>
+    <p>👋</p>
+  </body>
+</html>
 `;
 }
 
@@ -605,7 +743,9 @@ function buildProfileFiles(profileKey, profile, name, options) {
     'vite-react': buildVitePackageJson,
     'node-express-api': buildExpressPackageJson,
     'react-native-expo': buildExpoPackageJson,
-    'tauri-desktop': buildTauriPackageJson
+    'capacitor-mobile-app': buildCapacitorPackageJson,
+    'tauri-desktop': buildTauriPackageJson,
+    'electron-desktop': buildElectronPackageJson
   };
   const files = new Map();
   const packageJson = packageBuilders[profileKey](name, options);
@@ -638,6 +778,11 @@ function buildProfileFiles(profileKey, profile, name, options) {
 
   if (profileKey === 'vite-react') {
     files.set(viteConfigFile(options), buildViteConfig(options));
+  }
+
+  if (profileKey === 'electron-desktop') {
+    files.set('main.js', buildElectronMain());
+    files.set('index.html', buildElectronIndexHtml());
   }
 
   return files;

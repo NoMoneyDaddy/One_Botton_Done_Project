@@ -46,7 +46,7 @@
     },
     "capacitor-mobile-app": {
       "displayName": "Capacitor Mobile App",
-      "supportLevel": "plan-only",
+      "supportLevel": "full",
       "projectTypes": ["mobile-app"],
       "languages": ["typescript", "javascript"],
       "styling": ["tailwind", "none"],
@@ -79,7 +79,7 @@
     },
     "electron-desktop": {
       "displayName": "Electron Desktop",
-      "supportLevel": "plan-only",
+      "supportLevel": "full",
       "projectTypes": ["desktop-app"],
       "languages": ["typescript", "javascript"],
       "styling": ["none"],

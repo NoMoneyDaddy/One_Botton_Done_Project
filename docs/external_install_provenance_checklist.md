@@ -12,11 +12,11 @@
 
 ## Trusted Source Order
 
-1. repo 內既有 `scripts/`、`config/`、`.agents/skills/`
-2. 官方文件
-3. 官方 package registry
-4. 官方 GitHub repo
-5. 已驗證 maintainer 發佈頁
+1. 官方文件
+2. 官方 package registry
+3. 官方 GitHub repo
+4. 已驗證 maintainer 發佈頁
+5. repo 內既有 `scripts/`、`config/`、`.agents/skills/` 只作為輔助參考
 
 若來源掉到第 5 層以下，預設視為高風險。
 

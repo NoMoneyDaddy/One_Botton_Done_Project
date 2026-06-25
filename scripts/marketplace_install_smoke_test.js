@@ -22,6 +22,11 @@ function assert(condition, message) {
   if (!condition) throw new Error(message);
 }
 
+function assertInsideRepo(targetPath, label) {
+  const relative = path.relative(repoRoot, targetPath);
+  assert(relative === '' || (!relative.startsWith('..') && !path.isAbsolute(relative)), `${label} escapes repo root`);
+}
+
 function ensureFile(filePath) {
   assert(fs.existsSync(filePath), `missing file: ${path.relative(repoRoot, filePath)}`);
 }
@@ -31,49 +36,57 @@ function ensureDir(dirPath) {
 }
 
 function main() {
-  const marketplace = readJson(path.join(repoRoot, '.agents/plugins/marketplace.json'));
-  const pluginEntry = Array.isArray(marketplace.plugins)
-    ? marketplace.plugins.find((item) => item.name === 'one-button-done-project')
-    : null;
-
-  assert(pluginEntry, 'marketplace missing one-button-done-project entry');
-  assert(pluginEntry.source?.source === 'local', 'marketplace plugin source must be local');
-
-  const pluginRoot = path.resolve(repoRoot, pluginEntry.source.path || '.');
-  const pluginManifestPath = path.join(pluginRoot, '.codex-plugin', 'plugin.json');
-  ensureFile(pluginManifestPath);
-
-  const pluginManifest = readJson(pluginManifestPath);
-  assert(pluginManifest.name === pluginEntry.name, 'plugin manifest name mismatch');
-
-  const skillsPath = path.resolve(pluginRoot, pluginManifest.skills || '.agents/skills');
-  ensureDir(skillsPath);
-  ensureFile(path.join(skillsPath, 'using-agent-skills', 'SKILL.md'));
-  ensureFile(path.join(skillsPath, 'tool-discovery-and-installation', 'SKILL.md'));
-
   const scratchRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'obdp-marketplace-'));
-  const workspaceTarget = path.join(scratchRoot, 'workspace-target');
+  try {
+    const marketplace = readJson(path.join(repoRoot, '.agents/plugins/marketplace.json'));
+    const pluginEntry = Array.isArray(marketplace.plugins)
+      ? marketplace.plugins.find((item) => item.name === 'one-button-done-project')
+      : null;
 
-  run('node', ['scripts/bootstrap_agent_files.js', workspaceTarget, '--force'], repoRoot);
-  run('node', ['scripts/init_project_workspace.js', workspaceTarget, '--name', 'marketplace-smoke', '--idea', 'marketplace install smoke test'], repoRoot);
-  run('node', ['scripts/init_session_loop.js', workspaceTarget, '--goal', 'marketplace install smoke', '--force'], repoRoot);
-  run('node', ['scripts/validate_repo_integrity.js'], workspaceTarget);
+    assert(pluginEntry, 'marketplace missing one-button-done-project entry');
+    assert(pluginEntry.source?.source === 'local', 'marketplace plugin source must be local');
+    assert(typeof pluginEntry.source?.path === 'string' && pluginEntry.source.path.trim().length > 0, 'marketplace plugin source.path is required');
 
-  ensureFile(path.join(workspaceTarget, 'AGENTS.md'));
-  ensureFile(path.join(workspaceTarget, 'README.md'));
-  ensureFile(path.join(workspaceTarget, 'docs/SPEC.md'));
-  ensureFile(path.join(workspaceTarget, '.agents/skills/using-agent-skills/SKILL.md'));
-  ensureFile(path.join(workspaceTarget, '.claude/skills/using-agent-skills/SKILL.md'));
-  ensureFile(path.join(workspaceTarget, 'skills/using-agent-skills/SKILL.md'));
+    const pluginRoot = path.resolve(repoRoot, pluginEntry.source.path);
+    assertInsideRepo(pluginRoot, 'pluginRoot');
+    const pluginManifestPath = path.join(pluginRoot, '.codex-plugin', 'plugin.json');
+    ensureFile(pluginManifestPath);
 
-  const wrapper = fs.readFileSync(path.join(workspaceTarget, '.claude/skills/using-agent-skills/SKILL.md'), 'utf8');
-  assert(wrapper.includes('Canonical content lives at'), 'mirror wrapper missing canonical pointer');
+    const pluginManifest = readJson(pluginManifestPath);
+    assert(pluginManifest.name === pluginEntry.name, 'plugin manifest name mismatch');
+    assert(typeof pluginManifest.skills === 'string' && pluginManifest.skills.trim().length > 0, 'plugin manifest skills path is required');
 
-  const canonical = fs.readFileSync(path.join(workspaceTarget, '.agents/skills/using-agent-skills/SKILL.md'), 'utf8');
-  assert(canonical.includes('name: using-agent-skills'), 'canonical skill name missing');
-  assert(canonical.includes('## 目標'), 'canonical skill core section missing');
+    const skillsPath = path.resolve(pluginRoot, pluginManifest.skills);
+    assertInsideRepo(skillsPath, 'skillsPath');
+    ensureDir(skillsPath);
+    ensureFile(path.join(skillsPath, 'using-agent-skills', 'SKILL.md'));
+    ensureFile(path.join(skillsPath, 'tool-discovery-and-installation', 'SKILL.md'));
 
-  console.log('marketplace install smoke test ok');
+    const workspaceTarget = path.join(scratchRoot, 'workspace-target');
+
+    run('node', ['scripts/bootstrap_agent_files.js', workspaceTarget, '--force'], repoRoot);
+    run('node', ['scripts/init_project_workspace.js', workspaceTarget, '--name', 'marketplace-smoke', '--idea', 'marketplace install smoke test'], repoRoot);
+    run('node', ['scripts/init_session_loop.js', workspaceTarget, '--goal', 'marketplace install smoke', '--force'], repoRoot);
+    run('node', ['scripts/validate_repo_integrity.js'], workspaceTarget);
+
+    ensureFile(path.join(workspaceTarget, 'AGENTS.md'));
+    ensureFile(path.join(workspaceTarget, 'README.md'));
+    ensureFile(path.join(workspaceTarget, 'docs/SPEC.md'));
+    ensureFile(path.join(workspaceTarget, '.agents/skills/using-agent-skills/SKILL.md'));
+    ensureFile(path.join(workspaceTarget, '.claude/skills/using-agent-skills/SKILL.md'));
+    ensureFile(path.join(workspaceTarget, 'skills/using-agent-skills/SKILL.md'));
+
+    const wrapper = fs.readFileSync(path.join(workspaceTarget, '.claude/skills/using-agent-skills/SKILL.md'), 'utf8');
+    assert(wrapper.includes('Canonical content lives at'), 'mirror wrapper missing canonical pointer');
+
+    const canonical = fs.readFileSync(path.join(workspaceTarget, '.agents/skills/using-agent-skills/SKILL.md'), 'utf8');
+    assert(canonical.includes('name: using-agent-skills'), 'canonical skill name missing');
+    assert(canonical.includes('## 目標'), 'canonical skill core section missing');
+
+    console.log('marketplace install smoke test ok');
+  } finally {
+    fs.rmSync(scratchRoot, { recursive: true, force: true });
+  }
 }
 
 if (require.main === module) {

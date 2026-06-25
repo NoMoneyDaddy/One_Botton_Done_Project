@@ -31,6 +31,9 @@
 | `HKUDS/OpenHarness` | permissions、hooks、swarm、memory、tool runtime 一體化 | runtime 比本 repo 重很多；需要較完整 agent host | 借鏡 execution policy matrix、permission modes、hook surfaces |
 | `kevinrgu/autoagent` | benchmark score 驅動 meta-agent 反覆優化 harness | 依賴 benchmark 生態；更偏研究 / 實驗 loop | 借鏡 learning ledger、score / keep-or-discard、program-the-meta-agent 思路 |
 | `deusyu/harness-engineering` / `walkinglabs/learn-harness-engineering` / `nexu-io/harness-engineering-guide` | 教學脈絡清楚，適合把方法論拆成可學習模組 | 以學習 / 索引為主，不是直接可執行 runtime | 借鏡 reading path、concept map、reference structure |
+| `Simpleyyt/ai-manus` | task sandbox、SSE event stream、frontend/backend/sandbox 分層、Docker Compose 落地強 | 偏產品 runtime，不是 repo-first 輕核心；有 Mongo/Redis 等重量依賴 | 借鏡 sandbox/session/runtime topology 文件、background task 與 event stream 心智模型 |
+| `Fosowl/agenticSeek` | local-first、provider abstraction、Docker/host network troubleshooting 很實、CLI/Web 雙模式 | 偏單產品 runtime；license 與架構不宜直接移植 | 借鏡 local provider matrix、sandbox 網路故障排除、host vs docker runbook |
+| `FoundationAgents/OpenManus` | quick-start 很短、config surface 清楚、multi-agent 與 MCP 是可選入口 | 偏 Python runtime，不是跨平台 repo-first 治理層 | 借鏡 runtime quick-start lane、optional feature gate、單代理 / 多代理 / MCP 分層入口 |
 
 ## Direction
 
@@ -109,6 +112,8 @@
 - machine-readable manifest
 - fresh-clone smoke test
 - machine-readable execution policy / approval matrix
+- sandbox / session runtime topology
+- local-first provider / Docker-host troubleshooting runbook
 
 ### Adapt With Repo Context
 
@@ -119,6 +124,7 @@
 - task / run registry
 - design-to-code as optional skill lane
 - reviewer-enforced convergence
+- session control plane / sandbox lease / event stream schema
 
 ### Avoid For Now
 
@@ -152,5 +158,8 @@
 - https://github.com/nexu-io/harness-engineering-guide
 - https://github.com/ai-boost/awesome-harness-engineering
 - https://github.com/kevinrgu/autoagent
+- https://github.com/Simpleyyt/ai-manus
+- https://github.com/Fosowl/agenticSeek
+- https://github.com/FoundationAgents/OpenManus
 - https://hackmd.io/@BASHCAT/SkQEW0F2bg
 - https://gist.github.com/xgqfrms-GitHub/34b482aace58a8dbb9134a2e86a2626c

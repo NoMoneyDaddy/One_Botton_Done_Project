@@ -69,6 +69,25 @@ npx @biomejs/biome ci .
 - 要在 CI / sandbox 跑瀏覽器驗證時，先確認 Node.js 與權限存在，再裝 AI 補強工具。
 - 優先順序：先 `--doctor` 看缺口，再決定要不要 `--install-*`。
 
+## Docker / Host 網路排錯
+
+若 sandbox / container 內要連本機工具或本機模型：
+
+- 先分清楚「host port」與「container 內 service URL」
+- Docker Desktop 常可用 `host.docker.internal`
+- Linux 容器常需要額外 `extra_hosts`
+
+常見例子：
+
+- 本機 Ollama 給 container 連時，常要綁 `0.0.0.0`
+- SearxNG / Redis 這類 compose service，在 container 內通常走 service name，不是 `localhost`
+- Browser / ChromeDriver mismatch 要明確看 browser version 與 driver version
+
+原則：
+
+- 先證明 connectivity，再懷疑 agent prompt
+- 先查官方文檔，再看高品質實作 repo 的 troubleshooting
+
 ## 常用範例
 
 ```bash

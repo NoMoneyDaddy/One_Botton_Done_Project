@@ -3,6 +3,7 @@
 本 repo 現在採用「共享核心指令 + 各工具入口檔 + 官方 skill runtime 路徑」模式，避免同一套規範分散在不同檔案後逐漸漂移。
 
 若要看更細的平台級支援分級，直接讀 `docs/platform_support_matrix.md`。
+若要看「能力可攜」而不是只有入口相容，讀 `docs/cross_ai_capability_portability.md`。
 
 ## 目前相容策略
 

@@ -9,6 +9,16 @@
 ## Entries
 
 - 2026-06-26
+  - 做了什麼：補 `config/capability_portability_matrix.json` 與 `docs/cross_ai_capability_portability.md`，把「Claude Code / Cursor / Codex / Gemini / Hermes / OpenClaw 讀完 repo 後可攜哪些能力」明確化。
+  - 怎麼驗證：`node scripts/run_repo_tests.js`、`node scripts/validate_repo_integrity.js`、`git diff --check`。
+  - 下一輪做什麼：開 PR、等 CI；若合併完成，再把 capability portability 接到更具體的 platform bootstrap / export 流程。
+
+- 2026-06-26
+  - 做了什麼：補 `config/session_task_schema.json`、`docs/event_stream_contract.md`、`docs/local_provider_and_runtime_matrix.md`，把「一句想法即交付」最缺的 session/task/runtime 契約落地；同時安裝 Android Studio / platform-tools / commandline-tools / emulator / CocoaPods / OpenJDK，讓 `android-kotlin` prerequisite doctor 升到 `ready`。
+  - 怎麼驗證：`node scripts/run_repo_tests.js`、`node scripts/validate_repo_integrity.js`、`node scripts/platform_prerequisite_doctor.js --profile android-kotlin`、`emulator -version`、`sdkmanager --version`、`git diff --check`。
+  - 下一輪做什麼：開 PR、等 CI；若合併完成，再往 `ios-swiftui` 的 Xcode / simulator 真機路徑或 session/task JSON 實例化輸出繼續推進。
+
+- 2026-06-26
   - 做了什麼：補 `ios-swiftui` / `android-kotlin` 的官方 bootstrap runbook 與 machine-readable metadata；`scaffold_project.js` 現在對 plan-only native profile 會直接指向 runbook，而不是先被預設 `typescript/biome` 擋住。
   - 怎麼驗證：`node scripts/run_repo_tests.js`、`node scripts/validate_repo_integrity.js`、`node scripts/scaffold_project.js /tmp/obd-ios-plan --profile ios-swiftui --run --language typescript`、`git diff --check`。
   - 下一輪做什麼：開 PR、等 CI；若合併完成，再往 native prerequisite 安裝 runbook 或更細的 Xcode / Android Studio doctor 推進。

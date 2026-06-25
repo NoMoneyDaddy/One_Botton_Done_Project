@@ -30,7 +30,11 @@
 | T24 | x | 補 Flutter runnable scaffold | `scripts/scaffold_project.js`、`scripts/generate_project_configs.js`、`tests/mobile_desktop_profile_files.test.js` |
 | T25 | x | 補 Flutter `--platforms` CLI 解析與測試 | `scripts/scaffold_project.js`、`tests/scaffold_project.test.js`、`docs/scaffold_project.md` |
 | T26 | x | 補 native profile 官方 runbook 與 machine-readable metadata | `docs/native_app_bootstrap_runbook.md`、`config/project_config_profiles.json`、`scripts/scaffold_project.js` |
-| T27 | ~ | 持續移除過時文件敘述與擴充其他平台實測 | 後續維護項 |
+| T27 | x | 補 native prerequisite doctor 細粒度檢查 | `config/platform_prerequisites.json`、`scripts/platform_prerequisite_doctor.js`、`tests/platform_prerequisite_doctor.test.js` |
+| T28 | x | 吸收 `ai-manus` / `agenticSeek` 的 runtime topology 與 local-first troubleshooting | `docs/sandbox_session_runtime_topology.md`、`docs/comparable_project_analysis.md`、`docs/sandbox_tooling_guide.md` |
+| T29 | x | 補 session/task schema、event stream、local runtime matrix | `config/session_task_schema.json`、`docs/event_stream_contract.md`、`docs/local_provider_and_runtime_matrix.md` |
+| T30 | x | 補跨 AI 能力可攜矩陣 | `config/capability_portability_matrix.json`、`docs/cross_ai_capability_portability.md`、`docs/platform_support_matrix.md` |
+| T31 | ~ | 持續移除過時文件敘述與擴充其他平台實測 | 後續維護項 |
 
 ## Backlog
 

@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "updated_at": "2026-06-25T23:09:17Z",
+  "updated_at": "2026-06-25T23:33:39Z",
   "rollup": {
     "retained_patterns": [
       "先用 machine-readable policy 定義自治邊界",
@@ -13,10 +13,43 @@
       "把更多 PR / review feedback 回寫成 keep-or-discard 條目",
       "用 summarize_learning_ledger.js 做 score aggregation",
       "把 SwiftUI / Android Kotlin 往 runnable scaffold 推進",
-      "把 prerequisite doctor 接到更多 workflow，含 Xcode / Android Studio 更細的 native 安裝 runbook"
+      "把 session/task schema 接到真實 JSON 輸出與 event stream 實例",
+      "把 capability portability 接到更具體的 platform bootstrap / export 流程"
     ]
   },
   "entries": [
+    {
+      "id": "2026-06-26-cross-ai-portability-matrix",
+      "date": "2026-06-26",
+      "context": "使用者要的不是單一平台最佳化，而是 Claude Code、Cursor、Codex、Hermes、OpenClaw 讀完 repo 都能盡量得到同一套能力",
+      "change": "新增 machine-readable capability portability matrix，並補人類可讀的 cross-AI portability 文件",
+      "hypothesis": "先把各平台的入口、skill runtime、tool/runtime 落差明確化，比空泛宣稱全平台通用更能真的推進能力可攜",
+      "result": "保留",
+      "decision": "keep",
+      "evidence_refs": [
+        "config/capability_portability_matrix.json",
+        "docs/cross_ai_capability_portability.md",
+        "docs/platform_support_matrix.md",
+        "docs/ai-tool-compatibility.md"
+      ],
+      "next_action": "把 portability matrix 接到 export/bootstrap 與更多自動檢查"
+    },
+    {
+      "id": "2026-06-26-runtime-contract-and-android-ready",
+      "date": "2026-06-26",
+      "context": "若要達成一句想法即交付，只補 skills 與 docs 不夠，還缺 session/task/runtime 契約與本機可執行工具鏈",
+      "change": "新增 session/task schema、event stream contract、local provider/runtime matrix，並把 Android Kotlin 本機 prerequisite 補到 ready",
+      "hypothesis": "把 runtime 契約 machine-readable 化，再把本機 toolchain 補齊，比繼續擴 skill catalog 更能逼近跨平台 agent 的可交付能力",
+      "result": "保留",
+      "decision": "keep",
+      "evidence_refs": [
+        "config/session_task_schema.json",
+        "docs/event_stream_contract.md",
+        "docs/local_provider_and_runtime_matrix.md",
+        "config/platform_prerequisites.json"
+      ],
+      "next_action": "把 schema 接到實際 session/task state 輸出，並補 iOS native 可執行路徑"
+    },
     {
       "id": "2026-06-26-native-runbook-metadata",
       "date": "2026-06-26",

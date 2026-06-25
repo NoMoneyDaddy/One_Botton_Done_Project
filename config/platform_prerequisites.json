@@ -15,6 +15,13 @@
       "version_pattern": "^(\\d+)",
       "displayName": "npm"
     },
+    "java": {
+      "type": "command-version",
+      "command": "java",
+      "args": ["-version"],
+      "version_pattern": "\"(\\d+)",
+      "displayName": "Java Runtime"
+    },
     "flutter": {
       "type": "command-version",
       "command": "flutter",
@@ -53,6 +60,17 @@
       "command": "xcode-select",
       "displayName": "Xcode Command Line Tools"
     },
+    "xcrun-simctl": {
+      "type": "command-exists",
+      "command": "xcrun",
+      "args": ["simctl", "help"],
+      "displayName": "iOS Simulator tooling"
+    },
+    "xcode-app": {
+      "type": "path-exists",
+      "path": "/Applications/Xcode.app",
+      "displayName": "Xcode.app"
+    },
     "adb": {
       "type": "command-exists",
       "command": "adb",
@@ -67,6 +85,22 @@
       "type": "command-exists",
       "command": "studio",
       "displayName": "Android Studio launcher"
+    },
+    "android-studio-app": {
+      "type": "path-exists",
+      "path": "/Applications/Android Studio.app",
+      "displayName": "Android Studio.app"
+    },
+    "avdmanager": {
+      "type": "command-exists",
+      "command": "avdmanager",
+      "displayName": "Android AVD Manager"
+    },
+    "emulator": {
+      "type": "command-exists",
+      "command": "emulator",
+      "args": ["-version"],
+      "displayName": "Android Emulator"
     },
     "cocoapods": {
       "type": "command-version",
@@ -233,9 +267,19 @@
           "check": "xcode-select",
           "severity": "fail",
           "reason": "Command Line Tools 是最低基線"
+        },
+        {
+          "check": "xcode-app",
+          "severity": "fail",
+          "reason": "iOS SwiftUI 官方建立流程需要完整 Xcode.app"
         }
       ],
       "optional": [
+        {
+          "check": "xcrun-simctl",
+          "severity": "warn",
+          "reason": "若要用 iOS Simulator 建立與執行 app，需要 simctl"
+        },
         {
           "check": "cocoapods",
           "severity": "warn",
@@ -251,6 +295,12 @@
       "displayName": "Android Kotlin",
       "required": [
         {
+          "check": "java",
+          "min_major": 17,
+          "severity": "fail",
+          "reason": "Android SDK command-line tools 需要 JDK 17+"
+        },
+        {
           "check": "adb",
           "severity": "fail",
           "reason": "Android development 需要 SDK Platform Tools"
@@ -263,13 +313,25 @@
       ],
       "optional": [
         {
-          "check": "android-studio",
+          "check": "android-studio-app",
           "severity": "warn",
           "reason": "Android Studio 是官方 IDE 基線"
+        },
+        {
+          "check": "avdmanager",
+          "severity": "warn",
+          "reason": "若要建立 Android Emulator 虛擬裝置，需要 AVD Manager"
+        },
+        {
+          "check": "emulator",
+          "severity": "warn",
+          "reason": "若要在本機跑 Android Emulator，需要 emulator binary"
         }
       ],
       "official_docs": [
-        "https://developer.android.com/studio"
+        "https://developer.android.com/studio",
+        "https://developer.android.com/studio/projects/create-project",
+        "https://developer.android.com/studio/run"
       ]
     }
   }

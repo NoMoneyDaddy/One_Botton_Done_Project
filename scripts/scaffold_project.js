@@ -146,9 +146,9 @@ function buildNextCommand(projectName, options) {
   ];
 
   if (options.qualityTool === 'biome') {
-    args.push('--biome');
+    args.push('--no-eslint');
   } else {
-    args.push('--no-linter');
+    args.push('--no-eslint');
   }
 
   if (options.skipInstall) {

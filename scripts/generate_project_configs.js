@@ -379,19 +379,19 @@ function buildExpressTsconfig() {
   )}\n`;
 }
 
-function buildNextConfig() {
-  return `import type { NextConfig } from 'next';
+function buildNextConfig(options) {
+  if (options.language === 'typescript') {
+    return `import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {};
 
 export default nextConfig;
 `;
-}
+  }
 
-function buildNextConfigJs() {
   return `const nextConfig = {};
 
-export default nextConfig;
+module.exports = nextConfig;
 `;
 }
 
@@ -424,7 +424,7 @@ export default defineConfig({
 }
 
 function nextConfigFile(options) {
-  return options.language === 'typescript' ? 'next.config.ts' : 'next.config.mjs';
+  return options.language === 'typescript' ? 'next.config.ts' : 'next.config.js';
 }
 
 function viteConfigFile(options) {
@@ -550,7 +550,7 @@ function buildProfileFiles(profileKey, profile, name, options) {
   }
 
   if (profileKey === 'nextjs-app-router') {
-    files.set(nextConfigFile(options), options.language === 'typescript' ? buildNextConfig() : buildNextConfigJs());
+    files.set(nextConfigFile(options), buildNextConfig(options));
     if (options.styling === 'tailwind') {
       files.set('postcss.config.mjs', buildPostcssConfig());
     }

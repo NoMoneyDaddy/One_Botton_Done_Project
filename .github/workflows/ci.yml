@@ -67,7 +67,7 @@ jobs:
 
           tmp="$(mktemp -d)"
           node scripts/generate_project_configs.js --profile nextjs-app-router --name smoke-next-js --language javascript --styling tailwind --database none --quality-tool biome --target "$tmp" --write
-          test -f "$tmp/next.config.mjs"
+          test -f "$tmp/next.config.js"
           test ! -f "$tmp/tsconfig.json"
 
           tmp="$(mktemp -d)"

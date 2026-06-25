@@ -21,6 +21,7 @@ function parseArgs(argv) {
     database: 'none',
     qualityTool: 'biome',
     packageManager: 'npm',
+    platforms: '',
     skipInstall: false,
     run: false,
     force: false
@@ -65,6 +66,11 @@ function parseArgs(argv) {
     }
     if (arg === '--package-manager') {
       options.packageManager = argv[i + 1] || options.packageManager;
+      i += 1;
+      continue;
+    }
+    if (arg === '--platforms') {
+      options.platforms = argv[i + 1] || options.platforms;
       i += 1;
       continue;
     }
@@ -357,6 +363,7 @@ function printPlan(profileKey, profile, targetRoot, projectName, options, scaffo
   console.log(`- Database: ${options.database}`);
   console.log(`- Quality tool: ${options.qualityTool}`);
   console.log(`- Package manager: ${options.packageManager}`);
+  console.log(`- Platforms: ${options.platforms || 'default'}`);
   console.log(`- Project name: ${projectName}`);
   console.log(`- skipInstall: ${options.skipInstall ? 'yes' : 'no'}`);
   console.log('\n將執行:');
@@ -446,9 +453,16 @@ function main() {
   console.log('- 讀 docs/STACK_SETUP.md');
 }
 
-try {
-  main();
-} catch (error) {
-  console.error(`❌ 失敗: ${error.message}`);
-  process.exit(1);
+if (require.main === module) {
+  try {
+    main();
+  } catch (error) {
+    console.error(`❌ 失敗: ${error.message}`);
+    process.exit(1);
+  }
 }
+
+module.exports = {
+  parseArgs,
+  buildScaffoldCommand
+};

@@ -16,6 +16,12 @@ node scripts/scaffold_project.js ../my-app --profile nextjs-app-router --languag
 node scripts/scaffold_project.js ../my-app --profile nextjs-app-router --language typescript --styling tailwind --database supabase --quality-tool biome --run
 ```
 
+Flutter 若只想建特定平台：
+
+```bash
+node scripts/scaffold_project.js ../my-flutter-app --profile flutter-app --database supabase --platforms android,web --run
+```
+
 若平台不能跑 `shell` 或 `network`：
 
 - 不要硬跑
@@ -29,12 +35,18 @@ node scripts/scaffold_project.js ../my-app --profile nextjs-app-router --languag
 | `nextjs-app-router` | `create-next-app` |
 | `vite-react` | `create-vite` |
 | `node-express-api` | `npm init -y` |
+| `react-native-expo` | `create-expo-app` |
+| `capacitor-mobile-app` | `@capacitor/create-app` |
+| `flutter-app` | `flutter create` |
+| `tauri-desktop` | `create-tauri-app` |
+| `electron-desktop` | Electron 官方 first app baseline |
 
 ## 內部流程
 
 1. 先跑官方 scaffold
-2. 再跑 `scripts/init_project_workspace.js`
-3. 再跑 `scripts/generate_project_configs.js --write`
+2. `--run` 前先跑 prerequisite doctor gate
+3. 再跑 `scripts/init_project_workspace.js`
+4. 再跑 `scripts/generate_project_configs.js --write`
 
 ## 為什麼這樣拆
 

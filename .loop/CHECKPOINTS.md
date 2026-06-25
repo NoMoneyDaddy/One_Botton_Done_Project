@@ -9,6 +9,11 @@
 ## Entries
 
 - 2026-06-26
+  - 做了什麼：補 `scripts/scaffold_project.js` 的 `--platforms` 解析與匯出測試介面，讓 `flutter create --platforms ...` 真的可由 CLI 轉發；同步更新 `docs/scaffold_project.md`。
+  - 怎麼驗證：`node scripts/run_repo_tests.js`、`node scripts/validate_repo_integrity.js`、`node scripts/scaffold_project.js /tmp/obd-flutter-platforms --profile flutter-app --name obd_flutter_platforms --idea "flutter platforms smoke" --database supabase --quality-tool biome --platforms android,web --run`、`git diff --check`。
+  - 下一輪做什麼：開 PR、等 CI；若合併完成，再往 `ios-swiftui` / `android-kotlin` runnable scaffold 或更細的 native prerequisite runbook。
+
+- 2026-06-26
   - 做了什麼：把 `flutter-app` 從 `plan-only` 升成 runnable scaffold；在 `scripts/scaffold_project.js` 接入 prerequisite gate；補 `generate_project_configs` 的 Flutter `.env.example` / `.gitignore` / `docs/STACK_SETUP.md` 基線，並完成實際 `flutter create` smoke。
   - 怎麼驗證：`brew install --cask flutter`、`flutter --version`、`dart --version`、`node scripts/platform_prerequisite_doctor.js --profile flutter-app`、`node scripts/scaffold_project.js /tmp/obd-flutter-run --profile flutter-app --name obd_flutter_run --idea "flutter smoke" --database supabase --quality-tool biome --run`、`node scripts/run_repo_tests.js`、`node scripts/validate_repo_integrity.js`、`git diff --check`。
   - 下一輪做什麼：開 PR、等 CI；若合併完成，再往 `SwiftUI` / `Android Kotlin` runnable scaffold，或把 `--platforms` CLI 正式接進 Flutter flow。

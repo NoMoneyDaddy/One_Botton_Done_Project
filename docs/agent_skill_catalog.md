@@ -45,6 +45,7 @@ Mirror paths:
 | `goal-loop` | 用 `.loop/*` 做跨平台 session goal loop |
 | `interview-me` | 一題一題問出真正需求 |
 | `project-config-generation` | 技術棧確認後，自動落 package / tsconfig / framework config / env example |
+| `tool-discovery-and-installation` | 盤點缺少的 skills / MCP / CLI，安全引導或執行工具安裝 |
 | `cavekit-spec` | 維護 `docs/SPEC.md` |
 | `cavekit-backprop` | bug 反寫規格與測試 |
 | `cavekit-check` | 規格與實作漂移檢查 |
@@ -61,6 +62,11 @@ Mirror paths:
 - 不確定用哪個 skill：先用 `using-agent-skills`
 - 新專案主路徑：`interview-me` / `idea-refine` → `spec-driven-development` → `project-config-generation` → `planning-and-task-breakdown` → `loop-engineering`
 - 舊專案主路徑：`using-agent-skills` → `code-review-and-quality` → `code-simplification` → `loop-engineering`
+- 自治等級：先看 `docs/loop_maturity_model.md`
+- phase：先看 `docs/engineering_phase_loop.md`
+- 缺能力：先看 `docs/capability_audit_and_install_loop.md`
+- 卡住停機：看 `docs/loop_circuit_breaker.md`
+- 可重用流程沉澱：看 `docs/skill_crystallization_loop.md`
 
 ## Maintenance Rule
 

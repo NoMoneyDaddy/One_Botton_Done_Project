@@ -18,18 +18,19 @@ description: Meta skill entrypoint. Select the right workflow skill for the curr
 5. 要 `/goal` 類效果但又要跨平台：`goal-loop`
 6. 技術棧已定、設定檔還沒落地：`project-config-generation`
 7. 開始實作：`incremental-implementation` + `test-driven-development`
-7. 有 framework / library 問題：`source-driven-development`
-8. 前端 UI：`frontend-ui-engineering`
-9. API 邊界：`api-and-interface-design`
-10. TypeScript：`typescript-best-practices`
-11. JS / TS 品質自動化：`biome-quality-automation`
-12. Supabase：`supabase-best-practices`
-13. 網站基線：`website-best-practices`
-14. RWD / 行動端：`responsive-design-best-practices`
-15. 測試 / runtime 問題：`browser-testing-with-devtools` 或 `debugging-and-error-recovery`
-16. 準備合併：`code-review-and-quality`
-17. 上線前缺觀測：`observability-and-instrumentation`
-18. 準備部署：`ci-cd-and-automation` + `shipping-and-launch`
+8. 缺工具、缺 skill、缺 MCP、要補能力：`tool-discovery-and-installation`
+9. 有 framework / library 問題：`source-driven-development`
+10. 前端 UI：`frontend-ui-engineering`
+11. API 邊界：`api-and-interface-design`
+12. TypeScript：`typescript-best-practices`
+13. JS / TS 品質自動化：`biome-quality-automation`
+14. Supabase：`supabase-best-practices`
+15. 網站基線：`website-best-practices`
+16. RWD / 行動端：`responsive-design-best-practices`
+17. 測試 / runtime 問題：`browser-testing-with-devtools` 或 `debugging-and-error-recovery`
+18. 準備合併：`code-review-and-quality`
+19. 上線前缺觀測：`observability-and-instrumentation`
+20. 準備部署：`ci-cd-and-automation` + `shipping-and-launch`
 
 ## 兩種模式
 
@@ -51,6 +52,7 @@ description: Meta skill entrypoint. Select the right workflow skill for the curr
 
 ## 工具選用規則
 
+- 缺工具、缺 skill、缺 MCP、或使用者要求「裝工具 / 補能力」：先用 `tool-discovery-and-installation`
 - 大型 repo、token 緊、需要先找脈絡：先用 `Semble`
 - 要快速確認頁面能不能用、畫面有沒有壞：先用 `agent-browser`
 - 要正式可重現的瀏覽器測試、錄製、selector 檢查：用 `playwright-cli`
@@ -77,23 +79,30 @@ description: Meta skill entrypoint. Select the right workflow skill for the curr
 3. 讀 `docs/project_usage_guide.md`
 4. 讀 `docs/example_sessions.md`
 5. 讀 `docs/agent_skill_catalog.md`
-6. 先執行：
+6. 讀：
+   - `docs/loop_maturity_model.md`
+   - `docs/engineering_phase_loop.md`
+   - `docs/loop_circuit_breaker.md`
+   - `docs/agent_manifest_spec.md`
+7. 先執行：
    - `node scripts/inspect_agent_capabilities.js`
-7. 若缺 `.loop/*`，執行：
+   - 若缺工具或使用者要求補能力，讀 `.agents/skills/tool-discovery-and-installation/SKILL.md`
+   - 再跑 `bash scripts/setup_sandbox_tools.sh --plan`
+8. 若缺 `.loop/*`，執行：
    - `node scripts/init_session_loop.js . --goal "<objective>"`
-8. 若為新專案，執行：
+9. 若為新專案，執行：
    - `node scripts/init_project_workspace.js <targetDir> --name <projectName> --idea "<idea>"`
-9. 根據專案類型執行：
+10. 根據專案類型執行：
    - `node scripts/auto_skill_setup.js --project-type <type> --ui-style <style> --deployment <target> --language <lang> --database <db>`
-10. 若技術棧已確認，執行：
+11. 若技術棧已確認，執行：
    - `node scripts/generate_project_configs.js --profile <profile> --name <projectName> --language <lang> --styling <style> --database <db> --quality-tool <tool>`
-11. 填寫或更新：
+12. 填寫或更新：
    - `.loop/GOAL.md`
    - `.loop/PLAN.md`
    - `.loop/STATE.json`
    - `.loop/CHECKPOINTS.md`
    - `.loop/EVIDENCE.md`
-12. 填寫或更新：
+13. 填寫或更新：
    - `docs/SPEC.md`
    - `docs/TASKS.md`
    - `docs/STATE.md`

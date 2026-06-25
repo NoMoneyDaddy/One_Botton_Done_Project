@@ -37,6 +37,11 @@
         "reason": "技術棧確認後，先把 package.json、tsconfig、framework config、env example 落地"
       },
       {
+        "name": "tool-discovery-and-installation",
+        "source": "internal",
+        "reason": "自動盤點缺少的 skills、MCP、CLI，並走安全安裝或引導流程"
+      },
+      {
         "name": "incremental-implementation",
         "source": "internal",
         "reason": "薄切片持續交付"

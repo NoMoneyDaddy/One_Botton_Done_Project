@@ -20,6 +20,13 @@ Its job is to give multiple AI tools the same source of truth, the same project 
 - `scripts/inspect_agent_capabilities.js` for checking repo skills, global skills, MCP config, and local tools
 - `scripts/validate_repo_integrity.js` for checking entry files, skill mirrors, JSON config, script declarations, and local Markdown links
 - `scripts/auto_skill_setup.js` for skill/tool recommendations
+- `tool-discovery-and-installation` plus `scripts/setup_sandbox_tools.sh` for safe tool discovery and opt-in installation
+- `docs/loop_maturity_model.md` for autonomy rollout
+- `docs/engineering_phase_loop.md` for phase-based delivery
+- `docs/capability_audit_and_install_loop.md` for safe capability expansion
+- `docs/loop_circuit_breaker.md` for stagnation handling
+- `docs/skill_crystallization_loop.md` for turning repeated workflows into skills
+- `docs/agent_manifest_spec.md` for machine-readable agent boundaries
 - `scripts/generate_project_configs.js` for stack-aware config generation
 - `config/script_capabilities.json` plus `docs/script_fallback_matrix.md` for script portability and fallback routing
 - 21 localized workflow skills plus extra local skills such as `goal-loop`, `project-config-generation`, `interview-me`, `observability-and-instrumentation`, and `biome-quality-automation`
@@ -49,6 +56,14 @@ If a platform cannot run a script, the workflow should fall back to `docs/script
 node scripts/inspect_agent_capabilities.js
 node scripts/validate_repo_integrity.js
 ```
+
+If tools are missing, read `.agents/skills/tool-discovery-and-installation/SKILL.md` and start with:
+
+```bash
+bash scripts/setup_sandbox_tools.sh --plan
+```
+
+Default autonomy starts at `L1 report-only`.
 
 5. For a new project:
 
@@ -93,6 +108,14 @@ node scripts/generate_project_configs.js --profile nextjs-app-router --name your
 - `docs/scaffold_project.md`
 - `docs/script_fallback_matrix.md`
 - `docs/agent_skill_catalog.md`
+- `docs/marketplace_open_source_readiness.md`
+- `docs/release_version_policy.md`
+- `docs/loop_maturity_model.md`
+- `docs/engineering_phase_loop.md`
+- `docs/capability_audit_and_install_loop.md`
+- `docs/loop_circuit_breaker.md`
+- `docs/skill_crystallization_loop.md`
+- `docs/agent_manifest_spec.md`
 - `docs/project_architecture_best_practices.md`
 - `docs/project_lifecycle_automation.md`
 - `docs/platform_support_matrix.md`
@@ -106,5 +129,7 @@ node scripts/generate_project_configs.js --profile nextjs-app-router --name your
 - Official docs / Context7 before guesswork
 - Small reversible changes
 - Verification every round
+- Start at `L1`; promote autonomy only with evidence
+- No verifier means not ready
 - Scripts are accelerators, not single points of failure
 - No stale claims, no stale workflow files

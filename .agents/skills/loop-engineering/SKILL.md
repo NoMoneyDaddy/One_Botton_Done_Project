@@ -40,21 +40,26 @@ description: Run the repository's end-to-end delivery loop from idea or legacy-p
 1. 先判斷現在是新專案還是舊專案
 2. 只問 1-3 組決策題
 3. 先跑 `node scripts/inspect_agent_capabilities.js`
-4. 根據情境讀：
+4. 先讀：
+   - `docs/loop_maturity_model.md`
+   - `docs/engineering_phase_loop.md`
+   - `docs/loop_circuit_breaker.md`
+5. 根據情境讀：
    - `prompts/interactive_tech_stack_prompt.md`
    - `prompts/interactive_api_key_prompt.md`
    - `prompts/legacy_project_improvement_prompt.md`
-5. 若缺 `.loop/*`，先用 `goal-loop` 或 `node scripts/init_session_loop.js . --goal "<objective>"`
-6. 技術棧確認後，先用 `project-config-generation` 落設定檔
-7. 先給短版方案
-8. 視任務大小決定：
+6. 若缺 `.loop/*`，先用 `goal-loop` 或 `node scripts/init_session_loop.js . --goal "<objective>"`
+7. 技術棧確認後，先用 `project-config-generation` 落設定檔
+8. 先給短版方案
+9. 視任務大小決定：
    - 小任務：直接切 task 開工
    - 中大型任務：再補完整計畫與 task 切片
-9. 完成必要確認後，進入 build-test-fix-doc loop
-10. 若是 JS / TS 專案且有 Biome，啟用 quality loop：
+10. 完成必要確認後，進入 build-test-fix-doc loop
+11. 每輪記錄 `maturity_level`、`retry_count`、`blocked_reason`、`convergence_state`
+12. 若是 JS / TS 專案且有 Biome，啟用 quality loop：
    - `npx @biomejs/biome check --write <changed-paths>`
    - 必要時再跑測試
-11. 進 merge / ship 前補：
+13. 進 merge / ship 前補：
    - `code-review-and-quality`
    - `observability-and-instrumentation`
    - `shipping-and-launch`
@@ -81,12 +86,15 @@ node scripts/auto_skill_setup.js --project-type <type> --ui-style <style> --depl
 2. 最小必要修改
 3. 跑對應驗證
 4. 失敗就修根因
+5. 看 circuit breaker 是否該停
 5. 更新：
    - `.loop/PLAN.md`
    - `.loop/STATE.json`
    - `.loop/CHECKPOINTS.md`
    - `.loop/EVIDENCE.md`
-6. 更新：
+   - 必要時記 `tier`、`orientation`、`time_budget`
+6. 若流程穩定可重用，參考 `docs/skill_crystallization_loop.md`
+7. 更新：
    - `docs/TASKS.md`
    - `docs/DEBUG_NOTES.md`
    - `docs/STATE.md`
@@ -134,6 +142,12 @@ node scripts/auto_skill_setup.js --project-type <type> --ui-style <style> --depl
 - 需要使用者做不可逆選擇
 - 外部服務不可用且無替代方案
 - 同一錯誤連修 3 次仍失敗
+
+## 自治等級
+
+- 預設 `L1 report-only`
+- 有 verifier 才升 `L2`
+- 有 scope / budget / audit 才升 `L3`
 
 ## 規則
 

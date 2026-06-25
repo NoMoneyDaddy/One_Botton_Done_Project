@@ -24,6 +24,10 @@
 
 以下站點可用來發現候選 skills，但**不是權威來源**：
 
+- `codex-marketplace.com`
+- `skillsmd.dev`
+- `skillsmp.com`
+- `openagentskills.dev`
 - `awesomeclaude.ai`
 - `awesomeskill.ai`
 
@@ -37,6 +41,8 @@
 ## 官方文檔支撐
 
 - OpenAI Codex `AGENTS.md` / Skills：`developers.openai.com`
+- OpenAI Plugins examples：`github.com/openai/plugins`
+- Agent Skills standard：`agentskills.io`
 - Supabase docs / CLI / security：`supabase.com/docs`
 - TypeScript handbook / tsconfig：`typescriptlang.org`
 - MDN Responsive Design：`developer.mozilla.org`

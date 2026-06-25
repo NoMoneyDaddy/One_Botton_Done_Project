@@ -9,10 +9,16 @@
 | T3 | x | 對齊 README / 入口檔 / bootstrap / capability inspector | 已驗證 |
 | T4 | x | 補 repo 自己的治理文件 | `docs/SPEC.md`、`docs/STATE.md`、`docs/ADRS.md` 等 |
 | T5 | x | 新增 repo integrity gate | `scripts/validate_repo_integrity.js`、CI |
-| T6 | ~ | 持續移除過時文件敘述與擴充平台實測 | 後續維護項 |
+| T6 | x | 補工具發現與安全安裝流程 | `tool-discovery-and-installation` |
+| T7 | x | 補 marketplace / open-source readiness 檢查 | `docs/marketplace_open_source_readiness.md` |
+| T8 | x | 補開源維護基線 | `SECURITY.md`、`CONTRIBUTING.md`、`docs/release_version_policy.md` |
+| T9 | x | 吸收同類專案的 maturity / phase / audit 最佳實踐 | 新治理文件與 skill 回接 |
+| T10 | ~ | 持續移除過時文件敘述與擴充平台實測 | 後續維護項 |
 
 ## Backlog
 
 - 補更多 profile 的官方 scaffold 與 config generation
 - 補更多平台實測證據，而不只相容性推論
 - 將 `docs/tech_stack_guide.md` 擴充成「已自動化」與「僅參考」雙層表
+- 補 fresh clone install smoke test
+- 把 agent manifest 轉成機器可讀 JSON 草案

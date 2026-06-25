@@ -1,0 +1,34 @@
+{
+  "profiles": {
+    "nextjs-app-router": {
+      "displayName": "Next.js App Router",
+      "projectTypes": ["web-app", "landing-page", "ecommerce"],
+      "languages": ["typescript", "javascript"],
+      "styling": ["tailwind", "none"],
+      "databases": ["none", "supabase"],
+      "qualityTools": ["biome", "none"],
+      "officialScaffold": "npx create-next-app@latest",
+      "recommendedNode": "20.9+"
+    },
+    "vite-react": {
+      "displayName": "Vite React",
+      "projectTypes": ["web-app", "landing-page", "data-dashboard"],
+      "languages": ["typescript", "javascript"],
+      "styling": ["tailwind", "none"],
+      "databases": ["none", "supabase"],
+      "qualityTools": ["biome", "none"],
+      "officialScaffold": "npm create vite@latest",
+      "recommendedNode": "20.19+"
+    },
+    "node-express-api": {
+      "displayName": "Node + Express API",
+      "projectTypes": ["api-service"],
+      "languages": ["typescript", "javascript"],
+      "styling": ["none"],
+      "databases": ["none", "supabase"],
+      "qualityTools": ["biome", "none"],
+      "officialScaffold": "npm init -y",
+      "recommendedNode": "20+"
+    }
+  }
+}

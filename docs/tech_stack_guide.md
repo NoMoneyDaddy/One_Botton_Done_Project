@@ -1,16 +1,33 @@
 # 技術棧對比與選擇指南
 
-在 AI Loop Engineering Framework 中，選擇合適的技術棧是專案成功的關鍵。本指南將詳細對比常見的技術選項，幫助您與 AI 共同做出最佳決策。
+這份文件分兩層：
+
+- 已自動化支援：repo 目前可直接用 scaffold / config generation 落地
+- 一般技術選型參考：可作為討論候選，但不代表 repo 已有自動化 profile
+
+## 目前已自動化支援的 profile
+
+| Profile | 類型 | 官方 scaffold | 設定檔產生 |
+| --- | --- | --- | --- |
+| `nextjs-app-router` | 全端 web app / landing page | `create-next-app` | 有 |
+| `vite-react` | SPA / dashboard / 前端站 | `create-vite` | 有 |
+| `node-express-api` | API service | `npm init -y` | 有 |
+
+若超出上表：
+
+- 可以做
+- 但要視為「人工擴充」或「後續新增 profile」
+- 不要假裝目前 repo 已自動化支援
 
 ## 1. 前端框架 (Frontend Frameworks)
 
 | 框架 | 優點 | 缺點 | 適用場景 |
 | :--- | :--- | :--- | :--- |
-| **Next.js (App Router)** | SEO 友好、伺服器渲染 (SSR)、內建路由、API 路由支援、生態系強大 | 學習曲線較陡、App Router 仍在演進中 | 商業級 Web 應用、電商、部落格、SaaS 平台 |
+| **Next.js (App Router)** | SEO 友好、伺服器渲染 (SSR)、內建路由、Route Handlers、生態系強大 | 學習曲線較陡 | 商業級 Web 應用、電商、部落格、SaaS 平台 |
 | **React (Vite)** | 輕量、啟動極快、高度靈活、社群龐大 | 需自行配置路由與狀態管理、SEO 較弱 | 單頁應用 (SPA)、內部管理系統、數據儀表板 |
-| **Vue.js (Vite)** | 易學易用、雙向綁定、漸進式框架 | 生態系略小於 React、TypeScript 支援略弱 | 快速原型開發、中小型 Web 應用 |
+| **Vue.js (Vite)** | 易學易用、雙向綁定、漸進式框架 | 目前本 repo 尚未提供對應 profile | 需手動擴充時可評估 |
 
-**AI 推薦策略**：對於大多數商業級專案，強烈推薦 **Next.js**，因為它能同時處理前端與輕量級後端 API，非常適合全棧部署。
+**AI 推薦策略**：對於大多數商業級專案，強烈推薦 **Next.js App Router**，並採用 `src/app` + `features` + `lib` 的分層結構。
 
 ## 2. UI 組件庫 (UI Libraries)
 
@@ -26,11 +43,11 @@
 
 | 架構 | 優點 | 缺點 | 適用場景 |
 | :--- | :--- | :--- | :--- |
-| **Next.js API Routes** | 無需獨立後端、全端同構、部署簡單 | 不適合長時間運行的任務、架構耦合度高 | 中小型 SaaS、CRUD 應用、快速原型 |
+| **Next.js Route Handlers** | 無需獨立後端、全端同構、部署簡單 | 不適合長時間運行的任務、架構耦合度高 | 中小型 SaaS、CRUD 應用、快速原型 |
 | **Node.js (Express/NestJS)** | 生態系龐大、適合微服務、效能穩定 | 需獨立部署、配置較繁瑣 | 大型複雜應用、高併發系統、需要獨立 API 服務 |
-| **Python (FastAPI/Django)** | 適合 AI/數據處理、開發效率高 | 非同步處理較複雜、效能略低於 Node.js | AI 應用、數據分析平台、機器學習專案 |
+| **Python (FastAPI/Django)** | 適合 AI/數據處理、開發效率高 | 目前本 repo 尚未提供對應 profile | 需手動擴充時可評估 |
 
-**AI 推薦策略**：優先考慮 **Next.js API Routes** 以簡化部署。若有複雜的 AI 或數據處理需求，則推薦 **Python (FastAPI)** 作為獨立微服務。
+**AI 推薦策略**：若要直接利用本 repo 目前自動化能力，優先考慮 `Next.js`、`Vite React`、`Node + Express API`。若有複雜 AI / 數據需求，`FastAPI` 仍可作為候選，但目前要手動擴充 profile。
 
 ## 4. 資料庫與 ORM (Database & ORM)
 
@@ -46,13 +63,19 @@
 
 | 平台 | 優點 | 缺點 | 適用場景 |
 | :--- | :--- | :--- | :--- |
-| **Zeabur** | **一鍵部署全端與資料庫**、支援 Docker、價格親民、GitHub 自動整合 | 生態系較新、邊緣運算支援較弱 | **全棧應用、需要資料庫的專案、微服務架構** |
+| **Zeabur** | 可在同平台部署應用與資料庫、支援 Docker、GitHub 整合 | 生態系較新、邊緣運算支援較弱 | 全棧應用、需要資料庫的專案、微服務架構 |
 | **Vercel** | 前端與 Serverless 體驗極佳、Next.js 官方平台 | 資料庫需額外配置、定價較高 | 純前端應用、靜態網站、Next.js 專案 |
 | **Render** | 支援多語言、PostgreSQL 整合好 | 免費層有休眠機制、構建速度較慢 | 後端服務、全棧應用 |
 
-**AI 推薦策略**：**Zeabur** 是本框架的首選，因為它能完美處理前端、後端與資料庫的混合部署，且 GitHub 分支自動部署功能非常穩定。
+**AI 推薦策略**：若專案希望簡化部署與資料庫管理，`Zeabur` 是可優先評估的選項之一；最終仍應依需求、成本與平台限制決定。
 
 ---
+
+## 使用規則
+
+- 先看 `config/project_config_profiles.json`
+- 若在已自動化支援範圍內，優先走 `scripts/scaffold_project.js` 與 `scripts/generate_project_configs.js`
+- 若超出範圍，文件可以建議，但要明講「需手動擴充」
 
 ## 如何在 Prompt 中指定技術棧？
 

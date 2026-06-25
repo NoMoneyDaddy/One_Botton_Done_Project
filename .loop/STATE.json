@@ -1,0 +1,10 @@
+{
+  "mode": "session-loop",
+  "status": "active",
+  "phase": "Ship",
+  "current_state": "ship-prep",
+  "current_task": "本地優化與驗證完成，等待 commit / push / PR 確認",
+  "blocked_reason": null,
+  "last_verified_at": "2026-06-25T00:22:03Z",
+  "updated_at": "2026-06-25T00:22:03Z"
+}

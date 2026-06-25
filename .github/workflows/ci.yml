@@ -1,0 +1,83 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version:
+          - "20"
+          - "22"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Check script syntax
+        run: |
+          node --check scripts/auto_skill_setup.js
+          node --check scripts/bootstrap_agent_files.js
+          node --check scripts/generate_project_configs.js
+          node --check scripts/init_project_workspace.js
+          node --check scripts/init_session_loop.js
+          node --check scripts/inspect_agent_capabilities.js
+          node --check scripts/scaffold_project.js
+          node --check scripts/validate_repo_integrity.js
+
+      - name: Check shell syntax
+        run: |
+          bash -n scripts/export_skills_for_hermes_openclaw.sh
+          bash -n scripts/setup_sandbox_tools.sh
+
+      - name: Validate JSON config
+        run: |
+          node -e "const fs=require('fs'); for (const f of fs.readdirSync('config').filter((name)=>name.endsWith('.json')).sort()) JSON.parse(fs.readFileSync('config/'+f,'utf8')); console.log('json ok')"
+
+      - name: Validate repository integrity
+        run: |
+          node scripts/validate_repo_integrity.js
+
+      - name: Smoke test session loop
+        run: |
+          tmp="$(mktemp -d)"
+          node scripts/init_session_loop.js "$tmp" --goal "ci smoke"
+          test -f "$tmp/.loop/GOAL.md"
+          test -f "$tmp/.loop/STATE.json"
+
+      - name: Smoke test config generator
+        run: |
+          tmp="$(mktemp -d)"
+          node scripts/generate_project_configs.js --profile nextjs-app-router --name smoke-next --language typescript --styling tailwind --database supabase --quality-tool biome --target "$tmp" --write
+          test -f "$tmp/package.json"
+          test -f "$tmp/docs/STACK_SETUP.md"
+          test -f "$tmp/.env.example"
+
+      - name: Smoke test project init
+        run: |
+          tmp="$(mktemp -d)"
+          node scripts/init_project_workspace.js "$tmp" --name smoke-app --idea "ci smoke" --force
+          cd "$tmp"
+          node scripts/validate_repo_integrity.js
+          test -f "$tmp/AGENTS.md"
+          test -f "$tmp/.loop/GOAL.md"
+          test -f "$tmp/docs/SPEC.md"
+
+      - name: Smoke test scaffold plan
+        run: |
+          tmp="$(mktemp -d)"
+          node scripts/scaffold_project.js "$tmp/app-next" --profile nextjs-app-router --language typescript --styling tailwind --database supabase --quality-tool biome
+          node scripts/scaffold_project.js "$tmp/app-vite" --profile vite-react --language typescript --styling tailwind --database none --quality-tool biome
+          node scripts/scaffold_project.js "$tmp/app-api" --profile node-express-api --language typescript --styling none --database supabase --quality-tool biome

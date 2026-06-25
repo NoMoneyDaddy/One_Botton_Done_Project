@@ -57,6 +57,32 @@ node scripts/init_project_workspace.js ../your-project --name your-project --ide
 
 ## 狀態模型
 
+### `maturity_level`
+
+- `L0`
+- `L1`
+- `L2`
+- `L3`
+
+### `tier`
+
+- `prototype`
+- `standard`
+- `production`
+- `research`
+
+### `orientation`
+
+- `engineer`
+- `creative`
+- `production`
+
+### `time_budget`
+
+- `null`
+- `string`
+- `number`
+
 ### `phase`
 
 - `Define`
@@ -83,6 +109,12 @@ node scripts/init_project_workspace.js ../your-project --name your-project --ide
 - `active`
 - `blocked`
 - `complete`
+
+### `convergence_state`
+
+- `closed`
+- `half_open`
+- `open`
 
 ## 原則
 

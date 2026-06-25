@@ -48,22 +48,29 @@
 3. 若是新專案，先執行專案初始化流程：建立資料夾、核心規範檔、`docs/SPEC.md`、`docs/TASKS.md`、`docs/DEBUG_NOTES.md`、`docs/STATE.md`、`docs/ADRS.md`。
 4. 若缺 `.loop/*`，先初始化 session loop：`node scripts/init_session_loop.js . --goal "<objective>"`。
    - 若平台不能跑腳本，改讀 `docs/script_fallback_matrix.md`，手動建立 `.loop/*`。
-5. 再根據專案類型自動搜尋需要的 skill；可用時安裝，不能自動安裝時明確提示。
-6. 先問 3-5 個關鍵問題，至少包含：
+5. 若缺工具、缺 skill、缺 MCP、缺搜尋能力、缺瀏覽器驗證能力，或使用者要求「補能力 / 裝工具 / 自己找辦法」，先讀 `.agents/skills/tool-discovery-and-installation/SKILL.md`。
+6. 先讀：
+   - `docs/loop_maturity_model.md`
+   - `docs/engineering_phase_loop.md`
+   - `docs/capability_audit_and_install_loop.md`
+   - `docs/loop_circuit_breaker.md`
+   - `docs/agent_manifest_spec.md`
+7. 再根據專案類型自動搜尋需要的 skill；使用者已明確授權安裝時，可執行 repo 內安全安裝腳本；不能自動安裝時明確提示。
+8. 先問 3-5 個關鍵問題，至少包含：
    - 專案類型：`web app` / `landing page` / `mobile app` / `api service`
    - 前端或執行環境
    - 資料庫
    - UI 庫
    - 部署策略：`Zeabur All-in-One` / `Hybrid` / `Self-managed`
-7. 先產出簡短架構計畫：目錄草圖、分層、驗證、錯誤處理、env 表。
-8. 第三方整合、框架行為、部署步驟有不確定性時，先查官方文檔。不要靠記憶亂做。
-9. 只做最小必要修改。不要整包重寫。
-10. 所有秘密資料都走環境變數。不得提交 `.env*`。
-11. 產出後一定要驗證。至少執行對應的 `test`、`lint`、`build` 或最小重現。
-12. 除錯經驗要寫入 `docs/DEBUG_NOTES.md`，當前進度要寫入 `docs/STATE.md`，session loop 進度要寫入 `.loop/*`。
-13. 階段結束時更新 `README.md`、`docs/TASKS.md`、`docs/ADRS.md`。
-14. 同一錯誤連修 3 次還沒過，停止並回報錯誤與阻塞點。
-15. 複雜任務預設拆成可平行子任務；若平台支援 subagents，主動自動分派。
+9. 先產出簡短架構計畫：目錄草圖、分層、驗證、錯誤處理、env 表。
+10. 第三方整合、框架行為、部署步驟有不確定性時，先查官方文檔。不要靠記憶亂做。
+11. 只做最小必要修改。不要整包重寫。
+12. 所有秘密資料都走環境變數。不得提交 `.env*`。
+13. 產出後一定要驗證。至少執行對應的 `test`、`lint`、`build` 或最小重現。
+14. 除錯經驗要寫入 `docs/DEBUG_NOTES.md`，當前進度要寫入 `docs/STATE.md`，session loop 進度要寫入 `.loop/*`。
+15. 階段結束時更新 `README.md`、`docs/TASKS.md`、`docs/ADRS.md`。
+16. 同一錯誤連修 3 次還沒過，停止並回報錯誤與阻塞點。
+17. 複雜任務預設拆成可平行子任務；若平台支援 subagents，主動自動分派。
 
 ## 低 Token 準則
 
@@ -81,15 +88,16 @@
 3. 建立 `docs/SPEC.md`、`docs/SPEC_FORMAT.md`、`docs/TASKS.md`、`docs/DEBUG_NOTES.md`、`docs/STATE.md`、`docs/ADRS.md`。
 4. 執行 `node scripts/inspect_agent_capabilities.js`，先盤點 skills、MCP、工具。
 5. 執行 `node scripts/validate_repo_integrity.js`，確認入口、mirror、設定與文件連結未漂移。
-6. 依專案類型搜尋並安裝需要的 skills。
-7. 產出初步規劃與技術棧總結，等使用者確認。
-8. 中大型任務：確認短版方向後，再產出完整計畫與 task 切片。
-9. 小任務：可直接合併進單次確認後開工。
-10. 生成最小可行版本：
+6. 若缺工具、缺 skill、缺 MCP、缺搜尋能力或缺瀏覽器驗證能力，讀 `.agents/skills/tool-discovery-and-installation/SKILL.md`，再跑 `bash scripts/setup_sandbox_tools.sh --plan`。
+7. 依專案類型搜尋並安裝需要的 skills。
+8. 產出初步規劃與技術棧總結，等使用者確認。
+9. 中大型任務：確認短版方向後，再產出完整計畫與 task 切片。
+10. 小任務：可直接合併進單次確認後開工。
+11. 生成最小可行版本：
    - 優先可跑、可測、可部署
    - 再做加值功能
-11. 若環境支援 MCP，檢查是否可直接使用部署或外部工具。
-12. 回報：
+12. 若環境支援 MCP，檢查是否可直接使用部署或外部工具。
+13. 回報：
    - 做了什麼
    - 怎麼驗證
    - 還缺什麼金鑰或手動步驟
@@ -98,6 +106,15 @@
 
 - 核心技能：`.agents/skills/loop-engineering/SKILL.md`
 - 技能路由：`.agents/skills/using-agent-skills/SKILL.md`
+- 工具補強：`.agents/skills/tool-discovery-and-installation/SKILL.md`
+- maturity：`docs/loop_maturity_model.md`
+- phase loop：`docs/engineering_phase_loop.md`
+- capability audit：`docs/capability_audit_and_install_loop.md`
+- circuit breaker：`docs/loop_circuit_breaker.md`
+- skill crystallization：`docs/skill_crystallization_loop.md`
+- agent manifest：`docs/agent_manifest_spec.md`
+- GitHub 參考地圖：`docs/reference_repos_by_domain.md`
+- 大型專案面向與分工：`docs/large_project_dimensions_and_roles.md`
 - 互動流程：`docs/interactive_project_flow.md`
 - session loop 協定：`docs/session_loop_contract.md`
 - 腳本降級矩陣：`docs/script_fallback_matrix.md`
@@ -108,6 +125,8 @@
 - 技術棧最佳實踐：`.agents/skills/*-best-practices/SKILL.md`
 - 架構規範：`docs/project_architecture_best_practices.md`
 - bootstrap 流程：`docs/agent_bootstrap_workflow.md`
+- 市集與開源 readiness：`docs/marketplace_open_source_readiness.md`
+- 發版規則：`docs/release_version_policy.md`
 - 專案生命週期：`docs/project_lifecycle_automation.md`
 - 技術棧提示：`prompts/interactive_tech_stack_prompt.md`
 - Prompt 範本：`prompts/`

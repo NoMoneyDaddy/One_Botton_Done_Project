@@ -42,6 +42,8 @@
 | `scripts/validate_repo_integrity.js` | quality-gate | `node` `filesystem:read` | 人工確認入口檔、skill mirrors、JSON、script capabilities、本地文件連結 |
 | `scripts/init_session_loop.js` | strong-accelerator | `node` `filesystem:write` | 手動建立 `.loop/*` |
 | `scripts/init_project_workspace.js` | strong-accelerator | `node` `filesystem:write` | 手動建立入口檔、docs、`.loop/*` |
+| `scripts/fresh_clone_smoke_test.js` | quality-gate | `node` `filesystem:write` | 人工驗證 repo、JSON、bootstrap、workspace init smoke path |
+| `scripts/marketplace_install_smoke_test.js` | quality-gate | `node` `filesystem:write` | 人工驗證 marketplace entry、plugin manifest、skills path、bootstrap 後 trigger skill 可讀 |
 | `scripts/generate_project_configs.js` | strong-accelerator | `node` `filesystem:write` | 依 `docs/project_config_generation.md` 手動產設定檔 |
 | `scripts/scaffold_project.js` | environment-bound | `node` `shell` `network` | 只輸出官方 scaffold 指令，交給可執行環境跑 |
 | `scripts/auto_skill_setup.js` | accelerator | `node` `filesystem:read` | 讀 `docs/agent_skill_catalog.md` 與 `docs/third_party_skills.md` 人工選 skill |

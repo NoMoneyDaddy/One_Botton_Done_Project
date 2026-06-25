@@ -55,6 +55,32 @@
       ]
     },
     {
+      "path": "scripts/fresh_clone_smoke_test.js",
+      "category": "quality-gate",
+      "requires": ["node", "filesystem:write"],
+      "scope": ["local-dev", "sandbox", "ci"],
+      "fallback_mode": "manual-fresh-clone-smoke-review",
+      "fallback_steps": [
+        "跑 node scripts/validate_repo_integrity.js",
+        "確認 plugin / marketplace / agent manifest JSON 可解析",
+        "手動跑 bootstrap_agent_files.js 到暫存目錄並驗證目標目錄結構",
+        "手動跑 init_project_workspace.js 與 init_session_loop.js 的最小 smoke path"
+      ]
+    },
+    {
+      "path": "scripts/marketplace_install_smoke_test.js",
+      "category": "quality-gate",
+      "requires": ["node", "filesystem:write"],
+      "scope": ["local-dev", "sandbox", "ci"],
+      "fallback_mode": "manual-marketplace-install-review",
+      "fallback_steps": [
+        "確認 .agents/plugins/marketplace.json 可解析，且 local plugin entry 存在",
+        "確認 .codex-plugin/plugin.json 與 marketplace entry 名稱、skills path 一致",
+        "手動跑 bootstrap_agent_files.js 到暫存目錄",
+        "確認 .agents/skills/using-agent-skills/SKILL.md 與 mirrors 可讀，作為 restart / trigger 最小證據"
+      ]
+    },
+    {
       "path": "scripts/generate_project_configs.js",
       "category": "strong-accelerator",
       "requires": ["node", "filesystem:write"],

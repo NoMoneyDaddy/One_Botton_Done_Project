@@ -27,6 +27,8 @@ const entriesToCopy = [
   'CLAUDE.md',
   'GEMINI.md',
   'README.en.md',
+  'SECURITY.md',
+  'CONTRIBUTING.md',
   '.loop',
   '.gemini/commands',
   '.cursorrules',
@@ -46,6 +48,15 @@ const entriesToCopy = [
   'docs/scaffold_project.md',
   'docs/session_loop_contract.md',
   'docs/script_fallback_matrix.md',
+  'docs/loop_maturity_model.md',
+  'docs/engineering_phase_loop.md',
+  'docs/capability_audit_and_install_loop.md',
+  'docs/loop_circuit_breaker.md',
+  'docs/skill_crystallization_loop.md',
+  'docs/agent_manifest_spec.md',
+  'docs/external_install_provenance_checklist.md',
+  'docs/marketplace_open_source_readiness.md',
+  'docs/release_version_policy.md',
   'docs/platform_support_matrix.md',
   'docs/project_lifecycle_automation.md',
   'docs/project_architecture_best_practices.md',
@@ -53,7 +64,10 @@ const entriesToCopy = [
   'docs/subagent_dispatch.md',
   'docs/sandbox_tooling_guide.md',
   'docs/third_party_skills.md',
+  'docs/reference_repos_by_domain.md',
+  'docs/large_project_dimensions_and_roles.md',
   'config/env_templates.json',
+  'config/agent_manifest.json',
   'config/project_config_profiles.json',
   'config/script_capabilities.json',
   'config/skill_profiles.json',
@@ -61,6 +75,8 @@ const entriesToCopy = [
   'scripts/inspect_agent_capabilities.js',
   'scripts/init_session_loop.js',
   'scripts/init_project_workspace.js',
+  'scripts/fresh_clone_smoke_test.js',
+  'scripts/marketplace_install_smoke_test.js',
   'scripts/generate_project_configs.js',
   'scripts/scaffold_project.js',
   'scripts/auto_skill_setup.js',
@@ -148,12 +164,14 @@ function main() {
   console.log('3. 若在 GitHub / sandbox / remote，先跑 bash scripts/setup_sandbox_tools.sh --plan');
   console.log('4. 先跑 node scripts/inspect_agent_capabilities.js');
   console.log('5. 再跑 node scripts/validate_repo_integrity.js');
-  console.log('6. 若缺 .loop/*，先跑 node scripts/init_session_loop.js . --goal "<objective>"');
-  console.log('7. 新專案若要先建官方骨架，可跑 node scripts/scaffold_project.js ../my-app --profile <profile>');
-  console.log('8. 技術棧確認後，可先跑 node scripts/generate_project_configs.js --profile <profile> --name <projectName>');
-  console.log('9. 若要給 Hermes / OpenClaw 共用 skills，跑 bash scripts/export_skills_for_hermes_openclaw.sh --plan');
-  console.log('10. 再讀 .agents/skills/using-agent-skills/SKILL.md');
-  console.log('11. 視情境讀取 .agents/skills/loop-engineering/SKILL.md 與技術棧 best practices');
+  console.log('6. 讀 docs/loop_maturity_model.md 與 docs/engineering_phase_loop.md');
+  console.log('7. 讀 docs/capability_audit_and_install_loop.md、docs/loop_circuit_breaker.md、docs/agent_manifest_spec.md');
+  console.log('8. 若缺 .loop/*，先跑 node scripts/init_session_loop.js . --goal "<objective>"');
+  console.log('9. 新專案若要先建官方骨架，可跑 node scripts/scaffold_project.js ../my-app --profile <profile>');
+  console.log('10. 技術棧確認後，可先跑 node scripts/generate_project_configs.js --profile <profile> --name <projectName>');
+  console.log('11. 若要給 Hermes / OpenClaw 共用 skills，跑 bash scripts/export_skills_for_hermes_openclaw.sh --plan');
+  console.log('12. 再讀 .agents/skills/using-agent-skills/SKILL.md');
+  console.log('13. 視情境讀取 .agents/skills/loop-engineering/SKILL.md 與技術棧 best practices');
 }
 
 try {

@@ -28,8 +28,17 @@
 - 能力盤點：`scripts/inspect_agent_capabilities.js`
 - repo integrity gate：`scripts/validate_repo_integrity.js`
 - skill 推薦 / 外部 skill 導引：`scripts/auto_skill_setup.js`
+- 工具發現與安全安裝引導：`tool-discovery-and-installation` + `scripts/setup_sandbox_tools.sh`
+- 外部安裝來源審查：`docs/external_install_provenance_checklist.md`
+- loop maturity 分級：`docs/loop_maturity_model.md`
+- engineering phase loop：`docs/engineering_phase_loop.md`
+- capability audit / install loop：`docs/capability_audit_and_install_loop.md`
+- loop circuit breaker：`docs/loop_circuit_breaker.md`
+- skill crystallization：`docs/skill_crystallization_loop.md`
+- agent manifest 草案：`docs/agent_manifest_spec.md`
 - 設定檔產生：`scripts/generate_project_configs.js`
 - sandbox / GitHub / remote 工具導引：`scripts/setup_sandbox_tools.sh`
+- local marketplace install smoke test：`scripts/marketplace_install_smoke_test.js`
 
 ## 支援定義 / What “Support” Means
 
@@ -88,19 +97,34 @@ node scripts/init_session_loop.js . --goal "你的目標"
 node scripts/auto_skill_setup.js --project-type web-app --ui-style modern --deployment zeabur --language typescript --database supabase
 ```
 
-7. 若要先跑官方骨架：
+7. 若要補齊本機 / sandbox 工具：
+
+```bash
+bash scripts/setup_sandbox_tools.sh --plan
+bash scripts/setup_sandbox_tools.sh --install-core
+```
+
+AI 需要安裝未知工具時，先讀 `.agents/skills/tool-discovery-and-installation/SKILL.md`。
+
+預設自治等級：
+
+```text
+L1 report-only
+```
+
+8. 若要先跑官方骨架：
 
 ```bash
 node scripts/scaffold_project.js ../your-project --profile nextjs-app-router --language typescript --styling tailwind --database supabase --quality-tool biome
 ```
 
-8. 技術棧確認後，可先產設定檔：
+9. 技術棧確認後，可先產設定檔：
 
 ```bash
 node scripts/generate_project_configs.js --profile nextjs-app-router --name your-project --language typescript --styling tailwind --database supabase --quality-tool biome
 ```
 
-9. 照 `docs/interactive_project_flow.md` 的階段式流程走。
+10. 照 `docs/interactive_project_flow.md` 的階段式流程走。
 
 ## 維護中的主文件 / Maintained Surface
 
@@ -109,6 +133,8 @@ node scripts/generate_project_configs.js --profile nextjs-app-router --name your
 - `AGENTS.md`
 - `CLAUDE.md`
 - `GEMINI.md`
+- `SECURITY.md`
+- `CONTRIBUTING.md`
 - `docs/interactive_project_flow.md`
 - `docs/project_usage_guide.md`
 - `docs/example_sessions.md`
@@ -124,12 +150,27 @@ node scripts/generate_project_configs.js --profile nextjs-app-router --name your
 - `docs/scaffold_project.md`
 - `docs/script_fallback_matrix.md`
 - `docs/agent_skill_catalog.md`
+- `docs/marketplace_open_source_readiness.md`
+- `docs/release_version_policy.md`
+- `docs/comparable_project_analysis.md`
+- `docs/loop_maturity_model.md`
+- `docs/engineering_phase_loop.md`
+- `docs/capability_audit_and_install_loop.md`
+- `docs/loop_circuit_breaker.md`
+- `docs/skill_crystallization_loop.md`
+- `docs/agent_manifest_spec.md`
+- `docs/external_install_provenance_checklist.md`
+- `docs/reference_repos_by_domain.md`
+- `docs/large_project_dimensions_and_roles.md`
 - `docs/project_architecture_best_practices.md`
 - `docs/project_lifecycle_automation.md`
 - `docs/platform_support_matrix.md`
 - `docs/sandbox_tooling_guide.md`
 - `docs/third_party_skills.md`
 - `docs/tech_stack_guide.md`
+- `config/agent_manifest.json`
+- `scripts/fresh_clone_smoke_test.js`
+- `scripts/marketplace_install_smoke_test.js`
 
 ## 專案結構 / Structure
 
@@ -159,6 +200,7 @@ node scripts/generate_project_configs.js --profile nextjs-app-router --name your
 ## 主要技能群組 / Core Skill Sets
 
 - 路由與規劃：`using-agent-skills`、`goal-loop`、`interview-me`、`idea-refine`、`spec-driven-development`、`project-config-generation`、`planning-and-task-breakdown`
+- 能力補強：`tool-discovery-and-installation`
 - 實作與驗證：`incremental-implementation`、`test-driven-development`、`browser-testing-with-devtools`、`debugging-and-error-recovery`
 - 架構與交付：`source-driven-development`、`api-and-interface-design`、`documentation-and-adrs`、`observability-and-instrumentation`、`shipping-and-launch`
 - 品質與風險：`code-review-and-quality`、`code-simplification`、`security-and-hardening`、`performance-optimization`
@@ -170,5 +212,7 @@ node scripts/generate_project_configs.js --profile nextjs-app-router --name your
 - 先官方文檔 / Context7，後實作
 - 最小必要修改
 - 每輪都驗證
+- 預設 `L1`，有證據再升 autonomy
+- 沒有 verifier，不算 ready
 - 腳本可加速，但不可成為單點依賴
 - 不保留過時流程、不保留不實承諾

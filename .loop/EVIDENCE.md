@@ -30,3 +30,7 @@
   - `node scripts/scaffold_project.js "$tmp/app-vite" --profile vite-react ...` plan smoke test
   - `node scripts/scaffold_project.js "$tmp/app-api" --profile node-express-api ...` plan smoke test
   - `git diff --check`
+  - `node scripts/inspect_agent_capabilities.js --json`
+  - `node scripts/validate_repo_integrity.js`
+  - `opencli doctor`
+  - `agent-reach doctor --json`

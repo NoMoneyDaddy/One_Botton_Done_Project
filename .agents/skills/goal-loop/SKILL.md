@@ -20,6 +20,7 @@ description: Run a cross-platform session loop using repo files instead of platf
 - 不依賴單一平台內建 `/goal`
 - 用 `.loop/*` 當 session 內共用狀態
 - 每輪都回寫狀態與驗證證據
+- 用 maturity / circuit breaker 控制自治與停機
 
 ## 啟動
 
@@ -58,6 +59,19 @@ node scripts/init_session_loop.js . --goal "<objective>"
 - `phase`: `Define` / `Plan` / `Build` / `Verify` / `Review` / `Ship`
 - `current_state`: `intake` / `clarify` / `capability-check` / `stack-and-deps` / `spec-and-architecture` / `task-slicing` / `implementation-loop` / `review-gate` / `ship-prep`
 - `status`: `active` / `blocked` / `complete`
+- `maturity_level`: `L0` / `L1` / `L2` / `L3`
+- `retry_count`: number
+- `blocked_reason`: string or null
+- `tier`: `prototype` / `standard` / `production` / `research`
+- `orientation`: `engineer` / `creative` / `production`
+- `time_budget`: string / number / null
+- `convergence_state`: `closed` / `half_open` / `open`
+
+參考：
+
+- `docs/loop_maturity_model.md`
+- `docs/engineering_phase_loop.md`
+- `docs/loop_circuit_breaker.md`
 
 ## 何時用
 

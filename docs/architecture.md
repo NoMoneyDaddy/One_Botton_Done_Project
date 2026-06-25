@@ -1,131 +1,123 @@
-# 純 Web 端 AI Agent 架構設計
+# Repo Architecture
 
-為了實現「純手機端可執行」且支援 Claude Code Web 等無終端環境，我們需要將原本依賴本地 CLI 工具（如 `gh`, `zeabur`, `npm`）的工作流，轉變為**純 API 驅動**與**雲端執行**的架構。
+這份文件描述的是「本 repo 自己」的架構，不是某個目標產品的 Web-only 架構。
 
-## 1. 核心架構轉變
+目標：
 
-| 傳統終端架構 | 純 Web 端架構 |
-| :--- | :--- |
-| 本地 Shell 腳本 (`.sh`) | 雲端 Node.js 腳本 / GitHub Actions |
-| 本地 CLI 工具 (`gh`, `zeabur`) | REST API 調用 (GitHub API, Zeabur API) |
-| 本地文件系統 | 雲端代碼庫 (GitHub) + 記憶體內處理 |
-| 終端互動 (Terminal) | Web 聊天介面 (Claude Code Web) |
+- 讓多 AI 平台讀同一份事實來源
+- 讓 skill、文件、腳本、loop 狀態彼此對齊
+- 讓腳本可跑時加速，跑不了時也不阻塞流程
 
-## 2. 雲端工作流設計
+## 架構分層
 
-在純 Web 端，AI Agent 的工作流將完全在雲端進行，使用者只需透過聊天介面下達指令：
+### 1. Entry Layer
 
-1. **需求釐清**：Agent 透過聊天介面進行多選問答。
-2. **專案初始化**：Agent 透過 GitHub API 創建倉庫，並寫入初始代碼。
-3. **雲端開發**：Agent 透過 GitHub API 提交代碼變更。
-4. **自動化測試**：Agent 觸發 GitHub Actions 執行測試。
-5. **雲端部署**：Agent 透過 Zeabur API 或 GitHub Actions 觸發部署。
+平台入口檔，只放最少必要規則與導流：
 
-## 3. Web 端 API 腳本 (Node.js)
+- `AGENTS.md`
+- `CLAUDE.md`
+- `GEMINI.md`
+- `.github/copilot-instructions.md`
+- `.cursor/rules/*.mdc`
+- `.cursorrules`
 
-我們將原本的 Shell 腳本重寫為可在雲端或 WebContainer 中執行的 Node.js 腳本。
+規則：
 
-### 3.1 專案初始化與代碼提交 (GitHub API)
+- `AGENTS.md` 是共享核心來源
+- 其他入口檔只補平台差異，不複製整份規範
 
-```javascript
-// scripts/github_api.js
-const { Octokit } = require("@octokit/rest");
+### 2. Skill Runtime Layer
 
-class GitHubManager {
-  constructor(token) {
-    this.octokit = new Octokit({ auth: token });
-  }
+真正的 workflow 能力包：
 
-  async createRepo(name, description) {
-    const { data } = await this.octokit.repos.createForAuthenticatedUser({
-      name,
-      description,
-      private: true,
-      auto_init: true
-    });
-    return data;
-  }
+- `.agents/skills/`：canonical
+- `.claude/skills/`：Claude mirror
+- `skills/`：legacy mirror
 
-  async commitFiles(owner, repo, files, message) {
-    // 獲取 main 分支的最新 commit
-    const { data: ref } = await this.octokit.git.getRef({
-      owner, repo, ref: "heads/main"
-    });
-    
-    // 創建 tree
-    const tree = await Promise.all(files.map(async file => {
-      const { data: blob } = await this.octokit.git.createBlob({
-        owner, repo, content: file.content, encoding: "utf-8"
-      });
-      return { path: file.path, mode: "100644", type: "blob", sha: blob.sha };
-    }));
+規則：
 
-    const { data: newTree } = await this.octokit.git.createTree({
-      owner, repo, tree, base_tree: ref.object.sha
-    });
+- skill 內容以 `.agents/skills/` 為準
+- mirror 只做轉址或兼容，不應各自漂移
 
-    // 創建 commit
-    const { data: commit } = await this.octokit.git.createCommit({
-      owner, repo, message, tree: newTree.sha, parents: [ref.object.sha]
-    });
+### 3. Docs Layer
 
-    // 更新引用
-    await this.octokit.git.updateRef({
-      owner, repo, ref: "heads/main", sha: commit.sha
-    });
-    
-    return commit;
-  }
-}
+文件分三類：
+
+- 核心工作流：`docs/interactive_project_flow.md`、`docs/project_usage_guide.md`
+- 相容與架構：`docs/platform_support_matrix.md`、`docs/ai-tool-compatibility.md`、`docs/project_architecture_best_practices.md`
+- 狀態與決策：`docs/SPEC.md`、`docs/TASKS.md`、`docs/STATE.md`、`docs/DEBUG_NOTES.md`、`docs/ADRS.md`
+
+規則：
+
+- 文件要描述 repo 目前真實存在的能力
+- 過時流程、虛構檔案、未落地承諾要移除
+
+### 4. Automation Layer
+
+可執行能力：
+
+- `scripts/*.js`：主要自動化
+- `scripts/*.sh`：環境導向包裝
+- `config/*.json`：機器可讀設定
+- `.github/workflows/ci.yml`：自動化驗證入口
+- `scripts/validate_repo_integrity.js`：repo 入口、mirror、JSON、script capability、Markdown link gate
+
+規則：
+
+- Node.js 腳本優先於 shell script
+- shell 只處理安裝、匯出、環境導向工作
+- 新腳本要補 `config/script_capabilities.json`
+- 新腳本要補 `docs/script_fallback_matrix.md`
+- 新入口或刪檔要能通過 `node scripts/validate_repo_integrity.js`
+
+### 5. Session State Layer
+
+session 內 loop 狀態：
+
+- `.loop/GOAL.md`
+- `.loop/PLAN.md`
+- `.loop/STATE.json`
+- `.loop/CHECKPOINTS.md`
+- `.loop/EVIDENCE.md`
+- `.loop/POLICY.md`
+
+規則：
+
+- 這層是跨平台 session 協定
+- 不把進度只留在聊天記憶
+
+## Repo 結構
+
+```text
+.
+├── AGENTS.md
+├── CLAUDE.md
+├── GEMINI.md
+├── README.md
+├── README.en.md
+├── .loop/
+├── .agents/skills/
+├── .claude/skills/
+├── skills/
+├── docs/
+├── config/
+├── scripts/
+├── prompts/
+└── .github/workflows/
 ```
 
-### 3.2 雲端部署 (Zeabur API)
+## 主要資料流
 
-```javascript
-// scripts/zeabur_api.js
-const axios = require('axios');
+1. AI 先讀入口檔
+2. 入口檔導到 canonical skills 與核心 docs
+3. AI 先盤點能力與平台限制
+4. 能跑腳本就跑
+5. 不能跑就依 `docs/script_fallback_matrix.md` 降級
+6. 實作、驗證、決策回寫到 `.loop/*` 與 `docs/*.md`
 
-class ZeaburManager {
-  constructor(token) {
-    this.token = token;
-    this.baseURL = 'https://gateway.zeabur.com/api/v1';
-  }
+## 維護規則
 
-  async deployProject(projectId, environmentId) {
-    const response = await axios.post(`${this.baseURL}/projects/${projectId}/deploy`, {
-      environmentID: environmentId
-    }, {
-      headers: { 'Authorization': `Bearer ${this.token}` }
-    });
-    return response.data;
-  }
-}
-```
-
-## 4. MCP 雲端化配置
-
-在純 Web 環境中，我們依賴 MCP 伺服器來處理外部 API 調用。我們需要確保這些 MCP 伺服器是雲端託管的，或者由 Claude Code Web 原生支援。
-
-### GitHub MCP (雲端版)
-透過 GitHub API 提供完整的倉庫管理、PR 創建和 Actions 觸發能力。
-
-### Zeabur MCP (自定義)
-如果 Claude Code Web 支援自定義 MCP，我們可以提供一個簡單的 Zeabur MCP 配置：
-
-```json
-{
-  "mcpServers": {
-    "zeabur": {
-      "command": "npx",
-      "args": ["-y", "@zeabur/mcp-server"],
-      "env": {
-        "ZEABUR_API_TOKEN": "your_token"
-      }
-    }
-  }
-}
-```
-
-## 5. 總結
-
-透過將所有本地操作轉移到雲端 API 調用，我們徹底擺脫了對本地終端的依賴。這使得在手機瀏覽器或 Claude Code Web 中進行完整的 Loop Engineering 成為可能。
+- 新增 skill：同步 `.agents/skills/`、mirrors、catalog
+- 新增腳本：同步 capability / fallback 文件
+- 新增流程：同步 README、入口檔、核心 docs
+- 刪除檔案：先移除所有引用，再刪

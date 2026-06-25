@@ -90,7 +90,7 @@ DATABASE_URL=postgresql://user:password@host:5432/db
 
 ## AI 驅動部署：三種方式
 
-### 方式 1：Zeabur MCP（Claude Desktop / Cursor / Manus AI）
+### 方式 1：Zeabur MCP（Claude Desktop / Cursor / 其他支援 MCP 的代理環境）
 
 安裝 `@zeabur/mcp-server` 後，可用自然語言操作 Zeabur：
 

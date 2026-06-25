@@ -154,6 +154,14 @@ function buildGitignore(profile, options) {
     lines.push('dist');
   }
 
+  if (profile === 'react-native-expo') {
+    lines.push('.expo', '.expo-shared', 'dist', 'web-build');
+  }
+
+  if (profile === 'tauri-desktop') {
+    lines.push('dist', '.vite', 'src-tauri/target', 'target');
+  }
+
   if (options.database === 'supabase') {
     lines.push('supabase/.temp', '.branches');
   }
@@ -287,6 +295,58 @@ function buildExpressPackageJson(name, options) {
     pkg.devDependencies['@types/express'] = 'latest';
     pkg.devDependencies.tsx = 'latest';
     pkg.scripts.typecheck = 'tsc --noEmit -p tsconfig.json';
+  }
+
+  if (options.database === 'supabase') {
+    pkg.dependencies['@supabase/supabase-js'] = 'latest';
+  }
+
+  if (options.qualityTool === 'biome') {
+    pkg.devDependencies['@biomejs/biome'] = 'latest';
+    pkg.scripts.format = 'biome format --write .';
+    pkg.scripts.lint = 'biome lint .';
+    pkg.scripts.check = 'biome check .';
+    pkg.scripts['check:write'] = 'biome check --write .';
+  }
+
+  return pkg;
+}
+
+function buildExpoPackageJson(name, options) {
+  const pkg = packageJsonBase(name);
+  pkg.scripts = {};
+  pkg.dependencies = {};
+  pkg.devDependencies = {};
+
+  if (options.language === 'typescript') {
+    pkg.scripts.typecheck = 'tsc --noEmit';
+    pkg.devDependencies.typescript = 'latest';
+  }
+
+  if (options.database === 'supabase') {
+    pkg.dependencies['@supabase/supabase-js'] = 'latest';
+  }
+
+  if (options.qualityTool === 'biome') {
+    pkg.devDependencies['@biomejs/biome'] = 'latest';
+    pkg.scripts.format = 'biome format --write .';
+    pkg.scripts.lint = 'biome lint .';
+    pkg.scripts.check = 'biome check .';
+    pkg.scripts['check:write'] = 'biome check --write .';
+  }
+
+  return pkg;
+}
+
+function buildTauriPackageJson(name, options) {
+  const pkg = packageJsonBase(name);
+  pkg.scripts = {};
+  pkg.dependencies = {};
+  pkg.devDependencies = {};
+
+  if (options.language === 'typescript') {
+    pkg.scripts.typecheck = 'tsc --noEmit';
+    pkg.devDependencies.typescript = 'latest';
   }
 
   if (options.database === 'supabase') {
@@ -441,7 +501,13 @@ function buildEnvExample(profile, options) {
     if (profile === 'nextjs-app-router') {
       lines.push('NEXT_PUBLIC_SUPABASE_URL=');
       lines.push('NEXT_PUBLIC_SUPABASE_ANON_KEY=');
+    } else if (profile === 'react-native-expo') {
+      lines.push('EXPO_PUBLIC_SUPABASE_URL=');
+      lines.push('EXPO_PUBLIC_SUPABASE_ANON_KEY=');
     } else if (profile === 'vite-react') {
+      lines.push('VITE_SUPABASE_URL=');
+      lines.push('VITE_SUPABASE_ANON_KEY=');
+    } else if (profile === 'tauri-desktop') {
       lines.push('VITE_SUPABASE_URL=');
       lines.push('VITE_SUPABASE_ANON_KEY=');
     } else {
@@ -469,6 +535,8 @@ function buildStackSetup(profileKey, profile, name, options) {
   if (profileKey === 'nextjs-app-router') generated.push(nextConfigFile(options));
   if (profileKey === 'nextjs-app-router' && options.styling === 'tailwind') generated.push('postcss.config.mjs');
   if (profileKey === 'vite-react') generated.push(viteConfigFile(options));
+  if (profileKey === 'react-native-expo') generated.push('docs/STACK_SETUP.md');
+  if (profileKey === 'tauri-desktop') generated.push('docs/STACK_SETUP.md');
 
   followUps.push(`1. 執行 \`${installCommand(options.packageManager)}\``);
   if (profileKey === 'nextjs-app-router') {
@@ -482,12 +550,20 @@ function buildStackSetup(profileKey, profile, name, options) {
   if (profileKey === 'node-express-api') {
     followUps.push('2. 建立 `src/index.ts` 或 `src/index.js` 作為 API 入口');
   }
+  if (profileKey === 'react-native-expo') {
+    followUps.push('2. 執行 `npx expo start`，確認 iOS / Android / web dev server 可啟動');
+    followUps.push('3. 需要原生目錄時，再依官方流程跑 `npx expo prebuild`');
+  }
+  if (profileKey === 'tauri-desktop') {
+    followUps.push('2. 先確認 Rust toolchain 已安裝，再執行 `npm run tauri dev`');
+    followUps.push('3. 若要改前端框架，再回官方 `create-tauri-app` 文件選別的 template');
+  }
   if (options.database === 'supabase') {
-    followUps.push('3. 補齊 `.env.example` 對應的 Supabase URL / key');
-    followUps.push('4. 若要本地 Supabase，依官方流程執行 `supabase init`，不要手寫 `supabase/config.toml`');
+    followUps.push('4. 補齊 `.env.example` 對應的 Supabase URL / key');
+    followUps.push('5. 若要本地 Supabase，依官方流程執行 `supabase init`，不要手寫 `supabase/config.toml`');
   }
   if (options.qualityTool === 'biome') {
-    followUps.push('5. 依官方流程執行 `npx @biomejs/biome check --write .`');
+    followUps.push('6. 依官方流程執行 `npx @biomejs/biome check --write .`');
   }
 
   return `# STACK SETUP
@@ -516,6 +592,8 @@ ${followUps.map((line) => `- ${line}`).join('\n')}
 
 - Greenfield 專案若還沒建，優先用官方 scaffold 建骨架，再用本 repo 補治理層與 quality / env / config 對齊。
 - Next.js 官方安裝文件已支援 TypeScript、Tailwind、AGENTS.md，手動生成時仍應回官方文件確認版本需求。
+- Expo app config (\`app.json\` / \`app.config.ts\`) 會暴露 public config；秘密值不要直接寫進 app config。
+- Tauri 專案啟動前通常還需要 Rust toolchain；scaffold 成功不等於本機原生依賴已完備。
 - Tailwind v4 的 Next.js / Vite 方案都不一定需要傳統 \`tailwind.config.js\`；請以官方最新安裝頁為準。
 - Supabase CLI 的 \`supabase/config.toml\` 由 \`supabase init\` 產生；不要在 repo 內假造過時模板。
 `;
@@ -525,7 +603,9 @@ function buildProfileFiles(profileKey, profile, name, options) {
   const packageBuilders = {
     'nextjs-app-router': buildNextPackageJson,
     'vite-react': buildVitePackageJson,
-    'node-express-api': buildExpressPackageJson
+    'node-express-api': buildExpressPackageJson,
+    'react-native-expo': buildExpoPackageJson,
+    'tauri-desktop': buildTauriPackageJson
   };
   const files = new Map();
   const packageJson = packageBuilders[profileKey](name, options);
@@ -638,9 +718,17 @@ function main() {
   console.log('- 跑對應驗證指令');
 }
 
-try {
-  main();
-} catch (error) {
-  console.error(`❌ 失敗: ${error.message}`);
-  process.exit(1);
+if (require.main === module) {
+  try {
+    main();
+  } catch (error) {
+    console.error(`❌ 失敗: ${error.message}`);
+    process.exit(1);
+  }
 }
+
+module.exports = {
+  buildProfileFiles,
+  buildEnvExample,
+  buildStackSetup
+};

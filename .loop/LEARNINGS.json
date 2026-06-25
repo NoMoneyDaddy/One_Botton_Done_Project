@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "updated_at": "2026-06-25T16:30:00Z",
+  "updated_at": "2026-06-25T16:40:00Z",
   "rollup": {
     "retained_patterns": [
       "先用 machine-readable policy 定義自治邊界",
@@ -12,10 +12,27 @@
     "next_experiments": [
       "把更多 PR / review feedback 回寫成 keep-or-discard 條目",
       "用 summarize_learning_ledger.js 做 score aggregation",
-      "把 mobile / desktop plan-only profiles 逐步升級成 runnable scaffold"
+      "把 Capacitor / Electron 也補成 runnable scaffold"
     ]
   },
   "entries": [
+    {
+      "id": "2026-06-25-expo-tauri-runnable",
+      "date": "2026-06-25",
+      "context": "把 mobile / desktop 擴充從純文件規劃推進到可執行 profile",
+      "change": "將 react-native-expo 與 tauri-desktop 升成 runnable scaffold，並補 config overlay 與實際 scaffold smoke",
+      "hypothesis": "先挑官方 CLI 穩、Node 路徑清楚的 profile 落地，能快速把跨環境支援從宣告提升到可驗證能力",
+      "result": "保留",
+      "decision": "keep",
+      "evidence_refs": [
+        "scripts/scaffold_project.js",
+        "scripts/generate_project_configs.js",
+        "tests/mobile_desktop_profile_files.test.js",
+        "docs/tech_stack_guide.md",
+        "docs/project_config_generation.md"
+      ],
+      "next_action": "補 Capacitor / Electron 或更進一步的 native runtime prerequisite 檢查"
+    },
     {
       "id": "2026-06-25-task-bundle-monitoring",
       "date": "2026-06-25",

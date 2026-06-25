@@ -12,10 +12,10 @@
 | `nextjs-app-router` | 全端 web app / landing page | `create-next-app` | 有 |
 | `vite-react` | SPA / dashboard / 前端站 | `create-vite` | 有 |
 | `node-express-api` | API service | `npm init -y` | 有 |
-| `react-native-expo` | 跨平台 mobile app | `create-expo-app` | 規劃中 / plan-only |
+| `react-native-expo` | 跨平台 mobile app | `create-expo-app` | 有 |
 | `capacitor-mobile-app` | Web Native mobile app | `@capacitor/create-app` | 規劃中 / plan-only |
 | `flutter-app` | Flutter mobile app | `flutter create` | 規劃中 / plan-only |
-| `tauri-desktop` | 輕量 desktop app | `create-tauri-app` | 規劃中 / plan-only |
+| `tauri-desktop` | 輕量 desktop app | `create-tauri-app` | 有 |
 | `electron-desktop` | Electron desktop app | 官方 quick start | 規劃中 / plan-only |
 | `ios-swiftui` | iOS native | Xcode new project | 規劃中 / plan-only |
 | `android-kotlin` | Android native | Android Studio new project | 規劃中 / plan-only |
@@ -33,7 +33,7 @@
 | **Next.js (App Router)** | SEO 友好、伺服器渲染 (SSR)、內建路由、Route Handlers、生態系強大 | 學習曲線較陡 | 商業級 Web 應用、電商、部落格、SaaS 平台 |
 | **React (Vite)** | 輕量、啟動極快、高度靈活、社群龐大 | 需自行配置路由與狀態管理、SEO 較弱 | 單頁應用 (SPA)、內部管理系統、數據儀表板 |
 | **Vue.js (Vite)** | 易學易用、雙向綁定、漸進式框架 | 目前本 repo 尚未提供對應 profile | 需手動擴充時可評估 |
-| **React Native + Expo** | 單一 JS/TS codebase 跑 iOS / Android / web | 目前是 `plan-only` profile | 需要 mobile-first 時優先評估 |
+| **React Native + Expo** | 單一 JS/TS codebase 跑 iOS / Android / web | 已可走 repo scaffold / config overlay | 需要 mobile-first 時優先評估 |
 | **Flutter** | 真多平台、效能好、UI 一致性高 | 目前是 `plan-only` profile | 重視多平台一致性時可評估 |
 
 **AI 推薦策略**：對於大多數商業級專案，強烈推薦 **Next.js App Router**，並採用 `src/app` + `features` + `lib` 的分層結構。
@@ -83,10 +83,10 @@
 
 | 路線 | 優點 | 目前 repo 狀態 |
 | :--- | :--- | :--- |
-| **React Native + Expo** | iOS / Android / web 共用 JS/TS codebase，官方 scaffold 清楚 | `plan-only` |
+| **React Native + Expo** | iOS / Android / web 共用 JS/TS codebase，官方 scaffold 清楚 | `full` |
 | **Capacitor** | Web app 轉 iOS / Android 成本低，可保留現有前端 stack | `plan-only` |
 | **Flutter** | 多平台一致性強，UI toolkit 完整 | `plan-only` |
-| **Tauri** | desktop 體積小、速度快，還能延伸到 mobile | `plan-only` |
+| **Tauri** | desktop 體積小、速度快，還能延伸到 mobile | `full` |
 | **Electron** | 生態成熟、桌面整合多 | `plan-only` |
 | **SwiftUI / Android Kotlin** | 原生能力最完整 | `plan-only` |
 
@@ -97,6 +97,7 @@
 - 先看 `config/project_config_profiles.json`
 - 若在已自動化支援範圍內，優先走 `scripts/scaffold_project.js` 與 `scripts/generate_project_configs.js`
 - 若超出範圍，文件可以建議，但要明講「需手動擴充」
+- `full` 代表：可直接走 `scripts/scaffold_project.js --run`，再套治理層與設定檔。
 - `plan-only` 代表：官方文檔與 scaffold 路徑已整理，但 config generation / smoke / tests / runbook 還沒補齊
 
 ## 如何在 Prompt 中指定技術棧？

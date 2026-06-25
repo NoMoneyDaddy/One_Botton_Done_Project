@@ -11,6 +11,14 @@
 ## Entries
 
 - 2026-06-25
+  - `node scripts/run_repo_tests.js`
+  - `node scripts/validate_repo_integrity.js`
+  - `node scripts/evaluate_session_loop.js .`
+  - `node scripts/scaffold_project.js /tmp/obd-expo-run --profile react-native-expo --name obd-expo-run --idea "expo smoke" --database supabase --quality-tool biome --skip-install --run`
+  - `node scripts/scaffold_project.js /tmp/obd-tauri-run --profile tauri-desktop --name obd-tauri-run --idea "tauri smoke" --quality-tool biome --run`
+  - `git diff --check`
+
+- 2026-06-25
   - `node scripts/export_task_bundle.js`
   - `node scripts/run_repo_tests.js`
   - `node scripts/validate_repo_integrity.js`

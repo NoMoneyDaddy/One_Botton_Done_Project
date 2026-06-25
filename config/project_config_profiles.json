@@ -35,7 +35,7 @@
     },
     "react-native-expo": {
       "displayName": "React Native + Expo",
-      "supportLevel": "plan-only",
+      "supportLevel": "full",
       "projectTypes": ["mobile-app"],
       "languages": ["typescript", "javascript"],
       "styling": ["none"],
@@ -68,10 +68,10 @@
     },
     "tauri-desktop": {
       "displayName": "Tauri Desktop",
-      "supportLevel": "plan-only",
+      "supportLevel": "full",
       "projectTypes": ["desktop-app"],
       "languages": ["typescript", "javascript"],
-      "styling": ["tailwind", "none"],
+      "styling": ["none"],
       "databases": ["none", "supabase"],
       "qualityTools": ["biome", "none"],
       "officialScaffold": "npm create tauri-app@latest",

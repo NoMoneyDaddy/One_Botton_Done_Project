@@ -37,9 +37,8 @@
 
 ## 主要缺口
 
-1. release / version policy 已補。
-2. 缺安全審查清單，尤其是外部 skill 與 install command provenance。
-3. 缺上架前 smoke test：fresh clone、install、restart agent、trigger skill。
+1. 缺安全審查清單，尤其是外部 skill 與 install command provenance。
+2. 缺 marketplace install / restart agent / trigger skill 整合 smoke test。
 
 ## 建議路線
 
@@ -55,6 +54,7 @@
 - SECURITY.md 已補。
 - CONTRIBUTING.md 已補。
 - release / version policy 已補。
+- fresh clone smoke test 已補。
 - README 補 fresh install 驗證步驟。
 
 ### Phase 3：Codex marketplace / plugin ready
@@ -75,7 +75,5 @@
 
 ## 最小下一步
 
-1. 選定 LICENSE。
-2. 補 plugin manifest。
-3. 建立 marketplace test entry。
-4. 做 fresh install smoke test。
+1. 補外部 skill / install command provenance checklist。
+2. 補 marketplace install / restart agent / trigger skill 整合 smoke test。

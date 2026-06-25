@@ -64,6 +64,7 @@ node scripts/init_session_loop.js . --goal "<objective>"
 - `blocked_reason`: string or null
 - `tier`: `prototype` / `standard` / `production` / `research`
 - `orientation`: `engineer` / `creative` / `production`
+- `time_budget`: string / number / null
 - `convergence_state`: `closed` / `half_open` / `open`
 
 參考：

@@ -48,7 +48,7 @@
 3. 若是新專案，先執行專案初始化流程：建立資料夾、核心規範檔、`docs/SPEC.md`、`docs/TASKS.md`、`docs/DEBUG_NOTES.md`、`docs/STATE.md`、`docs/ADRS.md`。
 4. 若缺 `.loop/*`，先初始化 session loop：`node scripts/init_session_loop.js . --goal "<objective>"`。
    - 若平台不能跑腳本，改讀 `docs/script_fallback_matrix.md`，手動建立 `.loop/*`。
-5. 若缺工具、缺 skill、缺 MCP，或使用者要求「補能力 / 裝工具 / 自己找辦法」，先讀 `.agents/skills/tool-discovery-and-installation/SKILL.md`。
+5. 若缺工具、缺 skill、缺 MCP、缺搜尋能力、缺瀏覽器驗證能力，或使用者要求「補能力 / 裝工具 / 自己找辦法」，先讀 `.agents/skills/tool-discovery-and-installation/SKILL.md`。
 6. 先讀：
    - `docs/loop_maturity_model.md`
    - `docs/engineering_phase_loop.md`
@@ -88,7 +88,7 @@
 3. 建立 `docs/SPEC.md`、`docs/SPEC_FORMAT.md`、`docs/TASKS.md`、`docs/DEBUG_NOTES.md`、`docs/STATE.md`、`docs/ADRS.md`。
 4. 執行 `node scripts/inspect_agent_capabilities.js`，先盤點 skills、MCP、工具。
 5. 執行 `node scripts/validate_repo_integrity.js`，確認入口、mirror、設定與文件連結未漂移。
-6. 若缺能力，讀 `.agents/skills/tool-discovery-and-installation/SKILL.md`，再跑 `bash scripts/setup_sandbox_tools.sh --plan`。
+6. 若缺工具、缺 skill、缺 MCP、缺搜尋能力或缺瀏覽器驗證能力，讀 `.agents/skills/tool-discovery-and-installation/SKILL.md`，再跑 `bash scripts/setup_sandbox_tools.sh --plan`。
 7. 依專案類型搜尋並安裝需要的 skills。
 8. 產出初步規劃與技術棧總結，等使用者確認。
 9. 中大型任務：確認短版方向後，再產出完整計畫與 task 切片。

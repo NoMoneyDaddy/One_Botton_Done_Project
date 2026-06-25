@@ -4,6 +4,8 @@
 
 調研時間：2026-06-25。
 
+快照基線：除非另有標示，以下比較都以 `2026-06-25` 查詢時的 default-branch HEAD 為準。
+
 ## Summary
 
 本 repo 的定位不應只是 skill collection，而應是 repo-first agent operating layer：

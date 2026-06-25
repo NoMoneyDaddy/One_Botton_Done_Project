@@ -32,10 +32,12 @@ Detect gap
 
 ## Trusted Source Order
 
-1. repo `scripts/` / `config/`
-2. 官方文件
-3. 官方 package registry
-4. 官方 GitHub repo
+1. repo `.agents/skills/` canonical runtime
+2. repo `.claude/skills/`、`skills/` mirrors
+3. repo `scripts/` / `config/`
+4. 官方文件
+5. 官方 package registry
+6. 官方 GitHub repo
 
 ## Verification
 

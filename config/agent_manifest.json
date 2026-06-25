@@ -1,4 +1,5 @@
 {
+  "schema_version": "1.0.0",
   "agent_name": "one-button-done-project",
   "version": "0.1.0",
   "primary_entry": "AGENTS.md",

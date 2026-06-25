@@ -77,6 +77,12 @@ node scripts/init_project_workspace.js ../your-project --name your-project --ide
 - `creative`
 - `production`
 
+### `time_budget`
+
+- `null`
+- `string`
+- `number`
+
 ### `phase`
 
 - `Define`

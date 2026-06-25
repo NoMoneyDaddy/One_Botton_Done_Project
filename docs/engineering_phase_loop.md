@@ -11,33 +11,36 @@
 ## Core Phases
 
 ```text
-Requirements
--> Research
--> Planning
--> Execution
+Define
+-> Plan
+-> Build
 -> Verify
 -> Review
--> Delivery
+-> Ship
 ```
+
+補充：
+
+- `Define` 吸收 requirements、成功條件、初步 research
+- `Plan` 吸收 task slicing、依賴確認、補充 research
 
 ## Phase Outputs
 
 | Phase | 產出 | 回退 |
 | --- | --- | --- |
-| Requirements | 成功條件、限制、風險 | intake / clarify |
-| Research | 現況、來源、依賴 | Requirements |
-| Planning | 切片、順序、邊界 | Research |
-| Execution | 最小必要修改 | Planning |
-| Verify | test / lint / smoke / evidence | Execution |
-| Review | quality / security / maintainability gate | Planning / Execution |
-| Delivery | docs / release / handoff | Review |
+| Define | 成功條件、限制、風險、初步來源 | intake / clarify |
+| Plan | 切片、順序、邊界、依賴 | Define |
+| Build | 最小必要修改 | Plan |
+| Verify | test / lint / smoke / evidence | Build |
+| Review | quality / security / maintainability gate | Plan / Build |
+| Ship | docs / release / handoff | Review |
 
 ## Invariants
 
 - `Verify` 不可省略
 - `Review` 可縮小，不可假裝不存在
 - 無法自證就改 `blocked`
-- 同根因連修 3 次失敗就熔斷
+- 同根因連續失敗 3 次就熔斷
 
 ## Task States
 

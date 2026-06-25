@@ -52,7 +52,7 @@ description: Meta skill entrypoint. Select the right workflow skill for the curr
 
 ## 工具選用規則
 
-- 缺工具、缺 skill、缺 MCP、或使用者要求「裝工具 / 補能力」：先用 `tool-discovery-and-installation`
+- 缺工具、缺 skill、缺 MCP、缺搜尋能力、缺瀏覽器驗證能力，或使用者要求「裝工具 / 補能力」：先用 `tool-discovery-and-installation`
 - 大型 repo、token 緊、需要先找脈絡：先用 `Semble`
 - 要快速確認頁面能不能用、畫面有沒有壞：先用 `agent-browser`
 - 要正式可重現的瀏覽器測試、錄製、selector 檢查：用 `playwright-cli`
@@ -86,7 +86,7 @@ description: Meta skill entrypoint. Select the right workflow skill for the curr
    - `docs/agent_manifest_spec.md`
 7. 先執行：
    - `node scripts/inspect_agent_capabilities.js`
-   - 若缺工具或使用者要求補能力，讀 `.agents/skills/tool-discovery-and-installation/SKILL.md`
+   - 若缺工具、缺 skill、缺 MCP、缺搜尋能力、缺瀏覽器驗證能力，或使用者要求補能力，讀 `.agents/skills/tool-discovery-and-installation/SKILL.md`
    - 再跑 `bash scripts/setup_sandbox_tools.sh --plan`
 8. 若缺 `.loop/*`，執行：
    - `node scripts/init_session_loop.js . --goal "<objective>"`

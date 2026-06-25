@@ -110,6 +110,7 @@ node scripts/generate_project_configs.js --profile nextjs-app-router --name your
 - `docs/agent_skill_catalog.md`
 - `docs/marketplace_open_source_readiness.md`
 - `docs/release_version_policy.md`
+- `docs/comparable_project_analysis.md`
 - `docs/loop_maturity_model.md`
 - `docs/engineering_phase_loop.md`
 - `docs/capability_audit_and_install_loop.md`
@@ -124,6 +125,8 @@ node scripts/generate_project_configs.js --profile nextjs-app-router --name your
 - `docs/sandbox_tooling_guide.md`
 - `docs/third_party_skills.md`
 - `docs/tech_stack_guide.md`
+- `config/agent_manifest.json`
+- `scripts/fresh_clone_smoke_test.js`
 
 ## Principles
 

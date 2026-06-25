@@ -22,8 +22,8 @@ detect repeatable workflow
 -> extract steps
 -> define trigger / non-goals
 -> add verification and safety notes
--> write skill
--> mirror skill
+-> write canonical skill under .agents/skills/
+-> mirror to .claude/skills/ and skills/
 -> validate repo integrity
 ```
 

@@ -71,7 +71,7 @@ node scripts/auto_skill_setup.js --project-type web-app --ui-style modern --depl
 6. 若是 JS / TS 專案，讀 `docs/biome_quality_loop.md`
 7. 跑 `node scripts/inspect_agent_capabilities.js`
 8. 跑 `node scripts/validate_repo_integrity.js`
-9. 若缺工具、缺 skill、缺 MCP，讀 `.agents/skills/tool-discovery-and-installation/SKILL.md`
+9. 若缺工具、缺 skill、缺 MCP、缺搜尋能力、缺瀏覽器驗證能力，讀 `.agents/skills/tool-discovery-and-installation/SKILL.md`
 10. 讀 `docs/loop_maturity_model.md`
 11. 讀 `docs/engineering_phase_loop.md`
 12. 讀 `docs/capability_audit_and_install_loop.md`
@@ -85,7 +85,7 @@ node scripts/auto_skill_setup.js --project-type web-app --ui-style modern --depl
 
 - 不再依賴舊式一次性 `install.js` 工作流
 - 新腳本預設優先用 Node.js；shell script 只做環境導向工作
-- 工具安裝先走 `tool-discovery-and-installation`，避免靜默安裝與來源不明命令
+- 工具安裝先走 `tool-discovery-and-installation`，避免靜默安裝、缺搜尋/瀏覽器驗證能力硬闖、與來源不明命令
 - 自治與 phase 不靠口頭約定，依 `loop_maturity_model` 與 `engineering_phase_loop`
 - 若新增 skill，必須同步更新：
   - `.agents/skills/`

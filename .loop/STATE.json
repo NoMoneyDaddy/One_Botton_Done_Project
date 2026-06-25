@@ -8,9 +8,9 @@
   "status": "active",
   "phase": "Ship",
   "current_state": "ship-prep",
-  "current_task": "Flutter 已升成 runnable scaffold，且 prerequisite doctor 已接進 scaffold gate；準備提交新 PR",
+  "current_task": "Flutter `--platforms` CLI 已補實作與 smoke；準備提交下一個小 PR",
   "retry_count": 0,
   "blocked_reason": null,
-  "last_verified_at": "2026-06-25T23:01:02Z",
-  "updated_at": "2026-06-25T23:01:02Z"
+  "last_verified_at": "2026-06-25T23:04:45Z",
+  "updated_at": "2026-06-25T23:04:45Z"
 }

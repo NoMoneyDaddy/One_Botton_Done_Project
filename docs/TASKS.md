@@ -28,7 +28,8 @@
 | T22 | x | 補 Capacitor / Electron runnable scaffold | `scripts/scaffold_project.js`、`scripts/generate_project_configs.js`、`tests/mobile_desktop_profile_files.test.js` |
 | T23 | x | 補 platform prerequisite doctor | `config/platform_prerequisites.json`、`scripts/platform_prerequisite_doctor.js`、`tests/platform_prerequisite_doctor.test.js` |
 | T24 | x | 補 Flutter runnable scaffold | `scripts/scaffold_project.js`、`scripts/generate_project_configs.js`、`tests/mobile_desktop_profile_files.test.js` |
-| T25 | ~ | 持續移除過時文件敘述與擴充其他平台實測 | 後續維護項 |
+| T25 | x | 補 Flutter `--platforms` CLI 解析與測試 | `scripts/scaffold_project.js`、`tests/scaffold_project.test.js`、`docs/scaffold_project.md` |
+| T26 | ~ | 持續移除過時文件敘述與擴充其他平台實測 | 後續維護項 |
 
 ## Backlog
 

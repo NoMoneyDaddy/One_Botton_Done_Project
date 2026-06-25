@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "updated_at": "2026-06-25T23:01:02Z",
+  "updated_at": "2026-06-25T23:04:45Z",
   "rollup": {
     "retained_patterns": [
       "先用 machine-readable policy 定義自治邊界",
@@ -13,10 +13,26 @@
       "把更多 PR / review feedback 回寫成 keep-or-discard 條目",
       "用 summarize_learning_ledger.js 做 score aggregation",
       "把 SwiftUI / Android Kotlin 往 runnable scaffold 推進",
-      "把 prerequisite doctor 接到更多 workflow，含 `--platforms` 與 native runbook"
+      "把 prerequisite doctor 接到更多 workflow，含 native runbook 與更細的平台選項"
     ]
   },
   "entries": [
+    {
+      "id": "2026-06-26-flutter-platforms-cli",
+      "date": "2026-06-26",
+      "context": "Flutter scaffold 已 runnable，但 CLI 有 `options.platforms` 死參考，未真正解析",
+      "change": "補 `--platforms` 參數解析、測試與文件，並完成 `flutter create --platforms android,web` smoke",
+      "hypothesis": "把 CLI 參數真的接通，比只在程式裡留 dead path 更能避免 agent 對 Flutter 平台矩陣做錯誤假設",
+      "result": "保留",
+      "decision": "keep",
+      "evidence_refs": [
+        "scripts/scaffold_project.js",
+        "tests/scaffold_project.test.js",
+        "docs/scaffold_project.md",
+        "docs/TASKS.md"
+      ],
+      "next_action": "往 native profile runnable scaffold 或更細的 prerequisite runbook 繼續推進"
+    },
     {
       "id": "2026-06-26-flutter-runnable-gate",
       "date": "2026-06-26",

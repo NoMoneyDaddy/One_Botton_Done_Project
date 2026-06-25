@@ -100,6 +100,7 @@ node scripts/auto_skill_setup.js --project-type web-app --ui-style modern --depl
 7. 若要補齊本機 / sandbox 工具：
 
 ```bash
+bash scripts/setup_sandbox_tools.sh --doctor
 bash scripts/setup_sandbox_tools.sh --plan
 bash scripts/setup_sandbox_tools.sh --install-core
 ```

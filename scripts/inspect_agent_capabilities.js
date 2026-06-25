@@ -26,10 +26,10 @@ const mcpSources = [
 
 const recommendedTools = [
   { name: 'ripgrep', command: 'rg', category: 'core' },
-  { name: 'fd', command: 'fd', category: 'core' },
+  { name: 'fd', command: 'fd', alternates: ['fdfind'], category: 'core' },
   { name: 'fzf', command: 'fzf', category: 'core' },
   { name: 'zoxide', command: 'zoxide', category: 'core' },
-  { name: 'bat', command: 'bat', category: 'core' },
+  { name: 'bat', command: 'bat', alternates: ['batcat'], category: 'core' },
   { name: 'jq', command: 'jq', category: 'core' },
   { name: 'hyperfine', command: 'hyperfine', category: 'core' },
   { name: 'delta', command: 'delta', category: 'core' },
@@ -46,6 +46,13 @@ function commandExists(command) {
   const lookup = process.platform === 'win32' ? 'where' : 'which';
   const result = spawnSync(lookup, [command], { stdio: 'ignore' });
   return result.status === 0;
+}
+
+function findInstalledCommand(commands) {
+  for (const command of commands) {
+    if (commandExists(command)) return command;
+  }
+  return null;
 }
 
 function walkSkillRoot(rootPath, found = new Set()) {
@@ -159,10 +166,14 @@ function listMcpServers() {
 }
 
 function inspectTools() {
-  return recommendedTools.map((tool) => ({
-    ...tool,
-    installed: commandExists(tool.command)
-  }));
+  return recommendedTools.map((tool) => {
+    const detectedCommand = findInstalledCommand([tool.command, ...(tool.alternates || [])]);
+    return {
+      ...tool,
+      installed: Boolean(detectedCommand),
+      detectedCommand
+    };
+  });
 }
 
 function listScriptCapabilities() {
@@ -261,6 +272,11 @@ function printHuman(payload) {
 
   console.log('\n工具:');
   for (const tool of payload.tools) {
+    if (tool.installed && tool.detectedCommand && tool.detectedCommand !== tool.command) {
+      console.log(`- ${tool.command}: 已安裝(${tool.detectedCommand}) | ${tool.category}`);
+      continue;
+    }
+
     console.log(`- ${tool.command}: ${tool.installed ? '已安裝' : '未安裝'} | ${tool.category}`);
   }
 
@@ -285,6 +301,7 @@ function printHuman(payload) {
   console.log('\n建議下一步:');
   console.log('- 新專案：先做想法釐清 → 技術棧 → 能力盤點 → API Key → 初步方案 → 完整計畫 → loop');
   console.log('- 舊專案：先做能力盤點 → 架構/測試/依賴審查 → 提改善建議與重構切片，再等確認');
+  console.log('- 若缺 CLI / sandbox 工具：先跑 bash scripts/setup_sandbox_tools.sh --doctor');
   console.log('- JS / TS 專案：若有 Biome，切片後跑 check --write；合併前跑 ci');
   console.log('- 技術棧若已確認：先跑 scripts/generate_project_configs.js，把 package / tsconfig / env example / framework config 落地');
   console.log('- 若腳本跑不了：改讀 docs/script_fallback_matrix.md，走對應 fallback');

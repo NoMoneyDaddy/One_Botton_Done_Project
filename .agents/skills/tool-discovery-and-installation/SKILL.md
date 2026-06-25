@@ -28,11 +28,15 @@ description: Detect missing skills, MCP servers, CLIs, and sandbox tools; choose
 
     node scripts/auto_skill_setup.js --project-type TYPE --language LANG --database DB --deployment TARGET
 
-3. 若缺 sandbox / shell 工具，先看安裝計畫：
+3. 若缺 sandbox / shell 工具，先做體檢：
+
+    bash scripts/setup_sandbox_tools.sh --doctor
+
+4. 若需要完整建議清單，再看安裝計畫：
 
     bash scripts/setup_sandbox_tools.sh --plan
 
-4. 若使用者已明確要求安裝，才執行 repo 內安全腳本：
+5. 若使用者已明確要求安裝，才執行 repo 內安全腳本：
 
     bash scripts/setup_sandbox_tools.sh --install-core
     bash scripts/setup_sandbox_tools.sh --install-ai

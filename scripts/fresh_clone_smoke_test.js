@@ -19,32 +19,35 @@ function ensureCleanDir(dirPath) {
   fs.mkdirSync(dirPath, { recursive: true });
 }
 
-function parseJson(relativePath) {
+function assertJsonParses(relativePath) {
   JSON.parse(fs.readFileSync(path.join(repoRoot, relativePath), 'utf8'));
 }
 
 function main() {
   const scratchRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'obdp-smoke-'));
-  const bootstrapTarget = path.join(scratchRoot, 'bootstrap-target');
+  try {
+    const bootstrapTarget = path.join(scratchRoot, 'bootstrap-target');
+    ensureCleanDir(bootstrapTarget);
 
-  ensureCleanDir(bootstrapTarget);
+    console.log(`scratchRoot=${scratchRoot}`);
 
-  console.log(`scratchRoot=${scratchRoot}`);
+    assertJsonParses('config/agent_manifest.json');
+    assertJsonParses('.codex-plugin/plugin.json');
+    assertJsonParses('.agents/plugins/marketplace.json');
 
-  parseJson('config/agent_manifest.json');
-  parseJson('.codex-plugin/plugin.json');
-  parseJson('.agents/plugins/marketplace.json');
+    run('node', ['scripts/validate_repo_integrity.js'], repoRoot);
+    run('node', ['scripts/bootstrap_agent_files.js', bootstrapTarget, '--force'], repoRoot);
+    run('node', ['scripts/init_project_workspace.js', bootstrapTarget, '--name', 'bootstrap-target', '--idea', 'fresh clone smoke test'], repoRoot);
+    run('node', ['scripts/validate_repo_integrity.js'], bootstrapTarget);
+    const workspaceTarget = path.join(scratchRoot, 'workspace-target');
+    ensureCleanDir(workspaceTarget);
+    run('node', ['scripts/init_project_workspace.js', workspaceTarget, '--name', 'smoke-project', '--idea', 'fresh clone smoke test'], repoRoot);
+    run('node', ['scripts/init_session_loop.js', workspaceTarget, '--goal', 'verify portable loop state', '--force'], repoRoot);
 
-  run('node', ['scripts/validate_repo_integrity.js'], repoRoot);
-  run('node', ['scripts/bootstrap_agent_files.js', bootstrapTarget, '--force'], repoRoot);
-  run('node', ['scripts/init_project_workspace.js', bootstrapTarget, '--name', 'bootstrap-target', '--idea', 'fresh clone smoke test'], repoRoot);
-  run('node', ['scripts/validate_repo_integrity.js'], bootstrapTarget);
-  const workspaceTarget = path.join(scratchRoot, 'workspace-target');
-  ensureCleanDir(workspaceTarget);
-  run('node', ['scripts/init_project_workspace.js', workspaceTarget, '--name', 'smoke-project', '--idea', 'fresh clone smoke test'], repoRoot);
-  run('node', ['scripts/init_session_loop.js', workspaceTarget, '--goal', 'verify portable loop state', '--force'], repoRoot);
-
-  console.log('fresh clone smoke test ok');
+    console.log('fresh clone smoke test ok');
+  } finally {
+    fs.rmSync(scratchRoot, { recursive: true, force: true });
+  }
 }
 
 if (require.main === module) {

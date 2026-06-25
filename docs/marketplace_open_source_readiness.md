@@ -51,7 +51,7 @@
 
 ### Phase 2：公開開源穩定
 
-- 加 LICENSE。
+- LICENSE 已補。
 - SECURITY.md 已補。
 - CONTRIBUTING.md 已補。
 - release / version policy 已補。

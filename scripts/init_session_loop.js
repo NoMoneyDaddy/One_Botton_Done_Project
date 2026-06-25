@@ -153,7 +153,7 @@ function buildPolicy() {
 - 需要使用者做不可逆選擇
 - 外部服務不可用且無替代方案
 - 同一錯誤連修 3 次仍失敗
-- circuit breaker open
+- circuit_breaker_open
 `;
 }
 

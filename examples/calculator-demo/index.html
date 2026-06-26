@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculator — AGENTS.md v2 Demo</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #0f172a;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    color: #e2e8f0;
+  }
+  h1 {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #64748b;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
+  }
+  .calculator {
+    background: #1e293b;
+    border-radius: 1.25rem;
+    padding: 1.5rem;
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+    width: 320px;
+  }
+  .display {
+    background: #0f172a;
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    text-align: right;
+    min-height: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  .display .expression {
+    font-size: 0.875rem;
+    color: #64748b;
+    min-height: 1.25rem;
+    word-break: break-all;
+  }
+  .display .result {
+    font-size: 2.25rem;
+    font-weight: 600;
+    color: #f1f5f9;
+    word-break: break-all;
+  }
+  .buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.625rem;
+  }
+  button {
+    border: none;
+    border-radius: 0.75rem;
+    padding: 1rem;
+    font-size: 1.25rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+    background: #334155;
+    color: #e2e8f0;
+  }
+  button:active { transform: scale(0.95); }
+  button:hover { background: #475569; }
+  button.operator {
+    background: #3b82f6;
+    color: #fff;
+  }
+  button.operator:hover { background: #2563eb; }
+  button.equals {
+    background: #10b981;
+    color: #fff;
+    grid-column: span 2;
+  }
+  button.equals:hover { background: #059669; }
+  button.clear {
+    background: #ef4444;
+    color: #fff;
+  }
+  button.clear:hover { background: #dc2626; }
+  button.wide { grid-column: span 2; }
+  .footer {
+    margin-top: 1.5rem;
+    font-size: 0.75rem;
+    color: #475569;
+  }
+</style>
+</head>
+<body>
+  <h1>Built with AGENTS.md v2 Autonomous Protocol</h1>
+  <div class="calculator">
+    <div class="display">
+      <div class="expression" id="expression"></div>
+      <div class="result" id="result">0</div>
+    </div>
+    <div class="buttons">
+      <button class="clear" onclick="clearAll()">C</button>
+      <button onclick="backspace()">⌫</button>
+      <button class="operator" onclick="addOp('%')">%</button>
+      <button class="operator" onclick="addOp('/')">÷</button>
+      <button onclick="addNum('7')">7</button>
+      <button onclick="addNum('8')">8</button>
+      <button onclick="addNum('9')">9</button>
+      <button class="operator" onclick="addOp('*')">×</button>
+      <button onclick="addNum('4')">4</button>
+      <button onclick="addNum('5')">5</button>
+      <button onclick="addNum('6')">6</button>
+      <button class="operator" onclick="addOp('-')">−</button>
+      <button onclick="addNum('1')">1</button>
+      <button onclick="addNum('2')">2</button>
+      <button onclick="addNum('3')">3</button>
+      <button class="operator" onclick="addOp('+')">+</button>
+      <button class="wide" onclick="addNum('0')">0</button>
+      <button onclick="addDot()">.</button>
+      <button class="equals" onclick="calculate()">=</button>
+    </div>
+  </div>
+  <div class="footer">Zero dependencies · Any AI · Any platform</div>
+
+<script>
+let expression = '';
+let lastResult = '';
+
+const exprEl = document.getElementById('expression');
+const resultEl = document.getElementById('result');
+
+function updateDisplay() {
+  const displayMap = { '*': '×', '/': '÷', '-': '−' };
+  exprEl.textContent = expression.replace(/[*/\-]/g, m => displayMap[m] || m);
+}
+
+function addNum(n) {
+  if (lastResult && !expression) {
+    expression = '';
+    lastResult = '';
+  }
+  expression += n;
+  updateDisplay();
+  resultEl.textContent = evaluateSafe() ?? resultEl.textContent;
+}
+
+function addOp(op) {
+  if (!expression && lastResult) {
+    expression = lastResult;
+    lastResult = '';
+  }
+  if (!expression) return;
+  const last = expression.slice(-1);
+  if ('+-*/%'.includes(last)) {
+    expression = expression.slice(0, -1);
+  }
+  expression += op;
+  updateDisplay();
+}
+
+function addDot() {
+  const parts = expression.split(/[+\-*/%]/);
+  const current = parts[parts.length - 1];
+  if (current.includes('.')) return;
+  if (!current) expression += '0';
+  expression += '.';
+  updateDisplay();
+}
+
+function clearAll() {
+  expression = '';
+  lastResult = '';
+  exprEl.textContent = '';
+  resultEl.textContent = '0';
+}
+
+function backspace() {
+  expression = expression.slice(0, -1);
+  updateDisplay();
+  if (expression) {
+    resultEl.textContent = evaluateSafe() ?? resultEl.textContent;
+  } else {
+    resultEl.textContent = '0';
+  }
+}
+
+function evaluateSafe() {
+  try {
+    const sanitized = expression.replace(/[^0-9+\-*/.%]/g, '');
+    if (!sanitized || /[+\-*/%.]$/.test(sanitized)) return null;
+    const val = Function('"use strict"; return (' + sanitized + ')')();
+    if (typeof val !== 'number' || !isFinite(val)) return null;
+    return parseFloat(val.toPrecision(12)).toString();
+  } catch { return null; }
+}
+
+function calculate() {
+  const val = evaluateSafe();
+  if (val !== null) {
+    exprEl.textContent = '';
+    resultEl.textContent = val;
+    lastResult = val;
+    expression = '';
+  }
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key >= '0' && e.key <= '9') addNum(e.key);
+  else if (e.key === '.') addDot();
+  else if (e.key === '+') addOp('+');
+  else if (e.key === '-') addOp('-');
+  else if (e.key === '*') addOp('*');
+  else if (e.key === '/') { e.preventDefault(); addOp('/'); }
+  else if (e.key === '%') addOp('%');
+  else if (e.key === 'Enter' || e.key === '=') calculate();
+  else if (e.key === 'Backspace') backspace();
+  else if (e.key === 'Escape' || e.key === 'c' || e.key === 'C') clearAll();
+});
+</script>
+</body>
+</html>

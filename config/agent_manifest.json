@@ -46,7 +46,7 @@
   "autonomy_mode": "autonomous-delivery",
   "allowed_actions": [
     "repo_read",
-    "repo_write",
+    "repo_write_local",
     "doc_update",
     "dependency_install",
     "verified_tool_setup",

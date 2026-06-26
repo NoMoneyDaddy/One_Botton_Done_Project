@@ -149,7 +149,7 @@
     }
   ],
   "do_not_stop_for": [
-    "tech_stack_choice",
+    "tech_stack_decision",
     "architecture_decision",
     "file_structure",
     "tool_selection",

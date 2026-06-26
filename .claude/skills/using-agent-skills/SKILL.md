@@ -34,7 +34,8 @@ description: Meta skill entrypoint. Select the right workflow skill for the curr
 | 19 | 測試/除錯 | `browser-testing-with-devtools` / `debugging-and-error-recovery` |
 | 20 | 合併前 | `code-review-and-quality` |
 | 21 | 觀測 | `observability-and-instrumentation` |
-| 22 | 部署 | `ci-cd-and-automation` + `shipping-and-launch` |
+| 22 | 文件 | `documentation-and-adrs` |
+| 23 | 部署 | `ci-cd-and-automation` + `shipping-and-launch` |
 
 ## 新專案路徑
 

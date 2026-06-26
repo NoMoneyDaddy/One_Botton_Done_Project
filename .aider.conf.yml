@@ -1,0 +1,8 @@
+# Aider Entry
+# 請先讀 AGENTS.md — 本 repo 的通用自主交付協議。
+# 預設 L3 自主交付模式：直接執行，只在阻塞時停止。
+
+read:
+  - AGENTS.md
+  - .loop/GOAL.md
+  - .loop/STATE.json

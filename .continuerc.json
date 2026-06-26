@@ -1,0 +1,9 @@
+{
+  "docs": [
+    {
+      "title": "Universal AI Agent Protocol",
+      "startUrl": "AGENTS.md",
+      "description": "本 repo 的通用自主交付協議。預設 L3 自主交付模式。"
+    }
+  ]
+}

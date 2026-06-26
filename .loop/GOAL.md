@@ -2,16 +2,22 @@
 
 ## Objective
 
-讓本 repo 的實際檔案、架構、入口、腳本、session loop、文件敘述彼此一致，成為多 AI 平台可共用的專案治理框架。
+讓本 repo 成為真正的通用 AI 自主交付框架：任何 AI 平台、任何模型、任何環境，讀取本專案後即可自主交付最終作品，無需人工值守。
+
+Make this repo a truly universal AI autonomous delivery framework: any AI platform, any model, any environment can read this project and autonomously deliver finished work without human supervision.
 
 ## Done Definition
 
-- 入口文件、核心 docs、skill 路徑、腳本能力宣告彼此對齊
-- `.loop/*`、`docs/SPEC.md`、`docs/TASKS.md`、`docs/STATE.md`、`docs/DEBUG_NOTES.md`、`docs/ADRS.md` 存在且可作為真相來源
-- 驗證通過：核心腳本 `node --check`、能力盤點腳本可執行、`git diff --check` 通過
+- `AGENTS.md` v2 universal protocol 已就位，單一檔案即可引導任何 AI 自主交付
+- 所有平台入口檔（CLAUDE.md、GEMINI.md、.cursorrules、.windsurfrules、.clinerules 等）已對齊
+- 預設自治等級從 L1 升級為 L3 autonomous
+- 執行策略矩陣已更新為自主優先
+- 跨平台可攜性已驗證
+- 新增 Windsurf、Roo Code/Cline、Aider、Continue.dev 平台支援
 
 ## Constraints
 
-- 不能依賴單一 AI 平台私有能力
-- 不能保留過時或虛構檔案引用
-- 不改動不必要的使用者內容
+- 不依賴單一 AI 平台的私有能力
+- 協議必須是純 markdown，任何 LLM 都能理解
+- 腳本是加速器，不是依賴項 — 所有功能都可手動完成
+- 保留已有 skills 生態系統的相容性

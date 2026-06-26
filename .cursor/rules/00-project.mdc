@@ -1,16 +1,20 @@
 ---
-description: Loop engineering project defaults
+description: Universal AI Agent Protocol — autonomous delivery
 alwaysApply: true
 ---
 
-先讀 `AGENTS.md`。
+先讀 `AGENTS.md` — 通用自主交付協議。
+
+預設 L3 自主交付模式：
+- 直接執行，只在阻塞時停止
+- 技能路徑：`.agents/skills/`
+- 跨 session 狀態：`.loop/`
 
 再依需求讀：
-
 - `.agents/skills/using-agent-skills/SKILL.md`
 - `.agents/skills/loop-engineering/SKILL.md`
 - 對應技術棧的 `.agents/skills/*-best-practices/SKILL.md`
 
 只做最小必要修改。
 涉及框架、部署、第三方整合時先查官方文檔。
-修改後主動執行可用驗證。
+修改後主動驗證。

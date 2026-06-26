@@ -1,26 +1,30 @@
 # POLICY
 
-## Default
+## Default Autonomy: L3 Autonomous
 
-- 先短版確認，再進實作 loop
-- 大任務先建 spec / task
-- 每輪都要更新 loop 狀態
-- 沒有驗證，不算完成
+本 repo 預設自主交付模式。AI agent 讀取 `AGENTS.md` 後即可自主執行完整交付流程，無需人工確認。
 
-## Auto-continue
+## Auto-continue（直接做，不要問）
 
-以下情況可在 session 內自動繼續，不必停：
+- 技術棧選擇 → 選最佳方案並記錄到 `docs/ADRS.md`
+- 架構決策 → 遵循最佳實踐並記錄
+- 依賴安裝 → 用標準套件管理器
+- 檔案結構建立 → 參考 `docs/project_architecture_best_practices.md`
+- 程式碼實作 → 最小必要修改
+- 測試失敗 → 修根因
+- 文件更新 → 每輪同步
+- 設定檔補齊 → 直接完成
+- PR 建立 → 驗證通過後自動建立
 
-- 小型可逆決策
-- 設定檔補齊
-- 測試失敗後的根因修正
-- 文件與狀態同步更新
+## Stop Conditions（只有這些情況才停）
 
-## Stop Conditions
+- 缺憑證 / 密鑰 / API Key → 無法替代
+- 不可逆破壞操作 → 刪除生產資料
+- 計費 / 付款決策 → 涉及金錢
+- 同一錯誤連續 3 次 → Circuit breaker
 
-以下情況才停：
+## 驗證紀律
 
-- 缺憑證、登入、付款、權限
-- 需要使用者做不可逆選擇
-- 外部服務不可用且無替代方案
-- 同一錯誤連修 3 次仍失敗
+- 每次修改都必須驗證
+- 沒有驗證 = 沒有完成
+- 每輪都要更新 `.loop/STATE.json`

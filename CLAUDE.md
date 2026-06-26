@@ -1,12 +1,25 @@
-# Claude Entry
+# Claude Code Entry
 
-Claude Code 請先讀 `AGENTS.md`，把它當作本 repo 的主要行為規範。
+請先讀 `AGENTS.md` — 本 repo 的通用自主交付協議。
+
+本 repo 設計為平台無關。`AGENTS.md` 包含完整的自主交付協議，適用於所有 AI 平台。
 
 補充：
 
-- 若 repo 內有 `.loop/*`，先讀 `.loop/GOAL.md` 與 `.loop/STATE.json`
-- 若腳本不可跑，改讀 `docs/script_fallback_matrix.md`
-- repo 內 skill runtime 位置是 `.agents/skills/`
+- Claude Code 的 skill 路徑：`.claude/skills/`（mirror of `.agents/skills/`）
 - 核心 workflow skill：`.agents/skills/loop-engineering/SKILL.md`
-- skill 路由入口：`.agents/skills/using-agent-skills/SKILL.md`
-- 實作前先查官方文檔，再動手
+- 技能路由入口：`.agents/skills/using-agent-skills/SKILL.md`
+- 跨 session 狀態：`.loop/`
+- 若腳本不可跑，改讀 `docs/script_fallback_matrix.md`
+
+## 自治等級
+
+本 repo 預設 **L3 自主交付模式**。你無需等待確認即可：
+
+- 選擇技術棧並記錄決策
+- 建立檔案結構
+- 安裝依賴
+- 實作、測試、修復
+- 更新文件
+
+只在 `AGENTS.md` 第 2 節列出的阻塞條件下才停止。

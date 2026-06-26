@@ -1,19 +1,19 @@
 ---
-description: Session loop defaults
+description: Session loop — autonomous state management
 alwaysApply: true
 ---
 
 若 repo 內有 `.loop/*`：
 
-- 先讀 `.loop/GOAL.md`
-- 再讀 `.loop/STATE.json`
-- 實作或驗證後，主動更新：
-  - `.loop/PLAN.md`
-  - `.loop/CHECKPOINTS.md`
-  - `.loop/EVIDENCE.md`
+- 先讀 `.loop/GOAL.md` 與 `.loop/STATE.json`
+- 每輪實作或驗證後，主動更新：
+  - `.loop/STATE.json`（機器狀態）
+  - `.loop/PLAN.md`（計畫）
+  - `.loop/CHECKPOINTS.md`（里程碑）
+  - `.loop/EVIDENCE.md`（驗證證據）
 
 若 `.loop/*` 不存在：
 
-- 先建議執行 `node scripts/init_session_loop.js . --goal "<objective>"`
+- 直接建立（或跑 `node scripts/init_session_loop.js . --goal "<objective>"`）
 
-不要把 loop 狀態只留在對話記憶。
+狀態不要只留在對話記憶，要持久化到檔案。

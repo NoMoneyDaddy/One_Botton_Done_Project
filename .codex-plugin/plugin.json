@@ -1,7 +1,7 @@
 {
-  "name": "one-button-done-project",
-  "version": "0.1.0",
-  "description": "Repo-first loop engineering framework for AI agents, with skills, governance docs, capability inspection, tool setup guidance, and marketplace readiness workflow.",
+  "name": "one-button-done",
+  "version": "2.0.0",
+  "description": "Universal AI Agent Framework — any AI platform, any model, autonomous delivery of finished work. Read AGENTS.md to start.",
   "author": {
     "name": "NoMoneyDaddy",
     "url": "https://github.com/NoMoneyDaddy"
@@ -11,18 +11,21 @@
   "license": "MIT",
   "keywords": [
     "agent-skills",
-    "codex",
+    "autonomous-delivery",
+    "universal-ai",
+    "platform-agnostic",
     "loop-engineering",
     "ai-agents",
+    "manus-like",
+    "unattended-delivery",
     "project-governance",
-    "skill-runtime",
-    "tool-discovery"
+    "skill-runtime"
   ],
   "skills": "./.agents/skills/",
   "interface": {
-    "displayName": "One Button Done Project",
-    "shortDescription": "Repo-first AI agent workflow, skills, and tool-readiness framework",
-    "longDescription": "Use One Button Done Project to guide AI agents through intake, capability checks, planning, implementation, verification, documentation, tool setup, and marketplace readiness workflows.",
+    "displayName": "One Button Done",
+    "shortDescription": "Universal AI autonomous delivery framework — any platform, any model",
+    "longDescription": "Any AI platform reads AGENTS.md and autonomously delivers finished work: plan, implement, test, and ship. Supports Claude, Codex, Cursor, Windsurf, Gemini, Copilot, Roo Code, Aider, and any LLM that reads markdown.",
     "developerName": "NoMoneyDaddy",
     "category": "Developer Tools",
     "capabilities": [
@@ -31,8 +34,8 @@
       "Write"
     ],
     "defaultPrompt": [
-      "Use this repo to bootstrap an AI-ready project workflow.",
-      "Inspect this project and recommend the next smallest verified improvement."
+      "Read AGENTS.md and autonomously deliver the requested work.",
+      "Inspect this project and autonomously implement the next improvement."
     ],
     "websiteURL": "https://github.com/NoMoneyDaddy/One_Botton_Done_Project",
     "privacyPolicyURL": "https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement",

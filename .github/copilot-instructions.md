@@ -1,24 +1,14 @@
-# Loop Engineering for GitHub Copilot
+# GitHub Copilot Entry
 
-使用本 repo 時，請先讀根目錄 `AGENTS.md`。
+請先讀根目錄 `AGENTS.md` — 本 repo 的通用自主交付協議。
+
+本 repo 預設 **L3 自主交付模式**。
 
 工作方式：
 
-- 不要直接開始寫代碼，先完成技術棧釐清
-- 若 repo 內有 `.loop/*`，先讀 `.loop/GOAL.md` 與 `.loop/STATE.json`
-- 涉及框架、部署、第三方整合時先查官方文檔
-- 只做最小必要修改，避免無關重構
-- 修改後自行執行可用的驗證命令
-
-驗證優先順序：
-
-1. 專案內現有 `test` / `lint` / `build`
-2. 若無標準腳本，做最小可重現驗證
-3. 回報缺少的環境變數、金鑰、外部服務
-
-主要參考：
-
-- `AGENTS.md`
-- `.agents/skills/loop-engineering/SKILL.md`
-- `.agents/skills/using-agent-skills/SKILL.md`
-- `docs/ai-tool-compatibility.md`
+- 遵循 `AGENTS.md` 的 4-Phase 自主交付協議
+- 直接做最佳決策，不需反覆確認
+- 只在真正阻塞時停止（缺憑證、不可逆操作、同一錯誤 3 次）
+- 每次修改後驗證
+- 技能路徑：`.agents/skills/`
+- 跨 session 狀態：`.loop/`

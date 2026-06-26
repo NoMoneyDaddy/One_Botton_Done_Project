@@ -1,39 +1,65 @@
 {
-  "schema_version": "1.0.0",
-  "agent_name": "one-button-done-project",
-  "version": "0.1.0",
+  "schema_version": "2.0.0",
+  "agent_name": "one-button-done",
+  "version": "2.0.0",
+  "description": "Universal AI Agent Protocol — any AI platform, any model, autonomous delivery",
   "primary_entry": "AGENTS.md",
+  "protocol_version": "v2-autonomous",
   "supported_surfaces": [
-    "Codex",
     "Claude Code",
+    "Codex",
     "Cursor",
+    "Windsurf",
     "Gemini CLI",
-    "GitHub Copilot"
+    "GitHub Copilot",
+    "Roo Code",
+    "Cline",
+    "Aider",
+    "Continue.dev",
+    "ChatGPT",
+    "GPT-4",
+    "Hermes",
+    "OpenClaw",
+    "Mistral",
+    "Llama",
+    "Qwen",
+    "DeepSeek",
+    "Any LLM with markdown reading capability"
   ],
+  "platform_entry_map": {
+    "AGENTS.md": ["Codex", "Generic", "Any"],
+    "CLAUDE.md": ["Claude Code"],
+    "GEMINI.md": ["Gemini CLI"],
+    ".cursorrules": ["Cursor"],
+    ".windsurfrules": ["Windsurf"],
+    ".clinerules": ["Roo Code", "Cline"],
+    ".github/copilot-instructions.md": ["GitHub Copilot"],
+    ".aider.conf.yml": ["Aider"],
+    ".continuerc.json": ["Continue.dev"]
+  },
   "skills_runtime_paths": [
     ".agents/skills",
     ".claude/skills",
     "skills"
   ],
-  "autonomy_default_level": "L1",
+  "autonomy_default_level": "L3",
+  "autonomy_mode": "autonomous-delivery",
   "allowed_actions": [
     "repo_read",
     "repo_write",
     "doc_update",
-    "verified_tool_setup"
+    "dependency_install",
+    "verified_tool_setup",
+    "tech_stack_decision",
+    "architecture_decision",
+    "pr_create",
+    "deployment_write"
   ],
-  "restricted_actions": [
-    "secret_persistence",
-    "unverified_remote_install",
-    "implicit_system_permission_changes",
-    "unguarded_external_write"
-  ],
-  "requires_human_gate": [
-    "login_or_secret_entry",
-    "irreversible_choice",
-    "system_level_install",
-    "auto_merge",
-    "billing_or_deployment_risk"
+  "stop_only_for": [
+    "missing_credentials",
+    "irreversible_destructive_operation",
+    "billing_or_payment",
+    "same_error_3x"
   ],
   "verification_gates": [
     "tests",
@@ -59,10 +85,9 @@
   "official_doc_sources": "config/official_doc_sources.json",
   "platform_prerequisites": "config/platform_prerequisites.json",
   "secret_handling": "environment-variables-only",
-  "kill_switch_conditions": [
-    "same_error_3x",
-    "circuit_breaker_open",
-    "missing_required_auth",
-    "external_service_without_fallback"
-  ]
+  "delivery_protocol": {
+    "phases": ["Understand", "Plan", "Build-Verify", "Ship"],
+    "default_behavior": "autonomous",
+    "human_gate": "only-when-blocked"
+  }
 }

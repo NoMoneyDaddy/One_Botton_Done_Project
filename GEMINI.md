@@ -1,12 +1,16 @@
-# Gemini Entry
+# Gemini CLI Entry
 
-Gemini CLI 請先讀 `AGENTS.md`，把它當作本 repo 的主要行為規範。
+請先讀 `AGENTS.md` — 本 repo 的通用自主交付協議。
+
+本 repo 設計為平台無關。`AGENTS.md` 包含完整的自主交付協議，適用於所有 AI 平台。
 
 補充：
 
-- 本 repo 的共享指令來源是 `AGENTS.md`
-- 若你的 `context.fileName` 尚未包含 `AGENTS.md`，可改為同時載入 `AGENTS.md` 與 `GEMINI.md`
-- repo 內 skill runtime 位置是 `.agents/skills/`
-- 若要用 Gemini custom commands，讀 `.gemini/commands/*.toml`
-- 若平台不能跑某支腳本，改讀 `docs/script_fallback_matrix.md`
-- 具體工作流與技術棧決策規則在 `.agents/skills/loop-engineering/SKILL.md`
+- Gemini custom commands：`.gemini/commands/*.toml`
+- Canonical skill 路徑：`.agents/skills/`
+- 跨 session 狀態：`.loop/`
+- 若腳本不可跑，改讀 `docs/script_fallback_matrix.md`
+
+## 自治等級
+
+本 repo 預設 **L3 自主交付模式**。直接執行，只在阻塞時停止。
